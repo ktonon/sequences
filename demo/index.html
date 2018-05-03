@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-sequences demo</title>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../components/d2l-sequences-module-name.html">
+		<link rel="import" href="../components/d2l-sequences-topic-name.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles"></style>
+		</custom-style>
+	</head>
+	<body>
+		<div class="vertical-section-container centered">
+
+			<h3>Simple sequences</h3>
+			<demo-snippet>
+				<template>
+					<d2l-sequences-module-name href="data/l2-module1.json" token="foo"></d2l-sequences-module-name>
+					<d2l-sequences-topic-name href="data/l2-m1-activity1.json" token="foo"></d2l-sequences-topic-name>
+				</template>
+			</demo-snippet>
+
+		</div>
+	</body>
+</html>

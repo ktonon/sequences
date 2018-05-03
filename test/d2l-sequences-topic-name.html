@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <title>d2l-sequences-topic-name test</title>
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <link rel="import" href="../components/d2l-sequences-topic-name.html">
+</head>
+
+<body>
+    <test-fixture id="basic">
+        <template>
+            <d2l-sequences-topic-name></d2l-sequences-topic-name>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="lessBasic">
+        <template>
+            <d2l-sequences-topic-name href="../demo/data/l2-m1-activity1.json" token="foo"></d2l-sequences-topic-name>
+        </template>
+    </test-fixture>
+
+    <script>
+        describe('d2l-sequences-topic-name', function() {
+        	let elem;
+        	describe('basic', function() {
+        		it('should instantiate the element', function() {
+        			elem = fixture('basic');
+        			expect(elem.tagName).to.equal('D2L-SEQUENCES-TOPIC-NAME');
+        		});
+        	});
+
+        	describe('lessBasic', function() {
+        		before(function(done) {
+        			elem = fixture('lessBasic');
+        			const interval = setInterval(() => {
+        				if (elem.loaded) {
+        					clearInterval(interval);
+        					done();
+        				}
+        			}, 10);
+        		});
+
+        		it('should display the title', function() {
+        			expect(elem.title).to.equal('Accessible Word Document');
+        		});
+        	});
+        });
+    </script>
+</body>
+
+</html>
