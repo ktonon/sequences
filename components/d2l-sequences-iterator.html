@@ -1,0 +1,73 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../polymer-siren-mixins/siren-entity-mixin.html">
+<link rel="import" href="../../d2l-icons/d2l-icon.html">
+<link rel="import" href="../../d2l-icons/d2l-icon-button.html">
+<link rel="import" href="../../d2l-icons/tier1-icons.html">
+<link rel="import" href="../../d2l-icons/tier2-icons.html">
+<link rel="import" href="../../d2l-icons/tier3-icons.html">
+<link rel="import" href="../../d2l-icons/html-editor-icons.html">
+<link rel="import" href="../../d2l-icons/emoji-icons.html">
+
+<dom-module id="d2l-sequences-iterator">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+            }
+        </style>
+        <d2l-icon-button
+            disabled="[[disabled]]"
+            icon="[[icon]]"
+            type="button"
+        ></d2l-icon-button>
+    </template>
+
+    <script>
+		/*
+			@mixes SirenEntityMixin
+			@demo demos/index.html
+        */
+        class D2LSequencesIterator extends D2L.Polymer.Mixins.SirenEntityMixin(Polymer.Element) {
+            static get is() {
+                return 'd2l-sequences-iterator';
+            }
+            static get properties() {
+                return {
+                    disabled: {
+                        type: Boolean,
+                        computed: '_isDisabled(entity)'
+                    },
+                    icon: {
+                        type: String
+                    },
+                    next: {
+                        type: Boolean
+                    },
+                    previous: {
+                        type: Boolean
+                    },
+                    up: {
+                        type: Boolean
+                    }
+                };
+            }
+            _isDisabled(entity) {
+                if (!this.next && !this.previous && !this.up) {
+                    return true;
+                }
+                if (this.next && !entity.getLinkByRel('next')) {
+                    return true;
+                }
+                if (this.previous && !entity.getLinkByRel('prev')) {
+                    return true;
+                }
+                if (this.up && !entity.getLinkByRel('up')) {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+        customElements.define(D2LSequencesIterator.is, D2LSequencesIterator);
+    </script>
+</dom-module>
