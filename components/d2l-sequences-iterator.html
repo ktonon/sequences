@@ -19,6 +19,7 @@
             disabled="[[disabled]]"
             icon="[[icon]]"
             type="button"
+            on-click="_onClick"
         ></d2l-icon-button>
     </template>
 
@@ -66,6 +67,23 @@
                 }
 
                 return false;
+            }
+            _onClick() {
+                var link;
+
+                if (this.next && this.entity.getLinkByRel('next')) {
+                    link = this.entity.getLinkByRel('next');
+                }
+                else if(this.previous && this.entity.getLinkByRel('prev')) {
+                    link = this.entity.getLinkByRel('prev');
+                }
+                else if(this.up && this.entity.getLinkByRel('up')) {
+                    link = this.entity.getLinkByRel('up');
+                }
+
+                if (link && link.href) {
+                    this.href = link.href;
+                }
             }
         }
         customElements.define(D2LSequencesIterator.is, D2LSequencesIterator);
