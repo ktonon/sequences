@@ -9,34 +9,15 @@
 		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 		<link rel="import" href="../components/d2l-sequences-module-name.html">
 		<link rel="import" href="../components/d2l-sequences-topic-name.html">
-		<link rel="import" href="../components/d2l-sequences-viewer-header.html">
 		<link rel="import" href="../components/d2l-sequences-iterator.html">
 		<link rel="import" href="../../d2l-typography/d2l-typography.html">
 		<link rel="import" href="../../d2l-organizations/components/d2l-organization-name.html">
-		<custom-style include="d2l-typography">
-				<style is="custom-style" include="d2l-typography"></style>
-		</custom-style>
-		<style>
-			.uppercase {
-				text-transform: uppercase;
-			}
-		</style>
 	</head>
 	<body class="d2l-typography">
 		<h3>Simple sequences</h3>
 
 		<d2l-sequences-module-name href="data/l2-module1.json" token="foo"></d2l-sequences-module-name>
 		<d2l-sequences-topic-name href="data/l2-m1-activity1.json" token="foo"></d2l-sequences-topic-name>
-		<d2l-sequences-viewer-header href="data/l2-m1-activity1.json" token="foo">
-			<span class="uppercase" slot="d2l-course-name">
-				- [
-				<d2l-organization-name
-					href="../../d2l-organizations/demo/data/course.json"
-					token="foo">
-				</d2l-organization-name>
-				]
-			</span>
-		</d2l-sequences-viewer-header>
 		<d2l-sequences-iterator previous></d2l-sequences-iterator>
 		<d2l-sequences-iterator next></d2l-sequences-iterator>
 		<d2l-sequences-iterator up></d2l-sequences-iterator>
