@@ -53,7 +53,7 @@
 						.then(completion => this._completionEntity = completion);
 				}
 
-				async _performCompletion(entity, actionName) {
+				_performCompletion(entity, actionName) {
 					const activitySubEntity = entity.getSubEntityByClass('activity');
 					if (!activitySubEntity) {
 						return null;
