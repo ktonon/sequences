@@ -1,5 +1,5 @@
-<link rel="import" href="../../polymer/polymer-element.html">
-<link rel="import" href="../../polymer-siren-mixins/siren-entity-mixin.html">
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../d2l-polymer-siren-behaviors/store/entity-behavior.html">
 <link rel="import" href="../../d2l-icons/d2l-icon.html">
 <link rel="import" href="../../d2l-icons/d2l-icon-button.html">
 <link rel="import" href="../../d2l-icons/tier1-icons.html">
@@ -28,16 +28,25 @@
 
     <script>
 		/*
-			@mixes SirenEntityMixin
             @extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 			@demo demos/index.html
         */
-        class D2LSequencesIterator extends Polymer.mixinBehaviors(D2L.PolymerBehaviors.Sequences.LocalizeBehavior, D2L.Polymer.Mixins.SirenEntityMixin(Polymer.Element)) {
+        class D2LSequencesIterator extends Polymer.mixinBehaviors([
+            D2L.PolymerBehaviors.Siren.EntityBehavior,
+            D2L.PolymerBehaviors.Sequences.LocalizeBehavior
+            ],
+            Polymer.Element
+        ) {
             static get is() {
                 return 'd2l-sequences-iterator';
             }
             static get properties() {
                 return {
+                    href: {
+                        type: String,
+                        reflectToAttribute: true,
+                        notify: true
+                    },
                     disabled: {
                         type: Boolean,
                         computed: '_isDisabled(entity)'
@@ -81,6 +90,9 @@
                 }
             }
             _isDisabled(entity) {
+                if (!entity) {
+                    return true;
+                }
                 if (!this.next && !this.previous && !this.up) {
                     return true;
                 }
@@ -101,6 +113,9 @@
                 }
             }
             _setLink(entity) {
+                if (!entity) {
+                    return;
+                }
                 this.link = null;
 
                 if (this.next) {

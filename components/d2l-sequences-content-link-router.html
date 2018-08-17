@@ -1,7 +1,4 @@
-<link rel="import" href="../../polymer/polymer-element.html">
-<link rel="import" href="../../polymer/lib/utils/debounce.html">
-<link rel="import" href="../../polymer-siren-mixins/siren-entity-mixin.html">
-<link rel="import" href="../mixins/RouterMixin.html">
+<link rel="import" href="../mixins/d2l-sequences-router-mixin.html">
 <link rel="import" href="d2l-sequences-content-link.html">
 <link rel="import" href="d2l-sequences-content-link-mixed.html">
 <link rel="import" href="d2l-sequences-content-link-scorm.html">
@@ -9,10 +6,7 @@
 <dom-module id="d2l-sequences-content-link-router">
 	<template></template>
 	<script>
-		/*
-			@mixes SirenEntityMixin
-		*/
-		class D2LSequencesContentLinkRouter extends D2L.Polymer.Mixins.SirenEntityMixin(D2L.Polymer.Mixins.RouterMixin(Polymer.Element, getEntityType)) {
+		class D2LSequencesContentLinkRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin(getEntityType) {
 			static get is() {
 				return 'd2l-sequences-content-link-router';
 			}
@@ -27,11 +21,12 @@
 		function getEntityType(entity) {
 			try {
 				const linkActivity = entity && entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
-				const link = this._getLinkByRel(linkActivity, 'about');
-				if (this._hasClass(linkActivity, D2LSequencesContentLinkScorm.contentClass)){
+				if (linkActivity.hasClass(D2LSequencesContentLinkScorm.contentClass)){
 					return D2LSequencesContentLinkScorm.is;
 				}
-				if ( link.href.startsWith('https://') ) {
+
+				const link = linkActivity.getLinkByRel('about');
+				if (link.href.startsWith('https://')) {
 					return D2LSequencesContentLink.is;
 				} else {
 					return D2LSequencesContentLinkMixed.is;
