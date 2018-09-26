@@ -65,6 +65,12 @@
 			}
 			static get properties() {
 				return {
+					href: {
+						type: String,
+						reflectToAttribute: true,
+						notify: true,
+						observer: '_scrollToTop'
+					},
 					_fileLocation: {
 						type: String,
 						computed: '_getFileLocation(entity)',
@@ -86,6 +92,10 @@
 				super.connectedCallback();
 				this._language = window.document.getElementsByTagName('html')[0]
 					.getAttribute('lang');
+			}
+
+			_scrollToTop() {
+				window.top.scrollTo(0,0);
 			}
 
 			_getFileLocation(entity) {

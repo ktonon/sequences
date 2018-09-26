@@ -18,6 +18,12 @@
 			}
 			static get properties() {
 				return {
+					href: {
+						type: String,
+						reflectToAttribute: true,
+						notify: true,
+						observer: '_scrollToTop'
+					},
 					_fileLocation: {
 						type: String,
 						computed: '_getFileLocation(entity)'
@@ -27,6 +33,10 @@
 						computed: '_getTitle(entity)'
 					}
 				}
+			}
+
+			_scrollToTop() {
+				window.top.scrollTo(0,0);
 			}
 
 			_getFileLocation(entity) {
