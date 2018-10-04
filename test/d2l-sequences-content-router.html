@@ -17,7 +17,6 @@
 			</template>
 		</test-fixture>
 		<script>
-			/* global loadFileWithDelay */
 			describe('d2l-sequences-content-router', () => {
 				describe('should handle a file activity for the mimetype:', () => {
 					it('application/pdf', async() => {
@@ -67,11 +66,11 @@
 				describe('should handle link activities', () => {
 					it('should handle mixed security links', async() => {
 						const element = await loadFileWithDelay('data/activity-link-insecure.json');
-						expect(element.shadowRoot.querySelector('d2l-sequences-content-link-mixed')).to.exist;
+						expect(element.shadowRoot.querySelector('d2l-sequences-content-link')).to.exist;
 					});
 					it('should handle normal links', async() => {
 						const element = await loadFileWithDelay('data/activity-link-secure.json');
-						expect(element.shadowRoot.querySelector('d2l-sequences-content-link')).to.exist;
+						expect(element.shadowRoot.querySelector('d2l-sequences-content-link-mixed')).to.exist;
 					});
 					it('should handle scorm links', async() => {
 						const element = await loadFileWithDelay('data/activity-link-scorm.json');
