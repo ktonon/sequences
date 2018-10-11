@@ -20,7 +20,7 @@
 		"imDone": "I'm Done",
 		"niceWork": "Nice work so far!",
 		"you": "You",
-		"missedActivities": "missed {count} activities.",
+		"missedActivities": "missed {count, plural, one {# activity} other {# activities}}.",
 		"noNeedToFinish": "If you don't need to finish them, no problem.",
 		"showMissed": "Show Me What I Missed",
 		"youMissedThese": "You missed these activities:",
