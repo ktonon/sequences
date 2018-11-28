@@ -5,6 +5,8 @@
 <link rel="import" href="../../d2l-polymer-siren-behaviors/store/entity-behavior.html">
 <link rel="import" href="../localize-behavior.html">
 <link rel="import" href="d2l-end-of-lesson-image.html">
+<link rel="import" href="../mixins/d2l-sequences-return-mixin.html">
+
  <dom-module id="d2l-sequences-content-eol-main">
 	<template>
 		<style>
@@ -34,9 +36,7 @@
 					[[localize('activitiesFinishedGreatJob')]]
 				</p>
 				<d2l-button primary on-click="_onClickBack">
-					<label>
-						[[localize('imDone')]]
-					</label>
+					[[localize('imDone')]]
 				</d2l-button>
 			</template>
  			<template is="dom-if" if="[[hasMissed]]">
@@ -52,21 +52,16 @@
 						[[localize('noNeedToFinish', 'count', missedCount)]]
 					</p>
 					<d2l-button on-click="_setShowMissed">
-						<label>
-							[[localize('showMissed')]]
-						</label>
+						[[localize('showMissed')]]
 					</d2l-button>
 					<d2l-button primary on-click="_onClickBack">
-						<label>
-							[[localize('imDone')]]
-						</label>
+						[[localize('imDone')]]
 					</d2l-button>
 				</template>
 				<template is="dom-if" if="[[showMissed]]">
 					<d2l-sequences-content-eol-missed
 						href="{{href}}"
-						token="[[token]]"
-						return-url="[[returnUrl]]">
+						token="[[token]]">
 					</d2l-sequences-content-eol-missed>
 				</template>
 			</template>	
@@ -76,12 +71,10 @@
 		/*
 			@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 		*/
-		class D2LSequencesContentEoLMain extends Polymer.mixinBehaviors([
+		class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.ReturnMixin([
 			D2L.PolymerBehaviors.Siren.EntityBehavior,
 			D2L.PolymerBehaviors.Sequences.LocalizeBehavior
-		],
-		Polymer.Element
-		) {
+		]) {
 			static get is() {
 				return 'd2l-sequences-content-eol-main';
 			}
@@ -95,10 +88,6 @@
 					},
 					token: {
 						type: String
-					},
-					returnUrl: {
-						type: String,
-						value: false
 					},
 					missedCount: {
 						type: Number,
@@ -138,21 +127,6 @@
 			_getMissedCount(entity) {
 				if (!entity) return 0;
 				return entity.entities.length;
-			}
-			_onClickBack() {
-				if (!this.returnUrl) {
-					return;
-				}
-				if (window.parent === window) {
-					window.location.href = this.returnUrl;
-					return;
-				}
-
-				// If we're in an iframe we need to post a message to do the navigation for us
-				window.parent.postMessage(JSON.stringify({
-					eventType: 'd2l-sequence-viewer-return',
-					returnUrl: this.returnUrl
-				}), '*');
 			}
 			_setShowMissed() {
 				this.showMissed = true;
