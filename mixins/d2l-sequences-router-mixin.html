@@ -50,8 +50,7 @@
 						Polymer.Async.timeOut.after(20),
 						() => {
 							const entityType = getEntityType(entity);
-							
-							if (entity && 
+							if (entity &&
 								(!this._contentElement || this._contentElement.href !== this.href)
 							) {
 								const nodeTemplate = Polymer.DomModule.import(entityType, 'template');
