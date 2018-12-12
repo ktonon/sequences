@@ -50,9 +50,9 @@
 						Polymer.Async.timeOut.after(20),
 						() => {
 							const entityType = getEntityType(entity);
-
-							// Check if we should reuse the existing content element
-							if (entityType !== this._contentType) {
+							if (entity &&
+								(!this._contentElement || this._contentElement.href !== this.href)
+							) {
 								const nodeTemplate = Polymer.DomModule.import(entityType, 'template');
 								const contentElement = document.createElement(entityType);
 								contentElement.appendChild(this._stampTemplate(nodeTemplate));
@@ -65,10 +65,9 @@
 								this._contentType = entityType;
 
 								this.shadowRoot.appendChild(this._contentElement);
+								this._contentElement.href = this.href;
+								this._contentElement.token = this.token;
 							}
-
-							this._contentElement.href = this.href;
-							this._contentElement.token = this.token;
 						}
 					);
 				}
