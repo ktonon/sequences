@@ -1,5 +1,6 @@
+<link rel="import" href="../components//d2l-sequences-content-error.html">
 <link rel="import" href="../../polymer/lib/utils/debounce.html">
-<link rel="import" href="../components//d2l-sequences-content-unknown.html">
+
 <script>
 	(function() {
 		function RouterMixin(getEntityType) {
@@ -62,7 +63,7 @@
 						() => {
 							let entityType = getEntityType(entity);
 							if (error) {
-								entityType = D2LSequencesContentUnknown.is;
+								entityType = D2LSequencesContentError.is;
 							}
 							if (
 								(entity &&

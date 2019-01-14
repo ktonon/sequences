@@ -1,0 +1,16 @@
+<link rel="import" href="../polymer/polymer.html">
+<dom-module id="d2l-sequences-content-error">
+	<template>
+		<style>
+		</style>
+		[[localize('cannotBeRendered')]]
+	</template>
+	<script>
+		class D2LSequencesContentError extends Polymer.Element {
+			static get is() {
+				return 'd2l-sequences-content-error';
+			}
+		}
+		customElements.define(D2LSequencesContentError.is, D2LSequencesContentError);
+	</script>
+</dom-module>
