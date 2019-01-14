@@ -1,4 +1,3 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
 <dom-module id="d2l-sequences-content-error">
 	<template>
 		<style>
@@ -6,7 +5,11 @@
 		[[localize('cannotBeRendered')]]
 	</template>
 	<script>
-		class D2LSequencesContentError extends Polymer.Element {
+		class D2LSequencesContentError extends Polymer.mixinBehaviors([
+			D2L.PolymerBehaviors.Sequences.LocalizeBehavior
+		],
+		Polymer.Element
+		) {
 			static get is() {
 				return 'd2l-sequences-content-error';
 			}
