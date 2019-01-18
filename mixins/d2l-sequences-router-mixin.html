@@ -1,4 +1,5 @@
 <link rel="import" href="../../polymer/lib/utils/debounce.html">
+<link rel="import" href="../components/d2l-sequences-content-error.html">
 <script>
 	(function() {
 		function RouterMixin(getEntityType) {
@@ -23,12 +24,15 @@
 						},
 						_hrefUpdated: {
 							type: Function
+						},
+						error: {
+							type: Boolean
 						}
 					};
 				}
 
 				static get observers() {
-					return ['_render(entity)'];
+					return ['_render(entity, error)'];
 				}
 
 				connectedCallback() {
@@ -36,23 +40,33 @@
 					this._hrefUpdated = this.addEventListener('hrefUpdated', ({detail}) => {
 						this.href = detail.href;
 					});
+					this._D2LErrorListener = window.addEventListener('message', (event) => {
+						this.error = event.data.type === 'd2l-error';
+					});
 				}
 
 				disconnectedCallback() {
 					super.disconnectedCallback();
 					this.removeEventListener('hrefUpdated', this._hrefUpdated);
+					this.removeEventListener('message', this._D2LErrorListener);
 				}
 
-				_render(entity) {
+				_render(entity, error) {
 					getEntityType = getEntityType.bind(this);
 					this._debouncer = Polymer.Debouncer.debounce(
 						this._debouncer,
 						Polymer.Async.timeOut.after(20),
 						() => {
-							const entityType = getEntityType(entity);
-							if (entity &&
+							const entityType = error
+								? D2LSequencesContentError.is
+								: getEntityType(entity);
+
+							const replaceContentElement = (entity &&
 								(!this._contentElement || this._contentElement.href !== this.href)
-							) {
+							) || error;
+
+							if (replaceContentElement) {
+								this.error = false;
 								const nodeTemplate = Polymer.DomModule.import(entityType, 'template');
 								const contentElement = document.createElement(entityType);
 								contentElement.appendChild(this._stampTemplate(nodeTemplate));
