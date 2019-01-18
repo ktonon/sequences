@@ -57,13 +57,13 @@
 						this._debouncer,
 						Polymer.Async.timeOut.after(20),
 						() => {
-							const entityType = error 
-								? D2LSequencesContentError.is 
+							const entityType = error
+								? D2LSequencesContentError.is
 								: getEntityType(entity);
 
 							const replaceContentElement = (entity &&
 								(!this._contentElement || this._contentElement.href !== this.href)
-								) || error;
+							) || error;
 
 							if (replaceContentElement) {
 								this.error = false;
