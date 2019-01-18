@@ -26,8 +26,7 @@
 							type: Function
 						},
 						error: {
-							type: Boolean,
-							value: false
+							type: Boolean
 						}
 					};
 				}
@@ -42,9 +41,7 @@
 						this.href = detail.href;
 					});
 					this._D2LErrorListener = window.addEventListener('message', (event) => {
-						if (event.data.type === 'd2l-error') {
-							this.error = true;
-						}
+						this.error = event.data.type === 'd2l-error';
 					});
 				}
 
@@ -60,15 +57,15 @@
 						this._debouncer,
 						Polymer.Async.timeOut.after(20),
 						() => {
-							let entityType = getEntityType(entity);
-							if (error) {
-								entityType = D2LSequencesContentError.is;
-							}
-							if (
-								(entity &&
+							const entityType = error 
+								? D2LSequencesContentError.is 
+								: getEntityType(entity);
+
+							const replaceContentElement = (entity &&
 								(!this._contentElement || this._contentElement.href !== this.href)
-								) || error
-							) {
+								) || error;
+
+							if (replaceContentElement) {
 								this.error = false;
 								const nodeTemplate = Polymer.DomModule.import(entityType, 'template');
 								const contentElement = document.createElement(entityType);
