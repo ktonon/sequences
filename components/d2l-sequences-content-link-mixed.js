@@ -6,8 +6,8 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 */
 class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.CompletionTrackingMixin() {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 			.content-link-mixed-container {
 				padding-top: 100px;
@@ -36,13 +36,13 @@ class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.Completi
 			</d2l-button>
 		</div>
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-link-mixed';
-  }
+	}
 
-  static get properties() {
+	static get properties() {
 	  return {
 		  href: {
 			  type: String,
@@ -51,18 +51,18 @@ class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.Completi
 			  observer: '_scrollToTop'
 		  }
 	  };
-  }
+	}
 
-  disconnectedCallback() {
+	disconnectedCallback() {
 	  super.disconnectedCallback();
 	  this.finishCompletion();
-  }
+	}
 
-  _scrollToTop() {
+	_scrollToTop() {
 	  window.top.scrollTo(0, 0);
-  }
+	}
 
-  _getLinkLocation(entity) {
+	_getLinkLocation(entity) {
 	  try {
 		  const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
 		  const link = linkActivity.getLinkByRel('about');
@@ -70,8 +70,8 @@ class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.Completi
 	  } catch (e) {
 		  return '';
 	  }
-  }
-  _onclick() {
+	}
+	_onclick() {
 	  const location = this._getLinkLocation(this.entity);
 	  if (!location) {
 		  return;
@@ -80,6 +80,6 @@ class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.Completi
 	  this.startCompletion();
 	  this.topicSetDashboardViewState();
 	  return window.open(location);
-  }
+	}
 }
 customElements.define(D2LSequencesContentLinkMixed.is, D2LSequencesContentLinkMixed);

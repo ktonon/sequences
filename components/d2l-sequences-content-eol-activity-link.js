@@ -12,8 +12,8 @@ class D2LSequencesContentEoLActivityLink extends mixinBehaviors([
 ],
 PolymerElement
 ) {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 			:host {
 				display: block;
@@ -24,12 +24,12 @@ PolymerElement
 			[[title]]
 		</d2l-link>
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-eol-activity-link';
-  }
-  static get properties() {
+	}
+	static get properties() {
 	  return {
 		  title: {
 			  type: Object,
@@ -40,9 +40,9 @@ PolymerElement
 			  reflectToAttribute: true,
 		  }
 	  };
-  }
+	}
 
-  _onClick() {
+	_onClick() {
 	  const event = new CustomEvent('hrefUpdated', {
 		  detail: { href: this.href },
 		  composed: true,
@@ -50,10 +50,10 @@ PolymerElement
 	  });
 
 	  this.dispatchEvent(event);
-  }
+	}
 
-  _getTitle(entity) {
+	_getTitle(entity) {
 	  return entity && entity.properties && entity.properties.title || '';
-  }
+	}
 }
 customElements.define(D2LSequencesContentEoLActivityLink.is, D2LSequencesContentEoLActivityLink);

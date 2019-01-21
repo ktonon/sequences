@@ -7,16 +7,16 @@ class D2LSequencesContentError extends mixinBehaviors([
 ],
 PolymerElement
 ) {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 		</style>
 		[[localize('cannotBeRendered')]]
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-error';
-  }
+	}
 }
 customElements.define(D2LSequencesContentError.is, D2LSequencesContentError);

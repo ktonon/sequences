@@ -7,8 +7,8 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 */
 class D2LSequencesContentLinkOnedrive extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 			.content-link-onedrive-container {
 				padding-top: 100px;
@@ -44,12 +44,12 @@ class D2LSequencesContentLinkOnedrive extends D2L.Polymer.Mixins.Sequences.Autom
 			</d2l-button>
 		</div>
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-link-onedrive';
-  }
-  static get properties() {
+	}
+	static get properties() {
 	  return {
 		  href: {
 			  type: String,
@@ -62,16 +62,16 @@ class D2LSequencesContentLinkOnedrive extends D2L.Polymer.Mixins.Sequences.Autom
 			  computed: '_getLinkLocation(entity)'
 		  }
 	  };
-  }
-  static get contentClass() {
+	}
+	static get contentClass() {
 	  return 'link-onedrive';
-  }
+	}
 
-  _scrollToTop() {
+	_scrollToTop() {
 	  window.top.scrollTo(0, 0);
-  }
+	}
 
-  _getLinkLocation(entity) {
+	_getLinkLocation(entity) {
 	  try {
 		  const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
 		  const link = linkActivity.getLinkByRel('about');
@@ -79,6 +79,6 @@ class D2LSequencesContentLinkOnedrive extends D2L.Polymer.Mixins.Sequences.Autom
 	  } catch (e) {
 		  return '';
 	  }
-  }
+	}
 }
 customElements.define(D2LSequencesContentLinkOnedrive.is, D2LSequencesContentLinkOnedrive);

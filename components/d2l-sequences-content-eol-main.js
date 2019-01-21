@@ -15,8 +15,8 @@ class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.ReturnMixi
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 ]) {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 			:host {
 				color: var(--d2l-color-ferrite);
@@ -72,12 +72,12 @@ class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.ReturnMixi
 			</template>	
 		</div>
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-eol-main';
-  }
-  static get properties() {
+	}
+	static get properties() {
 	  return {
 		  href: {
 			  type: String,
@@ -101,34 +101,34 @@ class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.ReturnMixi
 			  value: false
 		  }
 	  };
-  }
+	}
 
-  static get eolClass() {
+	static get eolClass() {
 	  return 'end-of-sequence';
-  }
+	}
 
-  static get observers() {
+	static get observers() {
 	  return ['_onActivitySelected(entity)'];
-  }
+	}
 
-  _scrollToTop() {
+	_scrollToTop() {
 	  window.top.scrollTo(0, 0);
-  }
+	}
 
-  _onActivitySelected(entity) {
+	_onActivitySelected(entity) {
 	  if (entity && entity.hasClass('sequenced-activity')) {
 		  this.showMissed = false;
 	  }
-  }
-  _getHasMissed(missedCount) {
+	}
+	_getHasMissed(missedCount) {
 	  return missedCount !== 0;
-  }
-  _getMissedCount(entity) {
+	}
+	_getMissedCount(entity) {
 	  if (!entity) return 0;
 	  return entity.entities.length;
-  }
-  _setShowMissed() {
+	}
+	_setShowMissed() {
 	  this.showMissed = true;
-  }
+	}
 }
 customElements.define(D2LSequencesContentEoLMain.is, D2LSequencesContentEoLMain);

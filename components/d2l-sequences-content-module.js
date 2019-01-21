@@ -3,13 +3,13 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 class D2LSequencesContentModule extends mixinBehaviors([
-D2L.PolymerBehaviors.Siren.EntityBehavior,
-D2L.PolymerBehaviors.Siren.SirenActionBehaviorImpl
+	D2L.PolymerBehaviors.Siren.EntityBehavior,
+	D2L.PolymerBehaviors.Siren.SirenActionBehaviorImpl
 ],
 PolymerElement
 ) {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 		:host {
 			max-width: 678px;
@@ -35,32 +35,32 @@ PolymerElement
 			</p>
 		</div>
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-module';
-  }
+	}
 
-  static get contentModuleClass() {
+	static get contentModuleClass() {
 	  return 'sequence-description';
-  }
+	}
 
-  static get observers() {
-  return [
+	static get observers() {
+		return [
 	  '_getDescription(entity)',
 	  '_moduleSetDashboardViewState(entity)'
-  ];
-  }
+		];
+	}
 
-  _getDescription(entity) {
+	_getDescription(entity) {
 	  if (!entity || !entity.properties || !entity.properties.description) {
 		  return;
 	  }
 
 	  this.$.description.innerHTML = entity.properties.description;
-  }
+	}
 
-  _moduleSetDashboardViewState(entity) {
+	_moduleSetDashboardViewState(entity) {
 	  if (!entity) {
 		  return;
 	  }
@@ -76,7 +76,7 @@ PolymerElement
 		  return this.performSirenAction(action.value)
 			  .then(resolve);
 	  });
-  }
+	}
 }
 
 customElements.define(D2LSequencesContentModule.is, D2LSequencesContentModule);

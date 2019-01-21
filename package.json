@@ -9,9 +9,9 @@
   "scripts": {
     "build:lang": "gulp build-locales",
     "build": "npm run build:lang",
-    "lint:fix": "eslint *.html {components,mixins,test,demo}/*.html --fix",
+    "lint:fix": "eslint *.js {components,mixins,test,demo}/*.js --fix",
     "lint:js": "eslint . --ext .js,.html test/**/*.js test/**/*.html demo/**/*.js demo/**/*.html",
-    "lint": "npm run lint:wc && npm run lint:js",
+    "lint": "npm run lint:js",
     "pretest": "npm run lint",
     "test": "polymer test --skip-plugin sauce",
     "test-p": "polymer test --skip-plugin sauce -p",
@@ -46,14 +46,14 @@
   },
   "main": "d2l-sequences.js",
   "dependencies": {
+    "@d2l/content-icons": "git+https://github.com/Brightspace/d2l-content-icons.git",
     "@polymer/polymer": "^3.0.0",
-    "d2l-loading-spinner": "BrightspaceUI/loading-spinner#semver:^7",
-    "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
-    "@d2l/content-icons": "^3.0.0",
     "d2l-button": "BrightspaceUI/button#semver:^5",
     "d2l-link": "BrightspaceUI/link#semver:^5",
-    "d2l-polymer-siren-behaviors": "Brightspace/polymer-siren-behaviors#semver:^1",
+    "d2l-loading-spinner": "BrightspaceUI/loading-spinner#semver:^7",
+    "d2l-localize-behavior": "BrightspaceUI/localize-behavior#semver:^2",
     "d2l-navigation": "BrightspaceUI/navigation#semver:^3",
+    "d2l-polymer-siren-behaviors": "Brightspace/polymer-siren-behaviors#semver:^1",
     "s-html": "Brightspace/s-html#semver:^2.0.0"
   }
 }

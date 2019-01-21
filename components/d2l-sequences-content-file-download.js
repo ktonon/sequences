@@ -6,8 +6,8 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 */
 class D2LSequencesContentFileDownload extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 			.content-file-download-container {
 				padding-top: 100px;
@@ -57,12 +57,12 @@ class D2LSequencesContentFileDownload extends D2L.Polymer.Mixins.Sequences.Autom
 			</template>
 		</div>
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-file-download';
-  }
-  static get properties() {
+	}
+	static get properties() {
 	  return {
 		  href: {
 			  type: String,
@@ -86,13 +86,13 @@ class D2LSequencesContentFileDownload extends D2L.Polymer.Mixins.Sequences.Autom
 			  computed: '_getHumanFileSize(_rawFileSize)'
 		  }
 	  };
-  }
+	}
 
-  _scrollToTop() {
+	_scrollToTop() {
 	  window.top.scrollTo(0, 0);
-  }
+	}
 
-  _getFileLocation(entity) {
+	_getFileLocation(entity) {
 	  try {
 		  const fileActivity = entity.getSubEntityByClass('file-activity');
 		  const file = fileActivity.getSubEntityByClass('file');
@@ -101,9 +101,9 @@ class D2LSequencesContentFileDownload extends D2L.Polymer.Mixins.Sequences.Autom
 	  } catch (e) {
 		  return '';
 	  }
-  }
+	}
 
-  _getHumanFileSize(bytes) {
+	_getHumanFileSize(bytes) {
 	  const thresh = 1000;
 	  const units = ['B', 'kB', 'MB', 'GB', 'TB'];
 
@@ -114,9 +114,9 @@ class D2LSequencesContentFileDownload extends D2L.Polymer.Mixins.Sequences.Autom
 
 	  const size = parseFloat(bytes.toFixed(1)).toLocaleString(this._language);
 	  return `${size} ${units[i]}`;
-  }
+	}
 
-  _setRawFileSize() {
+	_setRawFileSize() {
 	  if (!this._fileLocation) {
 		  return;
 	  }
@@ -135,6 +135,6 @@ class D2LSequencesContentFileDownload extends D2L.Polymer.Mixins.Sequences.Autom
 	  }).catch(() => {
 		  this._rawFileSize = 0;
 	  });
-  }
+	}
 }
 customElements.define(D2LSequencesContentFileDownload.is, D2LSequencesContentFileDownload);

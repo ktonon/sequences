@@ -7,8 +7,8 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 */
 class D2LSequencesContentLinkScorm extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 			.content-link-scorm-container {
 				padding-top: 100px;
@@ -39,12 +39,12 @@ class D2LSequencesContentLinkScorm extends D2L.Polymer.Mixins.Sequences.Automati
 			</d2l-button>
 		</div>
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-link-scorm';
-  }
-  static get properties() {
+	}
+	static get properties() {
 	  return {
 		  href: {
 			  type: String,
@@ -57,16 +57,16 @@ class D2LSequencesContentLinkScorm extends D2L.Polymer.Mixins.Sequences.Automati
 			  computed: '_getLinkLocation(entity)'
 		  }
 	  };
-  }
-  static get contentClass() {
+	}
+	static get contentClass() {
 	  return 'link-content-service';
-  }
+	}
 
-  _scrollToTop() {
+	_scrollToTop() {
 	  window.top.scrollTo(0, 0);
-  }
+	}
 
-  _getLinkLocation(entity) {
+	_getLinkLocation(entity) {
 	  try {
 		  const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
 		  const link = linkActivity.getLinkByRel('about');
@@ -74,6 +74,6 @@ class D2LSequencesContentLinkScorm extends D2L.Polymer.Mixins.Sequences.Automati
 	  } catch (e) {
 		  return '';
 	  }
-  }
+	}
 }
 customElements.define(D2LSequencesContentLinkScorm.is, D2LSequencesContentLinkScorm);

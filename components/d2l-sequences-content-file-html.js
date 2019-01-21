@@ -1,8 +1,8 @@
 import '../mixins/d2l-sequences-automatic-completion-tracking-mixin.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 			iframe {
 				width: 100%;
@@ -12,12 +12,12 @@ class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Automatic
 		</style>
 		<iframe id="content" frameborder="0" src$="[[_fileLocation]]" title$="[[title]]"></iframe>
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-file-html';
-  }
-  static get properties() {
+	}
+	static get properties() {
 	  return {
 		  href: {
 			  type: String,
@@ -34,13 +34,13 @@ class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Automatic
 			  computed: '_getTitle(entity)'
 		  }
 	  };
-  }
+	}
 
-  _scrollToTop() {
+	_scrollToTop() {
 	  window.top.scrollTo(0, 0);
-  }
+	}
 
-  _getFileLocation(entity) {
+	_getFileLocation(entity) {
 	  try {
 		  const fileActivity = entity.getSubEntityByClass('file-activity');
 		  const file = fileActivity.getSubEntityByClass('file');
@@ -49,9 +49,9 @@ class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Automatic
 	  } catch (e) {
 		  return '';
 	  }
-  }
-  _getTitle(entity) {
+	}
+	_getTitle(entity) {
 	  return entity && entity.properties && entity.properties.title || '';
-  }
+	}
 }
 customElements.define(D2LSequencesContentFileHtml.is, D2LSequencesContentFileHtml);

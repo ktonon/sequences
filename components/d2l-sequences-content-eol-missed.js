@@ -12,8 +12,8 @@ class D2LSequencesContentEoLMissed extends D2L.Polymer.Mixins.Sequences.ReturnMi
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 ]) {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 		<style>
 			:host {
 				color: var(--d2l-color-ferrite);
@@ -55,12 +55,12 @@ class D2LSequencesContentEoLMissed extends D2L.Polymer.Mixins.Sequences.ReturnMi
 			</d2l-button>
 		</div>
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-eol-missed';
-  }
-  static get properties() {
+	}
+	static get properties() {
 	  return {
 		  href: {
 			  type: String,
@@ -76,17 +76,17 @@ class D2LSequencesContentEoLMissed extends D2L.Polymer.Mixins.Sequences.ReturnMi
 			  computed: '_getSubEntities(entity)'
 		  }
 	  };
-  }
+	}
 
-  _scrollToTop() {
+	_scrollToTop() {
 	  window.top.scrollTo(0, 0);
-  }
+	}
 
-  _getSubEntities(entity) {
+	_getSubEntities(entity) {
 	  if (!entity) {
 		  return [];
 	  }
 	  return entity.entities;
-  }
+	}
 }
 customElements.define(D2LSequencesContentEoLMissed.is, D2LSequencesContentEoLMissed);

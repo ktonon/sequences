@@ -10,25 +10,25 @@ import './d2l-sequences-content-unknown.js';
 import './d2l-sequences-content-module.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin(getEntityType) {
-  static get template() {
-	return html`
+	static get template() {
+		return html`
 
 `;
-  }
+	}
 
-  static get is() {
+	static get is() {
 	  return 'd2l-sequences-content-router';
-  }
-  static get fileActivity() {
+	}
+	static get fileActivity() {
 	  return 'file-activity';
-  }
-  static get fileUnknown() {
+	}
+	static get fileUnknown() {
 	  return 'd2l-sequences-content-file-download';
-  }
-  static get linkActivity() {
+	}
+	static get linkActivity() {
 	  return 'link-activity';
-  }
-  static get mimeType() {
+	}
+	static get mimeType() {
 	  return new Map([
 		  ['application/pdf', D2LSequencesContentFileHtml.is],
 		  ['image/bmp', D2LSequencesContentFileHtml.is],
@@ -38,7 +38,7 @@ class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin
 		  ['image/svg+xml', D2LSequencesContentFileHtml.is],
 		  ['text/html', D2LSequencesContentFileHtml.is]
 	  ]);
-  }
+	}
 }
 customElements.define(D2LSequencesContentRouter.is, D2LSequencesContentRouter);
 
