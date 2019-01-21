@@ -9,9 +9,7 @@ import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 */
 class D2LSequencesContentEoLActivityLink extends mixinBehaviors([
 	D2L.PolymerBehaviors.Siren.EntityBehavior
-],
-PolymerElement
-) {
+], PolymerElement) {
 	static get template() {
 		return html`
 		<style>
@@ -27,33 +25,33 @@ PolymerElement
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-eol-activity-link';
+		return 'd2l-sequences-content-eol-activity-link';
 	}
 	static get properties() {
-	  return {
-		  title: {
-			  type: Object,
-			  computed: '_getTitle(entity)'
-		  },
-		  href: {
-			  type: String,
-			  reflectToAttribute: true,
-		  }
-	  };
+		return {
+			title: {
+				type: Object,
+				computed: '_getTitle(entity)'
+			},
+			href: {
+				type: String,
+				reflectToAttribute: true,
+			}
+		};
 	}
 
 	_onClick() {
-	  const event = new CustomEvent('hrefUpdated', {
-		  detail: { href: this.href },
-		  composed: true,
-		  bubbles: true
-	  });
+		const event = new CustomEvent('hrefUpdated', {
+			detail: { href: this.href },
+			composed: true,
+			bubbles: true
+		});
 
-	  this.dispatchEvent(event);
+		this.dispatchEvent(event);
 	}
 
 	_getTitle(entity) {
-	  return entity && entity.properties && entity.properties.title || '';
+		return entity && entity.properties && entity.properties.title || '';
 	}
 }
 customElements.define(D2LSequencesContentEoLActivityLink.is, D2LSequencesContentEoLActivityLink);

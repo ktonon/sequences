@@ -42,38 +42,38 @@ class D2LSequencesContentLinkScorm extends D2L.Polymer.Mixins.Sequences.Automati
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-link-scorm';
+		return 'd2l-sequences-content-link-scorm';
 	}
 	static get properties() {
-	  return {
-		  href: {
-			  type: String,
-			  reflectToAttribute: true,
-			  notify: true,
-			  observer: '_scrollToTop'
-		  },
-		  _linkLocation: {
-			  type: String,
-			  computed: '_getLinkLocation(entity)'
-		  }
-	  };
+		return {
+			href: {
+				type: String,
+				reflectToAttribute: true,
+				notify: true,
+				observer: '_scrollToTop'
+			},
+			_linkLocation: {
+				type: String,
+				computed: '_getLinkLocation(entity)'
+			}
+		};
 	}
 	static get contentClass() {
-	  return 'link-content-service';
+		return 'link-content-service';
 	}
 
 	_scrollToTop() {
-	  window.top.scrollTo(0, 0);
+		window.top.scrollTo(0, 0);
 	}
 
 	_getLinkLocation(entity) {
-	  try {
-		  const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
-		  const link = linkActivity.getLinkByRel('about');
-		  return link.href;
-	  } catch (e) {
-		  return '';
-	  }
+		try {
+			const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
+			const link = linkActivity.getLinkByRel('about');
+			return link.href;
+		} catch (e) {
+			return '';
+		}
 	}
 }
 customElements.define(D2LSequencesContentLinkScorm.is, D2LSequencesContentLinkScorm);

@@ -17,27 +17,27 @@ class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-router';
+		return 'd2l-sequences-content-router';
 	}
 	static get fileActivity() {
-	  return 'file-activity';
+		return 'file-activity';
 	}
 	static get fileUnknown() {
-	  return 'd2l-sequences-content-file-download';
+		return 'd2l-sequences-content-file-download';
 	}
 	static get linkActivity() {
-	  return 'link-activity';
+		return 'link-activity';
 	}
 	static get mimeType() {
-	  return new Map([
-		  ['application/pdf', D2LSequencesContentFileHtml.is],
-		  ['image/bmp', D2LSequencesContentFileHtml.is],
-		  ['image/gif', D2LSequencesContentFileHtml.is],
-		  ['image/jpeg', D2LSequencesContentFileHtml.is],
-		  ['image/png', D2LSequencesContentFileHtml.is],
-		  ['image/svg+xml', D2LSequencesContentFileHtml.is],
-		  ['text/html', D2LSequencesContentFileHtml.is]
-	  ]);
+		return new Map([
+			['application/pdf', D2LSequencesContentFileHtml.is],
+			['image/bmp', D2LSequencesContentFileHtml.is],
+			['image/gif', D2LSequencesContentFileHtml.is],
+			['image/jpeg', D2LSequencesContentFileHtml.is],
+			['image/png', D2LSequencesContentFileHtml.is],
+			['image/svg+xml', D2LSequencesContentFileHtml.is],
+			['text/html', D2LSequencesContentFileHtml.is]
+		]);
 	}
 }
 customElements.define(D2LSequencesContentRouter.is, D2LSequencesContentRouter);

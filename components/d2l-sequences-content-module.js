@@ -5,9 +5,7 @@ import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 class D2LSequencesContentModule extends mixinBehaviors([
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Siren.SirenActionBehaviorImpl
-],
-PolymerElement
-) {
+], PolymerElement) {
 	static get template() {
 		return html`
 		<style>
@@ -38,44 +36,44 @@ PolymerElement
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-module';
+		return 'd2l-sequences-content-module';
 	}
 
 	static get contentModuleClass() {
-	  return 'sequence-description';
+		return 'sequence-description';
 	}
 
 	static get observers() {
 		return [
-	  '_getDescription(entity)',
-	  '_moduleSetDashboardViewState(entity)'
+			'_getDescription(entity)',
+			'_moduleSetDashboardViewState(entity)'
 		];
 	}
 
 	_getDescription(entity) {
-	  if (!entity || !entity.properties || !entity.properties.description) {
-		  return;
-	  }
+		if (!entity || !entity.properties || !entity.properties.description) {
+			return;
+		}
 
-	  this.$.description.innerHTML = entity.properties.description;
+		this.$.description.innerHTML = entity.properties.description;
 	}
 
 	_moduleSetDashboardViewState(entity) {
-	  if (!entity) {
-		  return;
-	  }
-	  return new Promise((resolve, reject) => {
-		  const action = Maybe.of(entity)
-			  .chain(
-				  a => a.getActionByName('set-dashboard-view-state')
-			  );
-		  if (action.isNothing()) {
-			  return reject(entity, 'no action found');
-		  }
+		if (!entity) {
+			return;
+		}
+		return new Promise((resolve, reject) => {
+			const action = Maybe.of(entity)
+				.chain(
+					a => a.getActionByName('set-dashboard-view-state')
+				);
+			if (action.isNothing()) {
+				return reject(entity, 'no action found');
+			}
 
-		  return this.performSirenAction(action.value)
-			  .then(resolve);
-	  });
+			return this.performSirenAction(action.value)
+				.then(resolve);
+		});
 	}
 }
 

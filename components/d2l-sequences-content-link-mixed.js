@@ -39,47 +39,47 @@ class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.Completi
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-link-mixed';
+		return 'd2l-sequences-content-link-mixed';
 	}
 
 	static get properties() {
-	  return {
-		  href: {
-			  type: String,
-			  reflectToAttribute: true,
-			  notify: true,
-			  observer: '_scrollToTop'
-		  }
-	  };
+		return {
+			href: {
+				type: String,
+				reflectToAttribute: true,
+				notify: true,
+				observer: '_scrollToTop'
+			}
+		};
 	}
 
 	disconnectedCallback() {
-	  super.disconnectedCallback();
-	  this.finishCompletion();
+		super.disconnectedCallback();
+		this.finishCompletion();
 	}
 
 	_scrollToTop() {
-	  window.top.scrollTo(0, 0);
+		window.top.scrollTo(0, 0);
 	}
 
 	_getLinkLocation(entity) {
-	  try {
-		  const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
-		  const link = linkActivity.getLinkByRel('about');
-		  return link.href;
-	  } catch (e) {
-		  return '';
-	  }
+		try {
+			const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
+			const link = linkActivity.getLinkByRel('about');
+			return link.href;
+		} catch (e) {
+			return '';
+		}
 	}
 	_onclick() {
-	  const location = this._getLinkLocation(this.entity);
-	  if (!location) {
-		  return;
-	  }
+		const location = this._getLinkLocation(this.entity);
+		if (!location) {
+			return;
+		}
 
-	  this.startCompletion();
-	  this.topicSetDashboardViewState();
-	  return window.open(location);
+		this.startCompletion();
+		this.topicSetDashboardViewState();
+		return window.open(location);
 	}
 }
 customElements.define(D2LSequencesContentLinkMixed.is, D2LSequencesContentLinkMixed);

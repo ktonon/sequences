@@ -2226,15 +2226,15 @@ class D2LEndOfLessonImage extends PolymerElement {
 	}
 
 	static get is() {
-	  return 'd2l-end-of-lesson-image';
+		return 'd2l-end-of-lesson-image';
 	}
 	static get properties() {
-	  return {
-		  completed: {
-			  type: Boolean,
-			  value: false
-		  }
-	  };
+		return {
+			completed: {
+				type: Boolean,
+				value: false
+			}
+		};
 	}
 }
 customElements.define(D2LEndOfLessonImage.is, D2LEndOfLessonImage);

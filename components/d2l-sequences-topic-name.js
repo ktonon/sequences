@@ -21,18 +21,18 @@ class D2LSequencesTopicName extends mixinBehaviors([
 	}
 
 	static get is() {
-	  return 'd2l-sequences-topic-name';
+		return 'd2l-sequences-topic-name';
 	}
 	static get properties() {
-	  return {
-		  title: {
-			  type: Object,
-			  computed: '_getTitle(entity)'
-		  }
-	  };
+		return {
+			title: {
+				type: Object,
+				computed: '_getTitle(entity)'
+			}
+		};
 	}
 	_getTitle(entity) {
-	  return entity && entity.properties && entity.properties.title || '';
+		return entity && entity.properties && entity.properties.title || '';
 	}
 }
 customElements.define(D2LSequencesTopicName.is, D2LSequencesTopicName);

@@ -13,21 +13,21 @@ class D2LSequencesContentUnknown extends D2L.Polymer.Mixins.Sequences.AutomaticC
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-unknown';
+		return 'd2l-sequences-content-unknown';
 	}
 	static get properties() {
-	  return {
-		  href: {
-			  type: String,
-			  reflectToAttribute: true,
-			  notify: true,
-			  observer: '_scrollToTop'
-		  }
-	  };
+		return {
+			href: {
+				type: String,
+				reflectToAttribute: true,
+				notify: true,
+				observer: '_scrollToTop'
+			}
+		};
 	}
 
 	_scrollToTop() {
-	  window.top.scrollTo(0, 0);
+		window.top.scrollTo(0, 0);
 	}
 }
 customElements.define(D2LSequencesContentUnknown.is, D2LSequencesContentUnknown);

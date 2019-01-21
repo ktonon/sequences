@@ -21,19 +21,19 @@ class D2LSequencesModuleName extends mixinBehaviors([
 	}
 
 	static get is() {
-	  return 'd2l-sequences-module-name';
+		return 'd2l-sequences-module-name';
 	}
 	static get properties() {
-	  return {
-		  title: {
-			  type: Object,
-			  computed: '_getTitle(entity)',
-			  notify: true
-		  }
-	  };
+		return {
+			title: {
+				type: Object,
+				computed: '_getTitle(entity)',
+				notify: true
+			}
+		};
 	}
 	_getTitle(entity) {
-	  return entity && entity.properties && entity.properties.title || '';
+		return entity && entity.properties && entity.properties.title || '';
 	}
 }
 customElements.define(D2LSequencesModuleName.is, D2LSequencesModuleName);

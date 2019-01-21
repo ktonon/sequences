@@ -75,60 +75,60 @@ class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.ReturnMixi
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-eol-main';
+		return 'd2l-sequences-content-eol-main';
 	}
 	static get properties() {
-	  return {
-		  href: {
-			  type: String,
-			  reflectToAttribute: true,
-			  notify: true,
-			  observer: '_scrollToTop'
-		  },
-		  token: {
-			  type: String
-		  },
-		  missedCount: {
-			  type: Number,
-			  computed: '_getMissedCount(entity)'
-		  },
-		  hasMissed: {
-			  type: Boolean,
-			  computed: '_getHasMissed(missedCount)'
-		  },
-		  showMissed: {
-			  type: Boolean,
-			  value: false
-		  }
-	  };
+		return {
+			href: {
+				type: String,
+				reflectToAttribute: true,
+				notify: true,
+				observer: '_scrollToTop'
+			},
+			token: {
+				type: String
+			},
+			missedCount: {
+				type: Number,
+				computed: '_getMissedCount(entity)'
+			},
+			hasMissed: {
+				type: Boolean,
+				computed: '_getHasMissed(missedCount)'
+			},
+			showMissed: {
+				type: Boolean,
+				value: false
+			}
+		};
 	}
 
 	static get eolClass() {
-	  return 'end-of-sequence';
+		return 'end-of-sequence';
 	}
 
 	static get observers() {
-	  return ['_onActivitySelected(entity)'];
+		return ['_onActivitySelected(entity)'];
 	}
 
 	_scrollToTop() {
-	  window.top.scrollTo(0, 0);
+		window.top.scrollTo(0, 0);
 	}
 
 	_onActivitySelected(entity) {
-	  if (entity && entity.hasClass('sequenced-activity')) {
-		  this.showMissed = false;
-	  }
+		if (entity && entity.hasClass('sequenced-activity')) {
+			this.showMissed = false;
+		}
 	}
 	_getHasMissed(missedCount) {
-	  return missedCount !== 0;
+		return missedCount !== 0;
 	}
 	_getMissedCount(entity) {
-	  if (!entity) return 0;
-	  return entity.entities.length;
+		if (!entity) return 0;
+		return entity.entities.length;
 	}
 	_setShowMissed() {
-	  this.showMissed = true;
+		this.showMissed = true;
 	}
 }
 customElements.define(D2LSequencesContentEoLMain.is, D2LSequencesContentEoLMain);

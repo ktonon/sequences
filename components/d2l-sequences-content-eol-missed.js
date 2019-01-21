@@ -58,35 +58,35 @@ class D2LSequencesContentEoLMissed extends D2L.Polymer.Mixins.Sequences.ReturnMi
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-eol-missed';
+		return 'd2l-sequences-content-eol-missed';
 	}
 	static get properties() {
-	  return {
-		  href: {
-			  type: String,
-			  reflectToAttribute: true,
-			  notify: true,
-			  observer: '_scrollToTop'
-		  },
-		  token: {
-			  type: String
-		  },
-		  subEntities: {
-			  type: Object,
-			  computed: '_getSubEntities(entity)'
-		  }
-	  };
+		return {
+			href: {
+				type: String,
+				reflectToAttribute: true,
+				notify: true,
+				observer: '_scrollToTop'
+			},
+			token: {
+				type: String
+			},
+			subEntities: {
+				type: Object,
+				computed: '_getSubEntities(entity)'
+			}
+		};
 	}
 
 	_scrollToTop() {
-	  window.top.scrollTo(0, 0);
+		window.top.scrollTo(0, 0);
 	}
 
 	_getSubEntities(entity) {
-	  if (!entity) {
-		  return [];
-	  }
-	  return entity.entities;
+		if (!entity) {
+			return [];
+		}
+		return entity.entities;
 	}
 }
 customElements.define(D2LSequencesContentEoLMissed.is, D2LSequencesContentEoLMissed);

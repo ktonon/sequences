@@ -1,6 +1,6 @@
-const locales = require('./locales.json');
+import locales from './locales.json';
 
-module.exports = function(plop) {
+export default function(plop) {
 	plop.setPartial('locales', JSON.stringify(locales));
 
 	plop.setGenerator('localize', {
@@ -13,4 +13,4 @@ module.exports = function(plop) {
 			force: true
 		}]
 	});
-};
+}

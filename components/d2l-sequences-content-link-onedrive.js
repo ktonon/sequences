@@ -47,38 +47,38 @@ class D2LSequencesContentLinkOnedrive extends D2L.Polymer.Mixins.Sequences.Autom
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-link-onedrive';
+		return 'd2l-sequences-content-link-onedrive';
 	}
 	static get properties() {
-	  return {
-		  href: {
-			  type: String,
-			  reflectToAttribute: true,
-			  notify: true,
-			  observer: '_scrollToTop'
-		  },
-		  _linkLocation: {
-			  type: String,
-			  computed: '_getLinkLocation(entity)'
-		  }
-	  };
+		return {
+			href: {
+				type: String,
+				reflectToAttribute: true,
+				notify: true,
+				observer: '_scrollToTop'
+			},
+			_linkLocation: {
+				type: String,
+				computed: '_getLinkLocation(entity)'
+			}
+		};
 	}
 	static get contentClass() {
-	  return 'link-onedrive';
+		return 'link-onedrive';
 	}
 
 	_scrollToTop() {
-	  window.top.scrollTo(0, 0);
+		window.top.scrollTo(0, 0);
 	}
 
 	_getLinkLocation(entity) {
-	  try {
-		  const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
-		  const link = linkActivity.getLinkByRel('about');
-		  return link.href;
-	  } catch (e) {
-		  return '';
-	  }
+		try {
+			const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
+			const link = linkActivity.getLinkByRel('about');
+			return link.href;
+		} catch (e) {
+			return '';
+		}
 	}
 }
 customElements.define(D2LSequencesContentLinkOnedrive.is, D2LSequencesContentLinkOnedrive);

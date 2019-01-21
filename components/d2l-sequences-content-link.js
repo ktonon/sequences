@@ -28,74 +28,74 @@ class D2LSequencesContentLink extends D2L.Polymer.Mixins.Sequences.AutomaticComp
 	}
 
 	static get is() {
-	  return 'd2l-sequences-content-link';
+		return 'd2l-sequences-content-link';
 	}
 	static get contentClass() {
-	  return 'link-activity';
+		return 'link-activity';
 	}
 	static get properties() {
-	  return {
-		  href: {
-			  type: String,
-			  reflectToAttribute: true,
-			  notify: true,
-			  observer: '_scrollToTop'
-		  },
-		  previousHref: {
-			  type: String
-		  },
-		  _linkLocation: {
-			  type: String,
-			  computed: '_getLinkLocation(entity)'
-		  }
-	  };
+		return {
+			href: {
+				type: String,
+				reflectToAttribute: true,
+				notify: true,
+				observer: '_scrollToTop'
+			},
+			previousHref: {
+				type: String
+			},
+			_linkLocation: {
+				type: String,
+				computed: '_getLinkLocation(entity)'
+			}
+		};
 	}
 	static get observers() {
-	  return ['_render(entity)'];
+		return ['_render(entity)'];
 	}
 	_scrollToTop() {
-	  window.top.scrollTo(0, 0);
+		window.top.scrollTo(0, 0);
 	}
 
 	_getLinkLocation(entity) {
-	  try {
-		  const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
-		  // if embed link exists, use that link
-		  const embedLink = linkActivity.getLinkByClass('embed');
-		  if (embedLink !== undefined) {
-			  return embedLink.href;
-		  } else {
-			  const link = linkActivity.getLinkByRel('about');
-			  return link.href;
-		  }
+		try {
+			const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
+			// if embed link exists, use that link
+			const embedLink = linkActivity.getLinkByClass('embed');
+			if (embedLink !== undefined) {
+				return embedLink.href;
+			} else {
+				const link = linkActivity.getLinkByRel('about');
+				return link.href;
+			}
 
-	  } catch (e) {
-		  return '';
-	  }
+		} catch (e) {
+			return '';
+		}
 	}
 
 	/* eslint no-unused-vars: 0 */
 	_render(entity) {
-	  // iframe won't reload if the href doesn't change
-	  // so this prevents the spinner from covering it
-	  // forever
-	  if (this.href === this.previousHref) {
-		  return;
-	  }
+		// iframe won't reload if the href doesn't change
+		// so this prevents the spinner from covering it
+		// forever
+		if (this.href === this.previousHref) {
+			return;
+		}
 
-	  this.previousHref = this.href;
+		this.previousHref = this.href;
 
-	  const content = this.shadowRoot.getElementById('content');
-	  const spinner = this.shadowRoot.getElementById('spinner');
+		const content = this.shadowRoot.getElementById('content');
+		const spinner = this.shadowRoot.getElementById('spinner');
 
-	  // initially hide the content, show the spinner
-	  content.classList.add('hide');
-	  spinner.classList.remove('hide');
+		// initially hide the content, show the spinner
+		content.classList.add('hide');
+		spinner.classList.remove('hide');
 
-	  content.onload = function() {
-		  content.classList.remove('hide');
-		  spinner.classList.add('hide');
-	  };
+		content.onload = function() {
+			content.classList.remove('hide');
+			spinner.classList.add('hide');
+		};
 	}
 }
 customElements.define(D2LSequencesContentLink.is, D2LSequencesContentLink);
