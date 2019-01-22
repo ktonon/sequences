@@ -1,16 +1,16 @@
-const locales = require('./locales.json');
+import locales from './locales.json';
 
-module.exports = function(plop) {
-    plop.setPartial('locales', JSON.stringify(locales));
+export default function(plop) {
+	plop.setPartial('locales', JSON.stringify(locales));
 
-    plop.setGenerator('localize', {
-        description: 'localize behavior',
-        prompts: [],
-        actions: [{
-            type: 'add',
-            path: './localize-behavior.html',
-            templateFile: './plop/localize-behavior.hbs',
-            force: true
-        }]
-    })
+	plop.setGenerator('localize', {
+		description: 'localize behavior',
+		prompts: [],
+		actions: [{
+			type: 'add',
+			path: './localize-behavior.html',
+			templateFile: './plop/localize-behavior.hbs',
+			force: true
+		}]
+	});
 }

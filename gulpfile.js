@@ -1,17 +1,17 @@
-var gulp = require('gulp');
-var merge = require('gulp-merge-json');
-var path = require('path');
+import { task, src, dest } from 'gulp';
+import merge from 'gulp-merge-json';
+import { basename } from 'path';
 
-gulp.task('build-locales', () => {
-    gulp.src('lang/*.json')
-    .pipe(merge({
-        fileName: 'locales.json',
-        edit: (parsedJson, file) => {
-			const lang = path.basename(file.path, '.json');
-			return {
-				[lang]: parsedJson
-			};
-        }
-    }))
-    .pipe(gulp.dest('.'));
+task('build-locales', () => {
+	src('lang/*.json')
+		.pipe(merge({
+			fileName: 'locales.json',
+			edit: (parsedJson, file) => {
+				const lang = basename(file.path, '.json');
+				return {
+					[lang]: parsedJson
+				};
+			}
+		}))
+		.pipe(dest('.'));
 });
