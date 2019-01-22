@@ -1,4 +1,4 @@
-import '@d2l/content-icons/d2l-content-icons.js';
+import 'd2l-content-icons/d2l-content-icons.js';
 import 'd2l-button/d2l-button.js';
 import { D2LSequencesContentLink } from './d2l-sequences-content-link.js';
 import '../mixins/d2l-sequences-automatic-completion-tracking-mixin.js';
@@ -33,7 +33,7 @@ export class D2LSequencesContentLinkScorm extends D2L.Polymer.Mixins.Sequences.A
 			</div>
 			<p>
 				[[localize('viewThisActivity')]]
-			</p>			
+			</p>
 			<d2l-button primary="true" onclick$="window.open('[[_linkLocation]]')">
 				[[localize('goToActivity')]]
 			</d2l-button>

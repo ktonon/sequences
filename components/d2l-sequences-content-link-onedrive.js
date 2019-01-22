@@ -1,4 +1,4 @@
-import '@d2l/content-icons/d2l-open-one-drive-icon.js';
+import 'd2l-content-icons/d2l-open-one-drive-icon.js';
 import 'd2l-button/d2l-button.js';
 import { D2LSequencesContentLink } from './d2l-sequences-content-link.js';
 import '../mixins/d2l-sequences-automatic-completion-tracking-mixin.js';
@@ -38,7 +38,7 @@ export class D2LSequencesContentLinkOnedrive extends D2L.Polymer.Mixins.Sequence
 			</div>
 			<p>
 				[[localize('openOnedriveFile')]]
-			</p>			
+			</p>
 			<d2l-button primary="true" onclick$="window.open('[[_linkLocation]]')">
 				[[localize('gotoOnedrive')]]
 			</d2l-button>
