@@ -46,7 +46,7 @@
   },
   "main": "d2l-sequences.js",
   "dependencies": {
-    "d2l-content-icons": "Brightspace/d2l-content-icons#semver:^2",
+    "d2l-content-icons": "Brightspace/d2l-content-icons#semver:^3",
     "@polymer/polymer": "^3.0.0",
     "d2l-button": "BrightspaceUI/button#semver:^5",
     "d2l-link": "BrightspaceUI/link#semver:^5",
