@@ -17,6 +17,7 @@
 		"D2LSequencesContentFileDownload": false,
 		"D2LSequencesContentEoLMain": false,
 		"D2LSequencesContentModule": false,
-		"D2LSequencesContentError": false
+		"D2LSequencesContentError": false,
+		"DomModule": false
 	}
 }
