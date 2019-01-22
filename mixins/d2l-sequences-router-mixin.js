@@ -1,7 +1,6 @@
 import { Debouncer } from '@polymer/polymer/lib/utils/debounce.js';
 import '../components/d2l-sequences-content-error.js';
 import { timeOut } from '@polymer/polymer/lib/utils/async.js';
-import { DomModule } from '@polymer/polymer/lib/elements/dom-module.js';
 import { TemplateStamp } from '@polymer/polymer/lib/mixins/template-stamp.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
@@ -70,7 +69,6 @@ function RouterMixin(getEntityType) {
 
 					if (replaceContentElement) {
 						this.error = false;
-						// const nodeTemplate = DomModule.import(entityType, 'template');
 						const nodeTemplate = customElements.get(entityType).template.cloneNode(true);
 						const contentElement = document.createElement(entityType);
 						contentElement.appendChild(this._stampTemplate(nodeTemplate));
