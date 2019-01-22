@@ -3,7 +3,7 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 /*
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 */
-class D2LSequencesContentUnknown extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
+export class D2LSequencesContentUnknown extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
 	static get template() {
 		return html`
 		<style>

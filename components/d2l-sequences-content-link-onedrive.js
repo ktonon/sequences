@@ -1,12 +1,12 @@
 import '@d2l/content-icons/d2l-open-one-drive-icon.js';
 import 'd2l-button/d2l-button.js';
-import './d2l-sequences-content-link.js';
+import { D2LSequencesContentLink } from './d2l-sequences-content-link.js';
 import '../mixins/d2l-sequences-automatic-completion-tracking-mixin.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 /*
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 */
-class D2LSequencesContentLinkOnedrive extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
+export class D2LSequencesContentLinkOnedrive extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
 	static get template() {
 		return html`
 		<style>

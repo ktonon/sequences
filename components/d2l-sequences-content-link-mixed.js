@@ -5,7 +5,7 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 /*
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 */
-class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.CompletionTrackingMixin() {
+export class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.CompletionTrackingMixin() {
 	static get template() {
 		return html`
 		<style>

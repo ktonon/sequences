@@ -1,7 +1,7 @@
 import 'd2l-loading-spinner/d2l-loading-spinner.js';
 import '../mixins/d2l-sequences-automatic-completion-tracking-mixin.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-class D2LSequencesContentLink extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
+export class D2LSequencesContentLink extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
 	static get template() {
 		return html`
 		<style>

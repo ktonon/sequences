@@ -2,7 +2,7 @@ import './d2l-sequences-module-name.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-class D2LSequencesContentModule extends mixinBehaviors([
+export class D2LSequencesContentModule extends mixinBehaviors([
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Siren.SirenActionBehaviorImpl
 ], PolymerElement) {

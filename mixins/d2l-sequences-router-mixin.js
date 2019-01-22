@@ -70,7 +70,8 @@ function RouterMixin(getEntityType) {
 
 					if (replaceContentElement) {
 						this.error = false;
-						const nodeTemplate = DomModule.import(entityType, 'template');
+						// const nodeTemplate = DomModule.import(entityType, 'template');
+						const nodeTemplate = customElements.get(entityType).template.cloneNode(true);
 						const contentElement = document.createElement(entityType);
 						contentElement.appendChild(this._stampTemplate(nodeTemplate));
 

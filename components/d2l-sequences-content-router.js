@@ -1,13 +1,14 @@
 import '../mixins/d2l-sequences-router-mixin.js';
-import './d2l-sequences-content-eol-main.js';
+import { D2LSequencesContentEoLMain } from './d2l-sequences-content-eol-main.js';
 import './d2l-sequences-content-file-download.js';
+import { D2LSequencesContentFileHtml } from './d2l-sequences-content-file-html.js';
 import './d2l-sequences-content-file-html.js';
-import './d2l-sequences-content-link-mixed.js';
-import './d2l-sequences-content-link-scorm.js';
-import './d2l-sequences-content-link-onedrive.js';
-import './d2l-sequences-content-link.js';
-import './d2l-sequences-content-unknown.js';
-import './d2l-sequences-content-module.js';
+import { D2LSequencesContentLinkMixed } from './d2l-sequences-content-link-mixed.js';
+import { D2LSequencesContentLinkScorm } from './d2l-sequences-content-link-scorm.js';
+import { D2LSequencesContentLinkOnedrive } from './d2l-sequences-content-link-onedrive.js';
+import { D2LSequencesContentLink } from './d2l-sequences-content-link.js';
+import { D2LSequencesContentUnknown } from './d2l-sequences-content-unknown.js';
+import { D2LSequencesContentModule } from './d2l-sequences-content-module.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin(getEntityType) {
 	static get template() {
