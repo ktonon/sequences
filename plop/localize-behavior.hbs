@@ -7,7 +7,7 @@ window.D2L.PolymerBehaviors = window.D2L.PolymerBehaviors || {};
 window.D2L.PolymerBehaviors.Sequences = window.D2L.PolymerBehaviors.Sequences || {};
 
 /**
- * THIS FILE IS GENERATED. RUN `npm run locales` TO REGENERATE.
+ * THIS FILE IS GENERATED. RUN `npm run build:lang` TO REGENERATE.
  * Localizes the sequences component.
  * @polymerBehavior D2L.PolymerBehaviors.Sequences.LocalizeBehavior
  */
