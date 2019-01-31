@@ -9,7 +9,7 @@ import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 	@demo demos/index.html
 */
-class D2LSequencesIterator extends mixinBehaviors([
+export class D2LSequencesIterator extends mixinBehaviors([
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 ], PolymerElement) {
@@ -35,9 +35,7 @@ class D2LSequencesIterator extends mixinBehaviors([
 	static get properties() {
 		return {
 			href: {
-				type: String,
-				reflectToAttribute: true,
-				notify: true
+				type: String
 			},
 			disabled: {
 				type: Boolean
@@ -66,7 +64,10 @@ class D2LSequencesIterator extends mixinBehaviors([
 		};
 	}
 	static get observers() {
-		return ['_setLink(entity)'];
+		return [
+			'_setLink(entity)',
+			'_setDisabled(href)'
+		];
 	}
 	connectedCallback() {
 		super.connectedCallback();
@@ -81,8 +82,7 @@ class D2LSequencesIterator extends mixinBehaviors([
 	}
 	_onClick() {
 		if (this.link && this.link.href) {
-			this.href = this.link.href;
-			this.currentActivity = this.href;
+			this.currentActivity = this.link.href;
 			this.dispatchEvent(new CustomEvent('iterate', { composed: true, bubbles: true }));
 		}
 	}
@@ -92,6 +92,9 @@ class D2LSequencesIterator extends mixinBehaviors([
 			return;
 		}
 		this.link = entity.getLinkByRel('self');
+	}
+	_setDisabled(href) {
+		this.disabled = href ? false : true;
 	}
 }
 customElements.define(D2LSequencesIterator.is, D2LSequencesIterator);
