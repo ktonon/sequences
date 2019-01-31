@@ -22,8 +22,6 @@
 			</template>
 		</test-fixture>
 		<script type="module">
-	import { D2LSequencesIterator } from '../components/d2l-sequences-iterator.js';
-
 	describe('d2l-sequences-iterator', () => {
 		let elem;
 
@@ -53,9 +51,9 @@
 				.click();
 			expect(elem.href).to.equal('../demo/data/l2-m1-activity1.json');
 		});
-		
+
 		it('should be disabled when iterator is set to disabled', async() => {
-			let noNextPrevious = fixture('disabled');
+			const noNextPrevious = fixture('disabled');
 			expect(noNextPrevious.disabled).to.be.true;
 			expect(noNextPrevious.shadowRoot.querySelector('#iteratorButton').getAttribute('aria-disabled')).to.be.exist;
 		});
