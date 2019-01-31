@@ -23,95 +23,39 @@ import '../components/d2l-sequences-iterator.js';
 describe('d2l-sequences-iterator', () => {
 	let elem;
 
-	it('should instantiate the element', async() => {
+	beforeEach(() => {
 		elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', fixture('basic'));
+	});
+
+	it('should instantiate the element', async() => {
 		expect(elem.tagName).to.equal('D2L-SEQUENCES-ITERATOR');
 		expect(elem.entity).not.to.be.null;
 	});
 
-	describe('next', () => {
-		let basicFixture;
-		beforeEach(() => {
-			basicFixture = fixture('basic');
-			basicFixture.next = true;
-		});
-
-		it('should be enabled when entity contains next', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', basicFixture);
-			expect(elem.disabled).not.to.be.true;
-		});
-
-		it('should be disabled when entity does not contain next', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity2.json', basicFixture);
-			expect(elem.disabled).to.be.true;
-			expect(elem.shadowRoot.querySelector('#iteratorButton').getAttribute('aria-disabled')).to.be.exist;
-
-		});
+	it('should be disabled when iterator is set to disabled', async() => {
+		elem.setAttribute('disabled', true);
+		expect(elem.disabled).to.be.true;
+		expect(elem.shadowRoot.querySelector('#iteratorButton').getAttribute('aria-disabled')).to.be.exist;
 	});
 
-	describe('previous', () => {
-		let basicFixture;
-		beforeEach(() => {
-			basicFixture = fixture('basic');
-			basicFixture.previous = true;
-		});
-
-		it('should be enabled when entity contains previous', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity2.json', basicFixture);
-			expect(elem.disabled).not.to.be.true;
-		});
-
-		it('should be disabled when entity does not contain previous', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', basicFixture);
-			expect(elem.disabled).to.be.true;
-			expect(elem.shadowRoot.querySelector('#iteratorButton').getAttribute('aria-disabled')).to.be.exist;
-		});
+	it('should be enabled when entity contains next', async() => {
+		elem.setAttribute('next', true);
+		expect(elem.disabled).not.to.be.true;
 	});
 
-	describe('up', () => {
-		let basicFixture;
-		beforeEach(() => {
-			basicFixture = fixture('basic');
-			basicFixture.up = true;
-		});
-
-		it('should be enabled when entity contains up', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', basicFixture);
-			expect(elem.disabled).not.to.be.true;
-		});
-
-		it('should be disabled when entity does not contain up', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-module1.json', basicFixture);
-			expect(elem.disabled).to.be.true;
-			expect(elem.shadowRoot.querySelector('#iteratorButton').getAttribute('aria-disabled')).to.be.exist;
-		});
+	it('should be enabled when entity contains previous', async() => {
+		elem.setAttribute('previous', true);
+		expect(elem.disabled).not.to.be.true;
 	});
 
-	describe('on click', () => {
-		let basicFixture;
-		beforeEach(() => {
-			basicFixture = fixture('basic');
-			basicFixture.next = true;
-		});
+	it('should update the link href when iterator is clicked', async() => {
+		expect(elem.href).to.equal('../demo/data/l2-m1-activity1.json');
 
-		it('should update the link href when link enabled', async() => {
-			const el = await SirenFixture.load('../demo/data/l2-m1-activity1.json', basicFixture);
-			expect(el.href).to.equal('../demo/data/l2-m1-activity1.json');
-
-			el.shadowRoot.querySelector('d2l-navigation-button-notification-icon')
-				.click();
-			expect(el.href).to.equal('data/l2-m1-activity2.json');
-		});
-
-		it('should do nothing if the link is disabled', async() => {
-			const el = await SirenFixture.load('../demo/data/l2-m1-activity2.json', basicFixture);
-			expect(el.href).to.equal('../demo/data/l2-m1-activity2.json');
-
-			el.shadowRoot.querySelector('d2l-navigation-button-notification-icon')
-				.click();
-			expect(el.href).to.equal('../demo/data/l2-m1-activity2.json');
-		});
+		elem.shadowRoot.querySelector('d2l-navigation-button-notification-icon')
+			.click();
+		expect(el.href).to.equal('data/l2-m1-activity1.json');
 	});
+
 });
 </script>
 </body>
