@@ -40,8 +40,12 @@ class D2LSequencesIterator extends mixinBehaviors([
 				notify: true
 			},
 			disabled: {
-				type: Boolean,
-				computed: '_isDisabled(entity)'
+				type: Boolean
+			},
+			currentActivity: {
+				type: String,
+				reflectToAttribute: true,
+				notify: true
 			},
 			icon: {
 				type: String
@@ -50,9 +54,6 @@ class D2LSequencesIterator extends mixinBehaviors([
 				type: Boolean
 			},
 			previous: {
-				type: Boolean
-			},
-			up: {
 				type: Boolean
 			},
 			link: {
@@ -77,49 +78,20 @@ class D2LSequencesIterator extends mixinBehaviors([
 		else if (this.previous) {
 			return 'iterateToPrevious';
 		}
-		else if (this.up) {
-			return 'iterateToParent';
-		}
-	}
-	_isDisabled(entity) {
-		if (!entity) {
-			return true;
-		}
-		if (!this.next && !this.previous && !this.up) {
-			return true;
-		}
-		if (this.next && !entity.getLinkByRel('https://sequences.api.brightspace.com/rels/next-activity')) {
-			return true;
-		}
-		if (this.previous && !entity.getLinkByRel('https://sequences.api.brightspace.com/rels/prev-activity')) {
-			return true;
-		}
-		if (this.up && !entity.getLinkByRel('up')) {
-			return true;
-		}
-		return false;
 	}
 	_onClick() {
 		if (this.link && this.link.href) {
 			this.href = this.link.href;
+			this.currentActivity = this.href;
 			this.dispatchEvent(new CustomEvent('iterate', { composed: true, bubbles: true }));
 		}
 	}
 	_setLink(entity) {
+
 		if (!entity) {
 			return;
 		}
-		this.link = null;
-
-		if (this.next) {
-			this.link = entity.getLinkByRel('https://sequences.api.brightspace.com/rels/next-activity');
-		}
-		else if (this.previous) {
-			this.link = entity.getLinkByRel('https://sequences.api.brightspace.com/rels/prev-activity');
-		}
-		else if (this.up) {
-			this.link = entity.getLinkByRel('up');
-		}
+		this.link = entity.getLinkByRel('self');
 	}
 }
 customElements.define(D2LSequencesIterator.is, D2LSequencesIterator);
