@@ -9,7 +9,7 @@ import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 	@demo demos/index.html
 */
-class D2LSequencesIterator extends mixinBehaviors([
+export class D2LSequencesIterator extends mixinBehaviors([
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 ], PolymerElement) {
@@ -35,13 +35,15 @@ class D2LSequencesIterator extends mixinBehaviors([
 	static get properties() {
 		return {
 			href: {
+				type: String
+			},
+			disabled: {
+				type: Boolean
+			},
+			currentActivity: {
 				type: String,
 				reflectToAttribute: true,
 				notify: true
-			},
-			disabled: {
-				type: Boolean,
-				computed: '_isDisabled(entity)'
 			},
 			icon: {
 				type: String
@@ -50,9 +52,6 @@ class D2LSequencesIterator extends mixinBehaviors([
 				type: Boolean
 			},
 			previous: {
-				type: Boolean
-			},
-			up: {
 				type: Boolean
 			},
 			link: {
@@ -65,7 +64,10 @@ class D2LSequencesIterator extends mixinBehaviors([
 		};
 	}
 	static get observers() {
-		return ['_setLink(entity)'];
+		return [
+			'_setLink(entity)',
+			'_setDisabled(href)'
+		];
 	}
 	connectedCallback() {
 		super.connectedCallback();
@@ -77,49 +79,22 @@ class D2LSequencesIterator extends mixinBehaviors([
 		else if (this.previous) {
 			return 'iterateToPrevious';
 		}
-		else if (this.up) {
-			return 'iterateToParent';
-		}
-	}
-	_isDisabled(entity) {
-		if (!entity) {
-			return true;
-		}
-		if (!this.next && !this.previous && !this.up) {
-			return true;
-		}
-		if (this.next && !entity.getLinkByRel('https://sequences.api.brightspace.com/rels/next-activity')) {
-			return true;
-		}
-		if (this.previous && !entity.getLinkByRel('https://sequences.api.brightspace.com/rels/prev-activity')) {
-			return true;
-		}
-		if (this.up && !entity.getLinkByRel('up')) {
-			return true;
-		}
-		return false;
 	}
 	_onClick() {
 		if (this.link && this.link.href) {
-			this.href = this.link.href;
+			this.currentActivity = this.link.href;
 			this.dispatchEvent(new CustomEvent('iterate', { composed: true, bubbles: true }));
 		}
 	}
 	_setLink(entity) {
+
 		if (!entity) {
 			return;
 		}
-		this.link = null;
-
-		if (this.next) {
-			this.link = entity.getLinkByRel('https://sequences.api.brightspace.com/rels/next-activity');
-		}
-		else if (this.previous) {
-			this.link = entity.getLinkByRel('https://sequences.api.brightspace.com/rels/prev-activity');
-		}
-		else if (this.up) {
-			this.link = entity.getLinkByRel('up');
-		}
+		this.link = entity.getLinkByRel('self');
+	}
+	_setDisabled(href) {
+		this.disabled = href ? false : true;
 	}
 }
 customElements.define(D2LSequencesIterator.is, D2LSequencesIterator);

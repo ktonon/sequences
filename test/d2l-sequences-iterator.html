@@ -1,119 +1,63 @@
 <!doctype html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-sequences-iterator test</title>
+		<script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../../wct-browser-legacy/browser.js"></script>
+		<script src="../node_modules/polymer-siren-test-helpers/dist/index.js"></script>
+		<script src="../node_modules/chai-dom/chai-dom.js"></script>
+		<script type="module" src="../components/d2l-sequences-iterator.js"></script>
+	</head>
+	<body>
+		<test-fixture id="basic">
+			<template>
+				<d2l-sequences-iterator token="foo"></d2l-sequences-iterator>
+			</template>
+		</test-fixture>
+		<test-fixture id="disabled">
+			<template>
+				<d2l-sequences-iterator href="" token="foo"></d2l-sequences-iterator>
+			</template>
+		</test-fixture>
+		<script type="module">
+	describe('d2l-sequences-iterator', () => {
+		let elem;
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-	<title>d2l-sequences-iterator test</title>
-	<script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-	<script src="../../wct-browser-legacy/browser.js"></script>
-	<script src="../node_modules/polymer-siren-test-helpers/dist/index.js"></script>
-	<script type="module" src="../components/d2l-sequences-iterator.js"></script>
-</head>
-
-<body>
-	<test-fixture id="basic">
-		<template>
-			<d2l-sequences-iterator token="foo"></d2l-sequences-iterator>
-		</template>
-	</test-fixture>
-
-	<script type="module">
-import '../components/d2l-sequences-iterator.js';
-describe('d2l-sequences-iterator', () => {
-	let elem;
-
-	it('should instantiate the element', async() => {
-		elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', fixture('basic'));
-		expect(elem.tagName).to.equal('D2L-SEQUENCES-ITERATOR');
-		expect(elem.entity).not.to.be.null;
-	});
-
-	describe('next', () => {
-		let basicFixture;
-		beforeEach(() => {
-			basicFixture = fixture('basic');
-			basicFixture.next = true;
+		it('should instantiate the element', async() => {
+			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', fixture('basic'));
+			expect(elem.tagName).to.equal('D2L-SEQUENCES-ITERATOR');
+			expect(elem.entity).not.to.be.null;
 		});
 
 		it('should be enabled when entity contains next', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', basicFixture);
+			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', fixture('basic'));
+			elem.setAttribute('next', true);
 			expect(elem.disabled).not.to.be.true;
-		});
-
-		it('should be disabled when entity does not contain next', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity2.json', basicFixture);
-			expect(elem.disabled).to.be.true;
-			expect(elem.shadowRoot.querySelector('#iteratorButton').getAttribute('aria-disabled')).to.be.exist;
-
-		});
-	});
-
-	describe('previous', () => {
-		let basicFixture;
-		beforeEach(() => {
-			basicFixture = fixture('basic');
-			basicFixture.previous = true;
 		});
 
 		it('should be enabled when entity contains previous', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity2.json', basicFixture);
+			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', fixture('basic'));
+			elem.setAttribute('previous', true);
 			expect(elem.disabled).not.to.be.true;
 		});
 
-		it('should be disabled when entity does not contain previous', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', basicFixture);
-			expect(elem.disabled).to.be.true;
-			expect(elem.shadowRoot.querySelector('#iteratorButton').getAttribute('aria-disabled')).to.be.exist;
-		});
-	});
+		it('should update the link href when iterator is clicked', async() => {
+			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', fixture('basic'));
+			expect(elem.href).to.equal('../demo/data/l2-m1-activity1.json');
 
-	describe('up', () => {
-		let basicFixture;
-		beforeEach(() => {
-			basicFixture = fixture('basic');
-			basicFixture.up = true;
-		});
-
-		it('should be enabled when entity contains up', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-m1-activity1.json', basicFixture);
-			expect(elem.disabled).not.to.be.true;
-		});
-
-		it('should be disabled when entity does not contain up', async() => {
-			elem = await SirenFixture.load('../demo/data/l2-module1.json', basicFixture);
-			expect(elem.disabled).to.be.true;
-			expect(elem.shadowRoot.querySelector('#iteratorButton').getAttribute('aria-disabled')).to.be.exist;
-		});
-	});
-
-	describe('on click', () => {
-		let basicFixture;
-		beforeEach(() => {
-			basicFixture = fixture('basic');
-			basicFixture.next = true;
-		});
-
-		it('should update the link href when link enabled', async() => {
-			const el = await SirenFixture.load('../demo/data/l2-m1-activity1.json', basicFixture);
-			expect(el.href).to.equal('../demo/data/l2-m1-activity1.json');
-
-			el.shadowRoot.querySelector('d2l-navigation-button-notification-icon')
+			elem.shadowRoot.querySelector('d2l-navigation-button-notification-icon')
 				.click();
-			expect(el.href).to.equal('data/l2-m1-activity2.json');
+			expect(elem.href).to.equal('../demo/data/l2-m1-activity1.json');
 		});
 
-		it('should do nothing if the link is disabled', async() => {
-			const el = await SirenFixture.load('../demo/data/l2-m1-activity2.json', basicFixture);
-			expect(el.href).to.equal('../demo/data/l2-m1-activity2.json');
-
-			el.shadowRoot.querySelector('d2l-navigation-button-notification-icon')
-				.click();
-			expect(el.href).to.equal('../demo/data/l2-m1-activity2.json');
+		it('should be disabled when iterator is set to disabled', async() => {
+			const noNextPrevious = fixture('disabled');
+			expect(noNextPrevious.disabled).to.be.true;
+			expect(noNextPrevious.shadowRoot.querySelector('#iteratorButton').getAttribute('aria-disabled')).to.be.exist;
 		});
 	});
-});
-</script>
-</body>
-
+	</script>
+	</body>
 </html>
