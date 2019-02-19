@@ -3,13 +3,14 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { Maybe } from '../maybe.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import 'd2l-typography/d2l-typography.js';
 export class D2LSequencesContentModule extends mixinBehaviors([
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Siren.SirenActionBehaviorImpl
 ], PolymerElement) {
 	static get template() {
 		return html`
-		<style>
+		<style include="d2l-typography">
 		:host {
 			max-width: 678px;
 			margin: auto;
@@ -24,8 +25,8 @@ export class D2LSequencesContentModule extends mixinBehaviors([
 			padding-top: 2em;
 		}
 		</style>
-		<div class="d2l-module-container">
-			<h1 class="d2l-sequences-module-name">
+		<div class="d2l-module-container d2l-typography">
+			<h1 class="d2l-sequences-module-name d2l-heading-1">
 				<d2l-sequences-module-name href="[[href]]" token="[[token]]"></d2l-sequences-module-name>
 			</h1>
 
