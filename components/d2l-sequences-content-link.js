@@ -61,13 +61,18 @@ export class D2LSequencesContentLink extends D2L.Polymer.Mixins.Sequences.Automa
 		try {
 			const linkActivity = entity.getSubEntityByClass(D2LSequencesContentLink.contentClass);
 			// if embed link exists, use that link
+			const embedASVLink = linkActivity.getLinkByClass('embed-asv');
+			if (embedASVLink !== undefined) {
+				return embedASVLink.href;
+			}
+
 			const embedLink = linkActivity.getLinkByClass('embed');
 			if (embedLink !== undefined) {
 				return embedLink.href;
-			} else {
-				const link = linkActivity.getLinkByRel('about');
-				return link.href;
 			}
+
+			const link = linkActivity.getLinkByRel('about');
+			return link.href;
 
 		} catch (e) {
 			return '';
