@@ -36,6 +36,15 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 		};
 	}
 
+	connectedCallback() {
+		super.connectedCallback();
+		this.multiPageNavListener = window.addEventListener('d2l-sequence-viewer-multipage-navigation', this._navigateMultiPageFile.bind(this));
+	}
+
+	disconnectedCallback() {
+		window.removeEventListener('d2l-sequence-viewer-multipage-navigation', this.multiPageNavListener);
+	}
+
 	_scrollToTop() {
 		window.top.scrollTo(0, 0);
 	}
@@ -52,6 +61,16 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 	}
 	_getTitle(entity) {
 		return entity && entity.properties && entity.properties.title || '';
+	}
+
+	_navigateMultiPageFile(e) {
+		const iframe = this.shadowRoot.querySelector('iframe');
+		if (iframe) {
+			iframe.contentWindow.postMessage({
+				handler: 'd2l.nav.client',
+				action: e.detail
+			}, "*");
+		}
 	}
 }
 customElements.define(D2LSequencesContentFileHtml.is, D2LSequencesContentFileHtml);
