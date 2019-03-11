@@ -111,6 +111,11 @@ export class D2LSequencesIterator extends mixinBehaviors([
 				this.multiPageHastPrev = false;
 			}
 		}
+		if (data && data.handler === 'd2l.nav.reset' ) {
+			this.isMultiPage = false;
+			this.multiPageHastNext = false;
+			this.multiPageHastPrev = false;
+		}
 	}
 
 	getIterateTo() {
