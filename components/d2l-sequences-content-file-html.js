@@ -43,7 +43,7 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 
 	disconnectedCallback() {
 		window.removeEventListener('d2l-sequence-viewer-multipage-navigation', this.multiPageNavListener);
-		window.postMessage( JSON.stringify({ handler: "d2l.nav.reset" }) , '*' );
+		window.postMessage(JSON.stringify({ handler: 'd2l.nav.reset' }), '*');
 	}
 
 	_scrollToTop() {
@@ -71,7 +71,7 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 				iframe.contentWindow.postMessage(JSON.stringify({
 					handler: 'd2l.nav.client',
 					action: e.detail
-				}), "*");
+				}), '*');
 			}
 		}
 		catch (e) {
