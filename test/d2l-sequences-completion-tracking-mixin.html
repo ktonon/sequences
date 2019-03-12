@@ -73,16 +73,6 @@ describe('d2l-sequences-completion-tracking-mixin', () => {
 		});
 	});
 
-	it('topicSetDashboardViewState must perform siren action: set-dashboard-view-state', async() => {
-		const performSirenAction = sinon.spy(element, 'performSirenAction');
-
-		await SirenFixture('data/activity-completion-all.json', element);
-		element.topicSetDashboardViewState();
-		expect(performSirenAction).to.have.been.calledWithMatch({
-			name: 'set-dashboard-view-state',
-		});
-	});
-
 	it('startCompletion must not perform completion tracking during impersonation', async() => {
 		const performViewActions = sinon.spy(element, '_performViewActions');
 
