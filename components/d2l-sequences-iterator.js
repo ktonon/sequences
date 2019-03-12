@@ -72,10 +72,10 @@ export class D2LSequencesIterator extends mixinBehaviors([
 			isMultiPage: {
 				type: Boolean
 			},
-			multiPageHastNext: {
+			multiPageHasNext: {
 				type: Boolean
 			},
-			multiPageHastPrev: {
+			multiPageHasPrev: {
 				type: Boolean
 			}
 		};
@@ -89,32 +89,25 @@ export class D2LSequencesIterator extends mixinBehaviors([
 
 	connectedCallback() {
 		super.connectedCallback();
-		window.addEventListener('message', this._setUpMultiPageTopic.bind(this));
+		window.addEventListener('d2l-nav-request-customizations', this._setUpMultiPageTopic.bind(this));
 	}
 
 	disconnectedCallback() {
-		window.removeEventListener('message', this._setUpMultiPageTopic.bind(this));
+		super.disconnectedCallback();
+		window.removeEventListener('d2l-nav-request-customizations', this._setUpMultiPageTopic.bind(this));
 	}
 
 	_setUpMultiPageTopic(e) {
-		const data = JSON.parse(e.data);
+		const data = JSON.parse(e.detail);
 		if (data && data.handler === 'd2l.nav.customize') {
 			this.isMultiPage = true;
-			if (data.hasNext) {
-				this.multiPageHastNext = true;
-			} else {
-				this.multiPageHastNext = false;
-			}
-			if (data.hasPrev) {
-				this.multiPageHastPrev = true;
-			} else {
-				this.multiPageHastPrev = false;
-			}
+			this.multiPageHasNext = Boolean(data.hasNext);
+			this.multiPageHasPrev = Boolean(data.hasPrev);
 		}
 		if (data && data.handler === 'd2l.nav.reset') {
 			this.isMultiPage = false;
-			this.multiPageHastNext = false;
-			this.multiPageHastPrev = false;
+			this.multiPageHasNext = false;
+			this.multiPageHasPrev = false;
 		}
 	}
 
@@ -161,8 +154,8 @@ export class D2LSequencesIterator extends mixinBehaviors([
 
 	_isMultiPageNavigation() {
 		if (this.isMultiPage) {
-			if (this.next && this.multiPageHastNext) return true;
-			if (this.previous && this.multiPageHastPrev) return true;
+			if (this.next && this.multiPageHasNext) return true;
+			if (this.previous && this.multiPageHasPrev) return true;
 		}
 		return false;
 	}
