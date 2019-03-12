@@ -33,7 +33,6 @@ function AutomaticCompletionTrackingMixin() {
 			if (this.href !== this._previousHref) {
 				this.finishCompletion();
 				this.startCompletion();
-				this.topicSetDashboardViewState();
 				this._previousHref = this.href;
 			}
 		}

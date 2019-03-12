@@ -78,7 +78,6 @@ export class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.C
 		}
 
 		this.startCompletion();
-		this.topicSetDashboardViewState();
 		return window.open(location);
 	}
 }
