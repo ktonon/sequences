@@ -68,6 +68,15 @@ export class D2LSequencesIterator extends mixinBehaviors([
 			iterateTo: {
 				type: String,
 				computed: 'getIterateTo()'
+			},
+			isMultiPage: {
+				type: Boolean
+			},
+			multiPageHasNext: {
+				type: Boolean
+			},
+			multiPageHasPrev: {
+				type: Boolean
 			}
 		};
 	}
@@ -77,9 +86,31 @@ export class D2LSequencesIterator extends mixinBehaviors([
 			'_setDisabled(href)'
 		];
 	}
+
 	connectedCallback() {
 		super.connectedCallback();
+		window.addEventListener('d2l-nav-request-customizations', this._setUpMultiPageTopic.bind(this));
 	}
+
+	disconnectedCallback() {
+		super.disconnectedCallback();
+		window.removeEventListener('d2l-nav-request-customizations', this._setUpMultiPageTopic.bind(this));
+	}
+
+	_setUpMultiPageTopic(e) {
+		const data = JSON.parse(e.detail);
+		if (data && data.handler === 'd2l.nav.customize') {
+			this.isMultiPage = true;
+			this.multiPageHasNext = Boolean(data.hasNext);
+			this.multiPageHasPrev = Boolean(data.hasPrev);
+		}
+		if (data && data.handler === 'd2l.nav.reset') {
+			this.isMultiPage = false;
+			this.multiPageHasNext = false;
+			this.multiPageHasPrev = false;
+		}
+	}
+
 	getIterateTo() {
 		if (this.next) {
 			return 'iterateToNext';
@@ -89,6 +120,14 @@ export class D2LSequencesIterator extends mixinBehaviors([
 		}
 	}
 	_onClick() {
+		if (this._isMultiPageNavigation()) {
+			const multiPageEvent = new CustomEvent('d2l-sequence-viewer-multipage-navigation', {
+				detail: this._getMultiPageAction()
+			});
+			window.dispatchEvent(multiPageEvent);
+			return;
+		}
+
 		if (this.link && this.link.href) {
 			this.currentActivity = this.link.href;
 			this.dispatchEvent(new CustomEvent('iterate', { composed: true, bubbles: true }));
@@ -103,6 +142,22 @@ export class D2LSequencesIterator extends mixinBehaviors([
 	}
 	_setDisabled(href) {
 		this.disabled = href ? false : true;
+	}
+	_getMultiPageAction() {
+		if (this.next) {
+			return 'next';
+		} else if (this.previous) {
+			return 'prev';
+		}
+		return '';
+	}
+
+	_isMultiPageNavigation() {
+		if (this.isMultiPage) {
+			if (this.next && this.multiPageHasNext) return true;
+			if (this.previous && this.multiPageHasPrev) return true;
+		}
+		return false;
 	}
 }
 customElements.define(D2LSequencesIterator.is, D2LSequencesIterator);
