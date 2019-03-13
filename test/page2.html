@@ -1,0 +1,17 @@
+<html>
+<head>
+	<style>
+	 .d2l-hide { display: none; } 
+	</style>
+</head>
+<body>
+	<d2l-sequences-iterator id="prev" token="foo" previous=""></d2l-sequences-iterator>
+    <d2l-sequences-iterator id="next" token="foo" next=""></d2l-sequences-iterator>
+	<d2l-sequences-content-file-html href="data/activity-file-html-multipage.json"></d2l-sequences-content-file-html>
+	<script type="module">
+		import { D2LSequencesContentFileHtml } from '../components/d2l-sequences-content-file-html.js';
+		import { D2LSequencesIterator } from '../components/d2l-sequences-iterator.js';
+		import SirenFixture from 'polymer-siren-test-helpers';
+	</script>
+</body>
+</html>

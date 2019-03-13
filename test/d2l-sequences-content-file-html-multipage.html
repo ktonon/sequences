@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-sequences-content-file-html multipage topics test</title>
+		<script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../../wct-browser-legacy/browser.js"></script>
+		<script src="../node_modules/chai-dom/chai-dom.js"></script>
+	</head>
+	<body>
+        <d2l-sequences-iterator id="prev" token="foo" previous=""></d2l-sequences-iterator>
+        <d2l-sequences-iterator id="next" token="foo" next=""></d2l-sequences-iterator>
+		<test-fixture id="FileFixture">
+			<template>
+				<d2l-sequences-content-file-html></d2l-sequences-content-file-html>
+			</template>
+		</test-fixture>
+		<script type="module">
+import { D2LSequencesContentFileHtml } from '../components/d2l-sequences-content-file-html.js';
+import { D2LSequencesIterator } from '../components/d2l-sequences-iterator.js';
+import SirenFixture from 'polymer-siren-test-helpers';
+
+describe('d2l-sequences-content-file-html-multipage', () => {
+	before(() => {
+		// skip completion tracking, preventing extraneous HTTP requests
+		D2LSequencesContentFileHtml.prototype._skipCompletion = true;
+	});
+
+	it('Mutipage topic test launch', async() => {
+		const element = await SirenFixture('data/activity-file-html-multipage.json', fixture('FileFixture'));
+		const iframe = element.shadowRoot.querySelector('iframe');
+		expect(iframe).to.have.attribute('src', '../test/data/multipage1.html');
+		var next = document.getElementById('next');
+		next.click();
+		expect(iframe).to.have.attribute('src', '../test/data/multipage2.html');
+
+	});
+
+});
+</script>
+	</body>
+</html>
