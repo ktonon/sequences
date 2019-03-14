@@ -32,7 +32,7 @@ describe('d2l-sequences-content-file-html-multipage', () => {
 		D2LSequencesContentFileHtml.prototype._skipCompletion = true;
 	});
 
-	it('Iterators should have multi-page variables - has next', async() => {
+	it('Iterators should have multi-page variables', async() => {
 		const element = await SirenFixture('data/activity-file-html-multipage1.json', fixture('FileFixture'));
 		await delay(250);
 		expect(element.shadowRoot.querySelector('iframe')).to.have.attribute('src', '../test/data/multipage1.html');
@@ -46,47 +46,30 @@ describe('d2l-sequences-content-file-html-multipage', () => {
 		expect(prev.isMultiPage).to.equal(true);
 		expect(prev.multiPageHasNext).to.equal(true);
 		expect(prev.multiPageHasPrev).to.equal(false);
-	});
-
-	it('Iterators should have multi-page variables - has previous', async() => {
-		const element = await SirenFixture('data/activity-file-html-multipage2.json', fixture('FileFixture'));
+		next.shadowRoot.querySelector('d2l-navigation-button-notification-icon').click();
 		await delay(250);
-		expect(element.shadowRoot.querySelector('iframe')).to.have.attribute('src', '../test/data/multipage2.html');
-		var prev = document.getElementById('prev');
-		var next = document.getElementById('next');
-		expect(next.next).to.equal(true);
 		expect(next.isMultiPage).to.equal(true);
 		expect(next.multiPageHasNext).to.equal(false);
 		expect(next.multiPageHasPrev).to.equal(true);
-		expect(prev.previous).to.equal(true);
 		expect(prev.isMultiPage).to.equal(true);
 		expect(prev.multiPageHasNext).to.equal(false);
 		expect(prev.multiPageHasPrev).to.equal(true);
 	});
 
-	it('Should navigate to next page in multi-page topic', async() => {
+	it('Should navigate to next and previous pages in multi-page topic', async() => {
 		const element = await SirenFixture('data/activity-file-html-multipage1.json', fixture('FileFixture'));
 		await delay(250);
 		const iframe = element.shadowRoot.querySelector('iframe');
 		var page = iframe.contentDocument.querySelector('html');
+		var prev = document.getElementById('prev');
 		var next = document.getElementById('next');
-		expect(page).to.have.attribute('id', 'page1');
 		expect(iframe).to.have.attribute('src', '../test/data/multipage1.html');
+		expect(page).to.have.attribute('id', 'page1');
 		expect(next.next).to.equal(true);
 		next.shadowRoot.querySelector('d2l-navigation-button-notification-icon').click();
 		await delay(250);
 		page = iframe.contentDocument.querySelector('html');
 		expect(page).to.have.attribute('id', 'page2');
-	});
-
-	it('Should navigate to previous page in multi-page topic', async() => {
-		const element = await SirenFixture('data/activity-file-html-multipage2.json', fixture('FileFixture'));
-		await delay(250);
-		const iframe = element.shadowRoot.querySelector('iframe');
-		var page = iframe.contentDocument.querySelector('html');
-		var prev = document.getElementById('prev');
-		expect(page).to.have.attribute('id', 'page2');
-		expect(iframe).to.have.attribute('src', '../test/data/multipage2.html');
 		expect(prev.previous).to.equal(true);
 		prev.shadowRoot.querySelector('d2l-navigation-button-notification-icon').click();
 		await delay(250);
