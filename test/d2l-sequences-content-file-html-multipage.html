@@ -18,7 +18,7 @@
 		</test-fixture>
 		<script type="module">
 import { D2LSequencesContentFileHtml } from '../components/d2l-sequences-content-file-html.js';
-import { D2LSequencesIterator } from '../components/d2l-sequences-iterator.js';
+import { D2LSequencesIterator } from '../components/d2l-sequences-iterator.js'; // eslint-disable-line no-unused-vars
 import SirenFixture from 'polymer-siren-test-helpers';
 async function delay(time) {
 	return new Promise(resolve => {
@@ -35,30 +35,32 @@ describe('d2l-sequences-content-file-html-multipage', () => {
 	it('Iterators should have multi-page variables - has next', async() => {
 		const element = await SirenFixture('data/activity-file-html-multipage1.json', fixture('FileFixture'));
 		await delay(250);
+		expect(element.shadowRoot.querySelector('iframe')).to.have.attribute('src', '../test/data/multipage1.html');
 		var prev = document.getElementById('prev');
 		var next = document.getElementById('next');
 		expect(next.next).to.equal(true);
 		expect(next.isMultiPage).to.equal(true);
-		expect(next.multiPageHasNext).to.equal(true)
+		expect(next.multiPageHasNext).to.equal(true);
 		expect(next.multiPageHasPrev).to.equal(false);
 		expect(prev.previous).to.equal(true);
 		expect(prev.isMultiPage).to.equal(true);
-		expect(prev.multiPageHasNext).to.equal(true)
+		expect(prev.multiPageHasNext).to.equal(true);
 		expect(prev.multiPageHasPrev).to.equal(false);
 	});
 
 	it('Iterators should have multi-page variables - has previous', async() => {
 		const element = await SirenFixture('data/activity-file-html-multipage2.json', fixture('FileFixture'));
 		await delay(250);
+		expect(element.shadowRoot.querySelector('iframe')).to.have.attribute('src', '../test/data/multipage2.html');
 		var prev = document.getElementById('prev');
 		var next = document.getElementById('next');
 		expect(next.next).to.equal(true);
 		expect(next.isMultiPage).to.equal(true);
-		expect(next.multiPageHasNext).to.equal(false)
+		expect(next.multiPageHasNext).to.equal(false);
 		expect(next.multiPageHasPrev).to.equal(true);
 		expect(prev.previous).to.equal(true);
 		expect(prev.isMultiPage).to.equal(true);
-		expect(prev.multiPageHasNext).to.equal(false)
+		expect(prev.multiPageHasNext).to.equal(false);
 		expect(prev.multiPageHasPrev).to.equal(true);
 	});
 
