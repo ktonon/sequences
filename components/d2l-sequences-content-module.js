@@ -1,6 +1,5 @@
 import './d2l-sequences-module-name.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { Maybe } from '../maybe.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import 'd2l-typography/d2l-typography.js';
@@ -47,8 +46,7 @@ export class D2LSequencesContentModule extends mixinBehaviors([
 
 	static get observers() {
 		return [
-			'_getDescription(entity)',
-			'_moduleSetDashboardViewState(entity)'
+			'_getDescription(entity)'
 		];
 	}
 
@@ -58,24 +56,6 @@ export class D2LSequencesContentModule extends mixinBehaviors([
 		}
 
 		this.$.description.innerHTML = entity.properties.description;
-	}
-
-	_moduleSetDashboardViewState(entity) {
-		if (!entity) {
-			return;
-		}
-		return new Promise((resolve, reject) => {
-			const action = Maybe.of(entity)
-				.chain(
-					a => a.getActionByName('set-dashboard-view-state')
-				);
-			if (action.isNothing()) {
-				return reject(entity, 'no action found');
-			}
-
-			return this.performSirenAction(action.value)
-				.then(resolve);
-		});
 	}
 }
 

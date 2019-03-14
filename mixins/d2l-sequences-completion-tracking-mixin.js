@@ -28,13 +28,6 @@ function CompletionTrackingMixin() {
 			};
 		}
 
-		topicSetDashboardViewState() {
-			if (!this.entity) {
-				return;
-			}
-			this._performViewActions(this.entity, 'set-dashboard-view-state');
-		}
-
 		finishCompletion() {
 			this._fireToastEvent();
 
