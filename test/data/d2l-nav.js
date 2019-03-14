@@ -85,7 +85,7 @@ var D2Lnav = (function () {
                 hasNext: isLinkSet(document.getElementsByClassName(CUSTOM_NEXT_LINK_SELECTOR)[0]),
                 hasPrev: isLinkSet(document.getElementsByClassName(CUSTOM_PREV_LINK_SELECTOR)[0])
         })});
-        window.top.dispatchEvent(requestCustomEvent);
+        window.parent.dispatchEvent(requestCustomEvent);
     }
 
     function clickIfEnabled(el) {

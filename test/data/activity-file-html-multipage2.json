@@ -21,17 +21,17 @@
 			"links": [{
 				"rel": ["alternate"],
 				"type": "text/html",
-				"href": "../test/data/multipage1.html"
+				"href": "../test/data/multipage2.html"
 			}, {
 				"rel": ["alternate"],
 				"class": ["view"],
 				"type": "text/html",
-				"href": "../test/data/multipage1.html"
+				"href": "../test/data/multipage2.html"
 			}, {
 				"rel": ["alternate"],
-				"class": ["download"],
+				"class": ["embed"],
 				"type": "text/html",
-				"href": "../test/data/multipage1.html"
+				"href": "../test/data/multipage2.html"
 			}],
 			"entities": [{
 				"rel": ["item"],

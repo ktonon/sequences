@@ -7,11 +7,12 @@
 <body>
 	<d2l-sequences-iterator id="prev" token="foo" previous=""></d2l-sequences-iterator>
     <d2l-sequences-iterator id="next" token="foo" next=""></d2l-sequences-iterator>
-	<d2l-sequences-content-file-html href="data/activity-file-html-multipage.json"></d2l-sequences-content-file-html>
+	<d2l-sequences-content-router href="../test/data/activity-file-html-multipage1.json" token="foo"></d2l-sequences-content-router>
 	<script type="module">
 		import { D2LSequencesContentFileHtml } from '../components/d2l-sequences-content-file-html.js';
 		import { D2LSequencesIterator } from '../components/d2l-sequences-iterator.js';
 		import SirenFixture from 'polymer-siren-test-helpers';
+		import '../components/d2l-sequences-content-router.js';
 	</script>
 </body>
 </html>

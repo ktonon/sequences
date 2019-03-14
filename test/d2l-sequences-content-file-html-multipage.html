@@ -9,8 +9,8 @@
 		<script src="../node_modules/chai-dom/chai-dom.js"></script>
 	</head>
 	<body>
-        <d2l-sequences-iterator id="prev" token="foo" previous=""></d2l-sequences-iterator>
-        <d2l-sequences-iterator id="next" token="foo" next=""></d2l-sequences-iterator>
+		<d2l-sequences-iterator id="prev" token="foo" previous=""></d2l-sequences-iterator>
+		<d2l-sequences-iterator id="next" token="foo" next=""></d2l-sequences-iterator>
 		<test-fixture id="FileFixture">
 			<template>
 				<d2l-sequences-content-file-html></d2l-sequences-content-file-html>
@@ -20,21 +20,76 @@
 import { D2LSequencesContentFileHtml } from '../components/d2l-sequences-content-file-html.js';
 import { D2LSequencesIterator } from '../components/d2l-sequences-iterator.js';
 import SirenFixture from 'polymer-siren-test-helpers';
+async function delay(time) {
+	return new Promise(resolve => {
+		setTimeout(resolve, time);
+	});
+}
 
 describe('d2l-sequences-content-file-html-multipage', () => {
-	before(() => {
+	beforeEach(() => {
 		// skip completion tracking, preventing extraneous HTTP requests
 		D2LSequencesContentFileHtml.prototype._skipCompletion = true;
 	});
 
-	it('Mutipage topic test launch', async() => {
-		const element = await SirenFixture('data/activity-file-html-multipage.json', fixture('FileFixture'));
-		const iframe = element.shadowRoot.querySelector('iframe');
-		expect(iframe).to.have.attribute('src', '../test/data/multipage1.html');
+	it('Iterators should have multi-page variables - has next', async() => {
+		const element = await SirenFixture('data/activity-file-html-multipage1.json', fixture('FileFixture'));
+		await delay(250);
+		var prev = document.getElementById('prev');
 		var next = document.getElementById('next');
-		next.click();
-		expect(iframe).to.have.attribute('src', '../test/data/multipage2.html');
+		expect(next.next).to.equal(true);
+		expect(next.isMultiPage).to.equal(true);
+		expect(next.multiPageHasNext).to.equal(true)
+		expect(next.multiPageHasPrev).to.equal(false);
+		expect(prev.previous).to.equal(true);
+		expect(prev.isMultiPage).to.equal(true);
+		expect(prev.multiPageHasNext).to.equal(true)
+		expect(prev.multiPageHasPrev).to.equal(false);
+	});
 
+	it('Iterators should have multi-page variables - has previous', async() => {
+		const element = await SirenFixture('data/activity-file-html-multipage2.json', fixture('FileFixture'));
+		await delay(250);
+		var prev = document.getElementById('prev');
+		var next = document.getElementById('next');
+		expect(next.next).to.equal(true);
+		expect(next.isMultiPage).to.equal(true);
+		expect(next.multiPageHasNext).to.equal(false)
+		expect(next.multiPageHasPrev).to.equal(true);
+		expect(prev.previous).to.equal(true);
+		expect(prev.isMultiPage).to.equal(true);
+		expect(prev.multiPageHasNext).to.equal(false)
+		expect(prev.multiPageHasPrev).to.equal(true);
+	});
+
+	it('Should navigate to next page in multi-page topic', async() => {
+		const element = await SirenFixture('data/activity-file-html-multipage1.json', fixture('FileFixture'));
+		await delay(250);
+		const iframe = element.shadowRoot.querySelector('iframe');
+		var page = iframe.contentDocument.querySelector('html');
+		var next = document.getElementById('next');
+		expect(page).to.have.attribute('id', 'page1');
+		expect(iframe).to.have.attribute('src', '../test/data/multipage1.html');
+		expect(next.next).to.equal(true);
+		next.shadowRoot.querySelector('d2l-navigation-button-notification-icon').click();
+		await delay(250);
+		page = iframe.contentDocument.querySelector('html');
+		expect(page).to.have.attribute('id', 'page2');
+	});
+
+	it('Should navigate to previous page in multi-page topic', async() => {
+		const element = await SirenFixture('data/activity-file-html-multipage2.json', fixture('FileFixture'));
+		await delay(250);
+		const iframe = element.shadowRoot.querySelector('iframe');
+		var page = iframe.contentDocument.querySelector('html');
+		var prev = document.getElementById('prev');
+		expect(page).to.have.attribute('id', 'page2');
+		expect(iframe).to.have.attribute('src', '../test/data/multipage2.html');
+		expect(prev.previous).to.equal(true);
+		prev.shadowRoot.querySelector('d2l-navigation-button-notification-icon').click();
+		await delay(250);
+		page = iframe.contentDocument.querySelector('html');
+		expect(page).to.have.attribute('id', 'page1');
 	});
 
 });
