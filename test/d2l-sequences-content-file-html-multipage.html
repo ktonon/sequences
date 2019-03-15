@@ -33,11 +33,12 @@ describe('d2l-sequences-content-file-html-multipage', () => {
 	});
 
 	it('Iterators should have multi-page variables', async() => {
-		const element = await SirenFixture('data/activity-file-html-multipage1.json', fixture('FileFixture'));
+		var element = await SirenFixture('data/activity-file-html-multipage1.json', fixture('FileFixture'));
 		await delay(250);
 		expect(element.shadowRoot.querySelector('iframe')).to.have.attribute('src', '../test/data/multipage1.html');
 		var prev = document.getElementById('prev');
 		var next = document.getElementById('next');
+		//Should have next but not previous multi-page variables
 		expect(next.next).to.equal(true);
 		expect(next.isMultiPage).to.equal(true);
 		expect(next.multiPageHasNext).to.equal(true);
@@ -48,12 +49,21 @@ describe('d2l-sequences-content-file-html-multipage', () => {
 		expect(prev.multiPageHasPrev).to.equal(false);
 		next.shadowRoot.querySelector('d2l-navigation-button-notification-icon').click();
 		await delay(250);
+		//Should have previous but not next multi-page variables
 		expect(next.isMultiPage).to.equal(true);
 		expect(next.multiPageHasNext).to.equal(false);
 		expect(next.multiPageHasPrev).to.equal(true);
 		expect(prev.isMultiPage).to.equal(true);
 		expect(prev.multiPageHasNext).to.equal(false);
 		expect(prev.multiPageHasPrev).to.equal(true);
+		//Should reset multi-page variables
+		element = await SirenFixture('data/activity-file-html.json', fixture('FileFixture'));
+		expect(next.isMultiPage).to.equal(false);
+		expect(next.multiPageHasNext).to.equal(false);
+		expect(next.multiPageHasPrev).to.equal(false);
+		expect(prev.isMultiPage).to.equal(false);
+		expect(prev.multiPageHasNext).to.equal(false);
+		expect(prev.multiPageHasPrev).to.equal(false);
 	});
 
 	it('Should navigate to next and previous pages in multi-page topic', async() => {
@@ -63,17 +73,20 @@ describe('d2l-sequences-content-file-html-multipage', () => {
 		var page = iframe.contentDocument.querySelector('html');
 		var prev = document.getElementById('prev');
 		var next = document.getElementById('next');
+		//Check if on page 1
 		expect(iframe).to.have.attribute('src', '../test/data/multipage1.html');
 		expect(page).to.have.attribute('id', 'page1');
 		expect(next.next).to.equal(true);
 		next.shadowRoot.querySelector('d2l-navigation-button-notification-icon').click();
 		await delay(250);
 		page = iframe.contentDocument.querySelector('html');
+		//Check if on page 2 after clicking next
 		expect(page).to.have.attribute('id', 'page2');
 		expect(prev.previous).to.equal(true);
 		prev.shadowRoot.querySelector('d2l-navigation-button-notification-icon').click();
 		await delay(250);
 		page = iframe.contentDocument.querySelector('html');
+		//Check if on page 1 after clicking previous
 		expect(page).to.have.attribute('id', 'page1');
 	});
 
