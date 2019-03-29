@@ -20,10 +20,10 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 			<style include="d2l-typography-shared-styles">
 				.d2l-sequences-module-list-container {
 					background-color: #ffffff;
+					border-top: 1px solid var(--d2l-color-sylvite);
 				}
 				.d2l-sequences-module-list-list {
 					border-bottom: 1px solid var(--d2l-color-sylvite);
-					border-top: 1px solid var(--d2l-color-sylvite);
 					counter-reset: d2l-sequence-module-list-counter;
 					list-style: none;
 					margin: 0;
@@ -86,6 +86,7 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 					background-color: var(--d2l-color-regolith);
 				}
 			</style>
+			<template is="dom-if" if="[[_hasModules(_modules)]]">
 			<div class="d2l-sequences-module-list-container">
 				<iron-collapse id="collapse" no-animation="[[noAnimation]]" opened="[[opened]]">
 					<ol class="d2l-sequences-module-list-list">
@@ -103,6 +104,7 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 					<span>[[_collapseTitle(_modules, opened)]]</span>
 				</a>
 			<div>
+			</template>
 		`;
 	}
 
@@ -171,6 +173,10 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 	_collapseTitle(modules, opened) {
 		const showOrHide = !opened ? 'showModules' : 'hideModules';
 		return this.localize(showOrHide, 'numberOfModules', modules.length);
+	}
+
+	_hasModules(modules) {
+		return !!modules.length;
 	}
 
 }
