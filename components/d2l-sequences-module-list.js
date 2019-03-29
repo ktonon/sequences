@@ -51,8 +51,8 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 
 				.d2l-sequences-module-list-list li d2l-link:hover d2l-sequences-module-name {
 					background-color: var(--d2l-color-regolith);
-					border-bottom: 1px solid var(--d2l-color-mica);;
-					border-top: 1px solid var(--d2l-color-mica);;
+					border-bottom: 1px solid var(--d2l-color-mica);
+					border-top: 1px solid var(--d2l-color-mica);
 					padding: 12px 20px;
 				}
 				.d2l-sequences-module-list-list li d2l-sequences-module-name::before {
