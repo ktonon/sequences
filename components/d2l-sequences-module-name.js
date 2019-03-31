@@ -26,7 +26,7 @@ export class D2LSequencesModuleName extends mixinBehaviors([
 	static get properties() {
 		return {
 			title: {
-				type: Object,
+				type: String,
 				computed: '_getTitle(entity)',
 				notify: true
 			}
