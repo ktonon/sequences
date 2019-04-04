@@ -23,6 +23,7 @@
 	"showMissed": "Show Me What I Missed",
 	"showModules": "Show {numberOfModules} Modules",
 	"undisplayableContent": "This content can't be displayed in this viewer",
+	"openInNewTab": "Open link in a new web browser tab.",
 	"viewThisActivity": "View this Activity.",
 	"youMissedThese": "You missed these activities:"
 }
