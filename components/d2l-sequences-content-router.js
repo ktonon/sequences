@@ -4,6 +4,7 @@ import './d2l-sequences-content-file-download.js';
 import { D2LSequencesContentFileHtml } from './d2l-sequences-content-file-html.js';
 import './d2l-sequences-content-file-html.js';
 import { D2LSequencesContentLinkMixed } from './d2l-sequences-content-link-mixed.js';
+import { D2LSequencesContentLinkNewTab } from './d2l-sequences-content-link-new-tab';
 import { D2LSequencesContentLinkScorm } from './d2l-sequences-content-link-scorm.js';
 import { D2LSequencesContentLinkOnedrive } from './d2l-sequences-content-link-onedrive.js';
 import { D2LSequencesContentLink } from './d2l-sequences-content-link.js';
@@ -92,8 +93,10 @@ function getFileEntityType(fileActivity) {
 
 function getLinkEntityType(linkActivity) {
 	const link = linkActivity.getLinkByRel('about');
+	const openInNewTab = linkActivity.hasClass('open-in-new-tab');
+
 	if (link && link.href.startsWith(window.location.protocol)) {
-		return D2LSequencesContentLink.is;
+		return openInNewTab ? D2LSequencesContentLinkNewTab.is : D2LSequencesContentLink.is;
 	}
 	return D2LSequencesContentLinkMixed.is;
 }

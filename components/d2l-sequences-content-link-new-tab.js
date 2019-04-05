@@ -7,31 +7,34 @@ import { D2LSequencesContentLink } from './d2l-sequences-content-link.js';
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 */
 
-export class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.CompletionTrackingMixin() {
+export class D2LSequencesContentLinkNewTab extends D2L.Polymer.Mixins.Sequences.CompletionTrackingMixin() {
 	static get template() {
 		return html`
 		<style>
-			.content-link-mixed-container {
+			.content-link-new-tab-container {
 				padding-top: 100px;
 				text-align: center;
 				width: 550px;
 				margin: auto;
 			}
 
-			.content-link-mixed-container > * {
+			.content-link-new-tab-container > * {
 				margin: 25px 0;
 			}
 
-			.content-link-mixed-container h3 {
+			.content-link-new-tab-container h3 {
 				color: var(--d2l-color-celestine-plus-1);
 			}
+
+			#linkImage{
+				margin-left:60px;
+			}
+
 		</style>
-		<div class="content-link-mixed-container">
-			<h3>
-				[[localize('undisplayableContent')]]
-			</h3>
+		<div class="content-link-new-tab-container">
+			<img id="linkImage" src="../img/weblink-jump-image.svg"></img>
 			<p>
-				[[localize('openUnsecureContent')]]
+				[[localize('openInNewTab')]]
 			</p>
 			<d2l-button primary="" on-click="_onclick">
 				[[localize('openNew')]]
@@ -41,7 +44,7 @@ export class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.C
 	}
 
 	static get is() {
-		return 'd2l-sequences-content-link-mixed';
+		return 'd2l-sequences-content-link-new-tab';
 	}
 
 	static get properties() {
@@ -83,4 +86,4 @@ export class D2LSequencesContentLinkMixed extends D2L.Polymer.Mixins.Sequences.C
 		return window.open(location);
 	}
 }
-customElements.define(D2LSequencesContentLinkMixed.is, D2LSequencesContentLinkMixed);
+customElements.define(D2LSequencesContentLinkNewTab.is, D2LSequencesContentLinkNewTab);
