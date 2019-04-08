@@ -9,18 +9,27 @@ import 'd2l-typography/d2l-typography-shared-styles.js';
 import 'd2l-polymer-siren-behaviors/store/entity-behavior.js';
 import './d2l-sequences-module-name.js';
 import '../localize-behavior.js';
+import 'd2l-polymer-behaviors/d2l-focusable-behavior.js';
+
+const behaviors = [
+	D2L.PolymerBehaviors.Sequences.LocalizeBehavior,
+	D2L.PolymerBehaviors.Siren.EntityBehavior,
+	D2L.PolymerBehaviors.FocusableBehavior
+];
 
 /**
  * @customElement
  * @polymer
  */
-class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.EntityBehavior, D2L.PolymerBehaviors.Sequences.LocalizeBehavior], PolymerElement) {
+class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 	static get template() {
 		return html`
 			<style include="d2l-typography-shared-styles">
 				.d2l-sequences-module-list-container {
 					background-color: #ffffff;
 					border-top: 1px solid var(--d2l-color-sylvite);
+					border-bottom-left-radius: 6px;
+					border-bottom-right-radius: 6px;
 				}
 				.d2l-sequences-module-list-list {
 					border-bottom: 1px solid var(--d2l-color-sylvite);
@@ -48,7 +57,9 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 					line-height: 1.19;
 					padding: 13px 20px;
 				}
-
+				.d2l-sequences-module-list-list li d2l-link {
+					display: block;
+				}
 				.d2l-sequences-module-list-list li d2l-link:hover d2l-sequences-module-name {
 					background-color: var(--d2l-color-regolith);
 					border-bottom: 1px solid var(--d2l-color-mica);
@@ -85,6 +96,14 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 				.d2l-sequences-module-list-collapse-title:hover {
 					background-color: var(--d2l-color-regolith);
 				}
+				.d2l-focusable[focus=focus] {
+					border-color: rgba(0, 111, 191, 0.4);
+					border-radius: 6px;
+					box-shadow: 0 0 0 4px rgba(0, 111, 191, 0.3);
+					outline : none;
+					position: relative;
+					z-index: 5;
+				}
 			</style>
 			<template is="dom-if" if="[[_hasModules(_modules)]]">
 			<div class="d2l-sequences-module-list-container">
@@ -92,14 +111,14 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 					<ol class="d2l-sequences-module-list-list">
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
-								<d2l-link href="#">
+								<d2l-link class="d2l-focusable" href="#" onfocus="[[_onFocus]]" onblur="[[_onBlur]]">
 									<d2l-sequences-module-name module$="[[localize('module')]]" href="[[item]]" token="[[token]]"></d2l-sequences-module-name>
 								</d2l-link>
 							</li>
 						</template>
 					</ol>
 				</iron-collapse>
-				<a class="d2l-sequences-module-list-collapse-title" href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button">
+				<a class="d2l-focusable d2l-sequences-module-list-collapse-title" href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" onfocus="[[_onFocus]]" onblur="[[_onBlur]]">
 					<d2l-icon class="d2l-sequences-module-list-vertical-flip" icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 					<span>[[_collapseTitle(_modules, opened)]]</span>
 				</a>
@@ -135,7 +154,6 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 			'_handleModuleData(entity)'
 		];
 	}
-
 	open() {
 		if (this.disabled) {
 			return;
@@ -177,6 +195,12 @@ class D2lSequenceModuleList extends mixinBehaviors([D2L.PolymerBehaviors.Siren.E
 
 	_hasModules(modules) {
 		return !!modules.length;
+	}
+	_onFocus(e) {
+		e.srcElement && e.srcElement.setAttribute && e.srcElement.setAttribute('focus', 'focus');
+	}
+	_onBlur(e) {
+		e.srcElement && e.srcElement.setAttribute && e.srcElement.removeAttribute('focus', 'focus');
 	}
 
 }
