@@ -9,12 +9,10 @@ import 'd2l-typography/d2l-typography-shared-styles.js';
 import 'd2l-polymer-siren-behaviors/store/entity-behavior.js';
 import './d2l-sequences-module-name.js';
 import '../localize-behavior.js';
-import 'd2l-polymer-behaviors/d2l-focusable-behavior.js';
 
 const behaviors = [
 	D2L.PolymerBehaviors.Sequences.LocalizeBehavior,
-	D2L.PolymerBehaviors.Siren.EntityBehavior,
-	D2L.PolymerBehaviors.FocusableBehavior
+	D2L.PolymerBehaviors.Siren.EntityBehavior
 ];
 
 /**
@@ -97,7 +95,8 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 				.d2l-sequences-module-list-collapse-title:hover {
 					background-color: var(--d2l-color-regolith);
 				}
-				.d2l-focusable[focus=focus] {
+				.d2l-sequences-module-list-list d2l-link[focus=focus],
+				.d2l-sequences-module-list-collapse-title[focus=focus] {
 					border-color: rgba(0, 111, 191, 0.4);
 					border-radius: 6px;
 					box-shadow: 0 0 0 4px rgba(0, 111, 191, 0.3);
@@ -112,14 +111,14 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 					<ol class="d2l-sequences-module-list-list">
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
-								<d2l-link class="d2l-focusable" href="#" on-focus="_onFocus" on-blur="_onBlur">
+								<d2l-link href="#" on-focus="_onFocus" on-blur="_onBlur">
 									<d2l-sequences-module-name module$="[[localize('module')]]" href="[[item]]" token="[[token]]"></d2l-sequences-module-name>
 								</d2l-link>
 							</li>
 						</template>
 					</ol>
 				</iron-collapse>
-				<a class="d2l-focusable d2l-sequences-module-list-collapse-title" href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" on-focus="_onFocus" on-blur="_onBlur">
+				<a class="d2l-sequences-module-list-collapse-title" href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" on-focus="_onFocus" on-blur="_onBlur">
 					<d2l-icon class="d2l-sequences-module-list-vertical-flip" icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 					<span>[[_collapseTitle(_modules, opened)]]</span>
 				</a>
