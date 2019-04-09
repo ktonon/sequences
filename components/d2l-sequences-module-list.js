@@ -27,9 +27,9 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 			<style include="d2l-typography-shared-styles">
 				.d2l-sequences-module-list-container {
 					background-color: #ffffff;
-					border-top: 1px solid var(--d2l-color-sylvite);
 					border-bottom-left-radius: 6px;
 					border-bottom-right-radius: 6px;
+					border-top: 1px solid var(--d2l-color-sylvite);
 				}
 				.d2l-sequences-module-list-list {
 					border-bottom: 1px solid var(--d2l-color-sylvite);
@@ -51,13 +51,14 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 				}
 				.d2l-sequences-module-list-list li d2l-link d2l-sequences-module-name {
 					@apply --d2l-body-compact-text;
-					color: var(--d2l-color-tungsten);
+					color: var(--d2l-color-ferrite);
 					display: block;
 					letter-spacing: 0.4px;
 					line-height: 1.19;
 					padding: 13px 20px;
 				}
 				.d2l-sequences-module-list-list li d2l-link {
+					--d2l-link-hover_-_color: var(--d2l-color-ferrite);
 					display: block;
 				}
 				.d2l-sequences-module-list-list li d2l-link:hover d2l-sequences-module-name {
@@ -86,7 +87,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 				.d2l-sequences-module-list-collapse-title:visited,
 				.d2l-sequences-module-list-collapse-title:hover {
 					@apply --d2l-body-compact-text;
-					color: var(--d2l-color-tungsten);
+					color: var(--d2l-color-ferrite);
 					letter-spacing: 0.5px;
 					text-decoration: none;
 				}
@@ -111,14 +112,14 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 					<ol class="d2l-sequences-module-list-list">
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
-								<d2l-link class="d2l-focusable" href="#" onfocus="[[_onFocus]]" onblur="[[_onBlur]]">
+								<d2l-link class="d2l-focusable" href="#" on-focus="_onFocus" on-blur="_onBlur">
 									<d2l-sequences-module-name module$="[[localize('module')]]" href="[[item]]" token="[[token]]"></d2l-sequences-module-name>
 								</d2l-link>
 							</li>
 						</template>
 					</ol>
 				</iron-collapse>
-				<a class="d2l-focusable d2l-sequences-module-list-collapse-title" href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" onfocus="[[_onFocus]]" onblur="[[_onBlur]]">
+				<a class="d2l-focusable d2l-sequences-module-list-collapse-title" href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" on-focus="_onFocus" on-blur="_onBlur">
 					<d2l-icon class="d2l-sequences-module-list-vertical-flip" icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 					<span>[[_collapseTitle(_modules, opened)]]</span>
 				</a>
