@@ -2,6 +2,8 @@ import '../mixins/d2l-sequences-router-mixin.js';
 import { D2LSequencesContentEoLMain } from './d2l-sequences-content-eol-main.js';
 import './d2l-sequences-content-file-download.js';
 import { D2LSequencesContentFileHtml } from './d2l-sequences-content-file-html.js';
+import { D2LSequencesContentVideo } from './d2l-sequences-content-video';
+import { D2LSequencesContentAudio } from './d2l-sequences-content-audio';
 import './d2l-sequences-content-file-html.js';
 import { D2LSequencesContentLinkMixed } from './d2l-sequences-content-link-mixed.js';
 import { D2LSequencesContentLinkNewTab } from './d2l-sequences-content-link-new-tab';
@@ -33,6 +35,15 @@ class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin
 	static get mimeType() {
 		return new Map([
 			['application/pdf', D2LSequencesContentFileHtml.is],
+			['video/mp4', D2LSequencesContentVideo.is],
+			['video/ogg', D2LSequencesContentVideo.is],
+			['video/webm', D2LSequencesContentVideo.is],
+			['audio/webm', D2LSequencesContentVideo.is],
+			['audio/flac', D2LSequencesContentAudio.is],
+			['audio/mp3', D2LSequencesContentAudio.is],
+			['audio/ogg', D2LSequencesContentAudio.is],
+			['audio/aac', D2LSequencesContentAudio.is],
+			['audio/wave', D2LSequencesContentAudio.is],
 			['image/bmp', D2LSequencesContentFileHtml.is],
 			['image/gif', D2LSequencesContentFileHtml.is],
 			['image/jpeg', D2LSequencesContentFileHtml.is],
