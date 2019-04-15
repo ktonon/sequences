@@ -7,6 +7,7 @@ import { D2LSequencesContentLinkMixed } from './d2l-sequences-content-link-mixed
 import { D2LSequencesContentLinkNewTab } from './d2l-sequences-content-link-new-tab';
 import { D2LSequencesContentLinkScorm } from './d2l-sequences-content-link-scorm.js';
 import { D2LSequencesContentLinkOnedrive } from './d2l-sequences-content-link-onedrive.js';
+import { D2LSequencesContentLinkGoogledrive } from './d2l-sequences-content-link-googledrive.js';
 import { D2LSequencesContentLink } from './d2l-sequences-content-link.js';
 import { D2LSequencesContentUnknown } from './d2l-sequences-content-unknown.js';
 import { D2LSequencesContentModule } from './d2l-sequences-content-module.js';
@@ -95,8 +96,11 @@ function getLinkEntityType(linkActivity) {
 	const link = linkActivity.getLinkByRel('about');
 	const openInNewTab = linkActivity.hasClass('open-in-new-tab');
 
-	if (link && link.href.startsWith(window.location.protocol)) {
+	if (link && link.href.includes('docs.google')) {
+		return D2LSequencesContentLinkGoogledrive.is;
+	} else if (link && link.href.startsWith(window.location.protocol)) {
 		return openInNewTab ? D2LSequencesContentLinkNewTab.is : D2LSequencesContentLink.is;
+	} else {
+		return D2LSequencesContentLinkMixed.is;
 	}
-	return D2LSequencesContentLinkMixed.is;
 }
