@@ -37,15 +37,6 @@ export class D2LSequencesContentAudio extends D2L.Polymer.Mixins.Sequences.Autom
 		};
 	}
 
-	connectedCallback() {
-		super.connectedCallback();
-	}
-
-	disconnectedCallback() {
-		super.disconnectedCallback();
-		window.dispatchEvent(new CustomEvent('d2l-nav-request-customizations', { detail: JSON.stringify({ handler: 'd2l.nav.reset' }) }));
-	}
-
 	_scrollToTop() {
 		window.top.scrollTo(0, 0);
 	}
