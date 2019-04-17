@@ -24,10 +24,6 @@ export class D2LSequencesContentLinkGoogledrive extends D2L.Polymer.Mixins.Seque
 				type: String,
 				reflectToAttribute: true,
 				notify: true,
-				observer: '_scrollToTop'
-			},
-			previousHref: {
-				type: String
 			},
 			_linkLocation: {
 				type: String,
@@ -35,10 +31,6 @@ export class D2LSequencesContentLinkGoogledrive extends D2L.Polymer.Mixins.Seque
 			}
 		};
 	}
-	_scrollToTop() {
-		window.top.scrollTo(0, 0);
-	}
-
 	_getLinkLocation(entity) {
 		try {
 			const link = entity.getLinkByRel('describes');
