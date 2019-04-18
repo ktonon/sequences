@@ -9,6 +9,7 @@ import { D2LSequencesContentLinkMixed } from './d2l-sequences-content-link-mixed
 import { D2LSequencesContentLinkNewTab } from './d2l-sequences-content-link-new-tab';
 import { D2LSequencesContentLinkScorm } from './d2l-sequences-content-link-scorm.js';
 import { D2LSequencesContentLinkOnedrive } from './d2l-sequences-content-link-onedrive.js';
+import { D2LSequencesContentLinkGoogledrive } from './d2l-sequences-content-link-googledrive.js';
 import { D2LSequencesContentLink } from './d2l-sequences-content-link.js';
 import { D2LSequencesContentUnknown } from './d2l-sequences-content-unknown.js';
 import { D2LSequencesContentModule } from './d2l-sequences-content-module.js';
@@ -75,6 +76,8 @@ function getEntityType(entity) {
 			switch (subEntity.class[j]) {
 				case D2LSequencesContentLinkOnedrive.contentClass:
 					return D2LSequencesContentLinkOnedrive.is;
+				case D2LSequencesContentLinkGoogledrive.contentClass:
+					return D2LSequencesContentLinkGoogledrive.is;
 				case D2LSequencesContentRouter.fileActivity:
 					return getFileEntityType(subEntity);
 				case D2LSequencesContentRouter.linkActivity:
@@ -108,6 +111,7 @@ function getLinkEntityType(linkActivity) {
 
 	if (link && link.href.startsWith(window.location.protocol)) {
 		return openInNewTab ? D2LSequencesContentLinkNewTab.is : D2LSequencesContentLink.is;
+	} else {
+		return D2LSequencesContentLinkMixed.is;
 	}
-	return D2LSequencesContentLinkMixed.is;
 }
