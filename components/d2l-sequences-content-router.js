@@ -65,6 +65,8 @@ function getEntityType(entity) {
 			switch (subEntity.class[j]) {
 				case D2LSequencesContentLinkOnedrive.contentClass:
 					return D2LSequencesContentLinkOnedrive.is;
+				case D2LSequencesContentLinkGoogledrive.contentClass:
+					return D2LSequencesContentLinkGoogledrive.is;
 				case D2LSequencesContentRouter.fileActivity:
 					return getFileEntityType(subEntity);
 				case D2LSequencesContentRouter.linkActivity:
@@ -96,9 +98,7 @@ function getLinkEntityType(linkActivity) {
 	const link = linkActivity.getLinkByRel('about');
 	const openInNewTab = linkActivity.hasClass('open-in-new-tab');
 
-	if (link && link.href.includes('docs.google')) {
-		return D2LSequencesContentLinkGoogledrive.is;
-	} else if (link && link.href.startsWith(window.location.protocol)) {
+	if (link && link.href.startsWith(window.location.protocol)) {
 		return openInNewTab ? D2LSequencesContentLinkNewTab.is : D2LSequencesContentLink.is;
 	} else {
 		return D2LSequencesContentLinkMixed.is;

@@ -18,6 +18,11 @@ export class D2LSequencesContentLinkGoogledrive extends D2L.Polymer.Mixins.Seque
 	static get is() {
 		return 'd2l-sequences-content-link-googledrive';
 	}
+
+	static get contentClass() {
+		return 'link-google-drive';
+	}
+
 	static get properties() {
 		return {
 			href: {
