@@ -49,6 +49,8 @@
   },
   "main": "d2l-sequences.js",
   "dependencies": {
+    "@d2l/audio": "^3.0.0",
+    "@d2l/video": "^1.0.0",
     "@polymer/iron-collapse": "^3.0.0-pre.18",
     "@polymer/polymer": "^3.0.0",
     "d2l-button": "BrightspaceUI/button#semver:^5",
