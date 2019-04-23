@@ -1,8 +1,5 @@
 language: node_js
 node_js: 9
-before_install:
-- curl -ks -u$ARTIFACTORY_USER:$ARTIFACTORY_PASS "https://d2lartifacts.jfrog.io/d2lartifacts/api/npm/npm-local/auth/d2l" -o .npmrc
-
 sudo: required
 addons:
   chrome: stable
