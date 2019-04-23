@@ -1,5 +1,5 @@
 {
-	"ar-AE": {
+	"ar": {
 		"activitiesFinishedGreatJob": "لقد أكملت كل النشاطات في هذه الوحدة. أحسنت!",
 		"cannotBeRendered": "لا يمكن عرض مادة المحتوى هذه.",
 		"congratulations": "تهانينا!",
@@ -24,8 +24,7 @@
 		"viewThisActivity": "عرض هذا النشاط.",
 		"youMissedThese": "لقد فاتتك هذه الأنشطة:"
 	},
-	"ar": {},
-	"de-DE": {
+	"de": {
 		"activitiesFinishedGreatJob": "Sie haben alle Aktivitäten in dieser Einheit abgeschlossen. Gut gemacht!",
 		"cannotBeRendered": "Dieses Inhaltselement kann nicht gerendert werden.",
 		"congratulations": "Glückwunsch!",
@@ -50,7 +49,6 @@
 		"viewThisActivity": "Die Aktivität anzeigen",
 		"youMissedThese": "Sie haben diese Aktivitäten verpasst:"
 	},
-	"de": {},
 	"en": {
 		"activitiesFinishedGreatJob": "You have completed all of the activities in this unit. Great job!",
 		"cannotBeRendered": "This content item cannot be rendered.",
@@ -80,7 +78,7 @@
 		"viewThisActivity": "View this Activity.",
 		"youMissedThese": "You missed these activities:"
 	},
-	"es-ES": {
+	"es": {
 		"activitiesFinishedGreatJob": "Completó todas las actividades de esta unidad. ¡Buen trabajo!",
 		"cannotBeRendered": "Este elemento de contenido no se puede representar.",
 		"congratulations": "¡Felicitaciones!",
@@ -105,8 +103,7 @@
 		"viewThisActivity": "Ver esta actividad.",
 		"youMissedThese": "No realizó estas actividades:"
 	},
-	"es": {},
-	"fr-FR": {
+	"fr": {
 		"activitiesFinishedGreatJob": "Vous avez terminé toutes les activités de cette unité. Bon travail!",
 		"cannotBeRendered": "Cet élément de contenu ne peut pas être rendu.",
 		"congratulations": "Félicitations!",
@@ -131,8 +128,7 @@
 		"viewThisActivity": "Consulter cette activité.",
 		"youMissedThese": "Vous avez manqué ces activités :"
 	},
-	"fr": {},
-	"ja-JP": {
+	"ja": {
 		"activitiesFinishedGreatJob": "この単位のすべてのアクティビティを完了しました。お疲れ様でした。",
 		"cannotBeRendered": "このコンテンツ項目はレンダリングできません。",
 		"congratulations": "おめでとうございます！",
@@ -157,8 +153,7 @@
 		"viewThisActivity": "このアクティビティを表示します。",
 		"youMissedThese": "次のアクティビティを完了していません。"
 	},
-	"ja": {},
-	"ko-KR": {
+	"ko": {
 		"activitiesFinishedGreatJob": "이 단원의 모든 활동을 완료했습니다. 잘 하셨습니다!",
 		"cannotBeRendered": "이 콘텐츠 항목을 렌더링할 수 없습니다.",
 		"congratulations": "축하합니다!",
@@ -183,9 +178,8 @@
 		"viewThisActivity": "이 활동을 봅니다.",
 		"youMissedThese": "누락한 활동은 다음과 같습니다."
 	},
-	"ko": {},
 	"nb": {},
-	"nl-NL": {
+	"nl": {
 		"activitiesFinishedGreatJob": "Je hebt alle activiteiten in deze eenheid voltooid. Goed gedaan!",
 		"cannotBeRendered": "Dit inhoudsitem kan niet worden weergegeven.",
 		"congratulations": "Gefeliciteerd!",
@@ -210,8 +204,7 @@
 		"viewThisActivity": "Bekijk deze activiteit.",
 		"youMissedThese": "Je hebt deze activiteiten gemist:"
 	},
-	"nl": {},
-	"pt-PT": {
+	"pt": {
 		"activitiesFinishedGreatJob": "Você concluiu todas as atividades nesta unidade. Bom trabalho!",
 		"cannotBeRendered": "Este item de conteúdo não pode ser processado.",
 		"congratulations": "Parabéns!",
@@ -236,8 +229,7 @@
 		"viewThisActivity": "Exibir esta atividade.",
 		"youMissedThese": "Você perdeu estas atividades:"
 	},
-	"pt": {},
-	"sv-SE": {
+	"sv": {
 		"activitiesFinishedGreatJob": "Du har slutfört alla aktiviteter i den här enheten. Bra jobbat!",
 		"cannotBeRendered": "Innehållsobjektet kan inte återges.",
 		"congratulations": "Grattis!",
@@ -262,8 +254,7 @@
 		"viewThisActivity": "Visa den här aktiviteten.",
 		"youMissedThese": "Du missade de här aktiviteterna:"
 	},
-	"sv": {},
-	"tr-TR": {
+	"tr": {
 		"activitiesFinishedGreatJob": "Bu ünitedeki tüm etkinlikleri tamamladınız. Harika gidiyorsunuz!",
 		"cannotBeRendered": "Bu içerik öğesi işlenemiyor.",
 		"congratulations": "Tebrikler!",
@@ -288,7 +279,6 @@
 		"viewThisActivity": "Bu Etkinliği görüntüleyin.",
 		"youMissedThese": "Bu etkinlikleri kaçırdınız:"
 	},
-	"tr": {},
 	"zh-CN": {
 		"activitiesFinishedGreatJob": "You have completed all of the activities in this unit.Great job!",
 		"cannotBeRendered": "This content item cannot be rendered.",
@@ -339,5 +329,29 @@
 		"viewThisActivity": "檢視此活動。",
 		"youMissedThese": "您遺漏了這些活動："
 	},
-	"zh": {}
+	"zh": {
+		"activitiesFinishedGreatJob": "You have completed all of the activities in this unit.Great job!",
+		"cannotBeRendered": "This content item cannot be rendered.",
+		"congratulations": "恭喜！",
+		"download": "下载",
+		"downloadInvalidFile": "请下载另一应用程序以查看文件。",
+		"fileSize": "File size: {size}",
+		"goToActivity": "转到“活动”",
+		"gotoOnedrive": "转到 OneDrive",
+		"imDone": "我已完成",
+		"invalidFile": "查看器无法打开此类文件",
+		"iterateToNext": "Next activity",
+		"iterateToParent": "Go to parent activity",
+		"iterateToPrevious": "Previous activity",
+		"missedActivities": "You <d2l-link href=\"javascript:void(0)\">missed {count, plural, one {# activity} other {# activities}}</d2l-link>.",
+		"niceWork": "Nice work so far!",
+		"noNeedToFinish": "If you don't need to finish {count, plural, one {it} other {them}}, no problem.",
+		"openNew": "在新窗口中打开",
+		"openOnedriveFile": "在新的浏览器选项卡中打开 OneDrive 文件。",
+		"openUnsecureContent": "您的浏览器认为本内容发布在一个不太安全的位置。别担心，只要在新窗口中打开内容即可。",
+		"showMissed": "Show Me What I Missed",
+		"undisplayableContent": "本内容无法在此查看器中显示",
+		"viewThisActivity": "查看该活动。",
+		"youMissedThese": "You missed these activities:"
+	}
 }
