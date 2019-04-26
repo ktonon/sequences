@@ -14,7 +14,7 @@
    "iterateToParent" : "Go to parent activity",
    "iterateToPrevious" : "Previous activity",
    "missedActivities" : "You <d2l-link href=\"javascript:void(0)\">missed {count, plural, one {# activity} other {# activities}}</d2l-link>.",
-   "module" : "Module",
+   "module" : "模块",
    "niceWork" : "Nice work so far!",
    "noNeedToFinish" : "If you don't need to finish {count, plural, one {it} other {them}}, no problem.",
    "openInNewTab" : "在新的 Web 浏览器选项卡中打开链接。",
