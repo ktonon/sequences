@@ -1,0 +1,209 @@
+{
+	"class": [
+		"sequenced-activity"
+	],
+	"properties": {
+		"title": "File (Audio)"
+	},
+	"entities": [
+		{
+			"class": [
+				"icon",
+				"tier1"
+			],
+			"rel": [
+				"icon"
+			],
+			"properties": {
+				"iconSetKey": "d2l-tier1:file-audio",
+				"imagePath": "https://s.brightspace.com/lib/bsi/20.19.5-30/images/tier1/file-audio.svg"
+			}
+		},
+		{
+			"class": [
+				"icon",
+				"tier2"
+			],
+			"rel": [
+				"icon"
+			],
+			"properties": {
+				"iconSetKey": "d2l-tier2:file-audio",
+				"imagePath": "https://s.brightspace.com/lib/bsi/20.19.5-30/images/tier2/file-audio.svg"
+			}
+		},
+		{
+			"class": [
+				"activity",
+				"file-activity"
+			],
+			"rel": [
+				"about"
+			],
+			"properties": {
+				"name": "The Concealed Four Seasons.ogg",
+				"title": "The Concealed Four Seasons.ogg"
+			},
+			"entities": [
+				{
+					"class": [
+						"file"
+					],
+					"rel": [
+						"about"
+					],
+					"properties": {
+						"name": "The Concealed Four Seasons.ogg",
+						"title": "The Concealed Four Seasons.ogg",
+						"type": "audio/ogg"
+					},
+					"entities": [
+						{
+							"class": [
+								"last-modified",
+								"date"
+							],
+							"rel": [
+								"item"
+							],
+							"properties": {
+								"date": "2018-03-19T13:49:33.330Z"
+							}
+						}
+					],
+					"links": [
+						{
+							"rel": [
+								"alternate"
+							],
+							"type": "audio/ogg",
+							"href": "https://qa2019616161g.bspc.com/d2l/api/le/1.12/131726/content/topics/114225/file?stream=true"
+						},
+						{
+							"class": [
+								"embed"
+							],
+							"rel": [
+								"alternate"
+							],
+							"type": "audio/ogg",
+							"href": "https://qa2019616161g.bspc.com/content/enforced/131726-SNC/The%20Concealed%20Four%20Seasons.ogg"
+						},
+						{
+							"class": [
+								"view"
+							],
+							"rel": [
+								"alternate"
+							],
+							"type": "audio/ogg",
+							"href": "https://qa2019616161g.bspc.com/d2l/le/content/131726/viewContent/114225/View"
+						},
+						{
+							"class": [
+								"download"
+							],
+							"rel": [
+								"alternate"
+							],
+							"type": "audio/ogg",
+							"href": "https://qa2019616161g.bspc.com/d2l/api/le/1.12/131726/content/topics/114225/file?stream=false"
+						}
+					]
+				},
+				{
+					"class": [
+						"completion",
+						"incomplete"
+					],
+					"rel": [
+						"item",
+						"https://api.brightspace.com/rels/completion"
+					],
+					"links": [
+						{
+							"rel": [
+								"alternate"
+							],
+							"href": "https://71b3868b-92c6-48c3-a4b7-6a574684d2ca.sequences.api.dev.brightspace.com/131726/activity/114225/completion"
+						}
+					]
+				}
+			],
+			"actions": [
+				{
+					"href": "https://71b3868b-92c6-48c3-a4b7-6a574684d2ca.sequences.api.dev.brightspace.com/131726/activity/114225/view?hasBeenViewed=0&filterOnDatesAndDepth=1",
+					"name": "view-activity",
+					"method": "POST"
+				},
+				{
+					"href": "https://71b3868b-92c6-48c3-a4b7-6a574684d2ca.sequences.api.dev.brightspace.com/131726/activity/114225/view?hasBeenViewed=0&filterOnDatesAndDepth=1",
+					"name": "view-activity-duration",
+					"method": "PUT"
+				},
+				{
+					"href": "https://71b3868b-92c6-48c3-a4b7-6a574684d2ca.sequences.api.dev.brightspace.com/131726/activity/114225/set-last-viewed-content-object",
+					"name": "set-last-viewed-content-object",
+					"method": "POST"
+				}
+			]
+		}
+	],
+	"links": [
+		{
+			"rel": [
+				"self",
+				"describes"
+			],
+			"href": "https://71b3868b-92c6-48c3-a4b7-6a574684d2ca.sequences.api.dev.brightspace.com/131726/activity/114225?filterOnDatesAndDepth=1"
+		},
+		{
+			"rel": [
+				"https://api.brightspace.com/rels/organization"
+			],
+			"href": "https://71b3868b-92c6-48c3-a4b7-6a574684d2ca.organizations.api.dev.brightspace.com/131726"
+		},
+		{
+			"rel": [
+				"prev"
+			],
+			"href": "https://71b3868b-92c6-48c3-a4b7-6a574684d2ca.sequences.api.dev.brightspace.com/131726/activity/114224?filterOnDatesAndDepth=1"
+		},
+		{
+			"rel": [
+				"next"
+			],
+			"href": "https://71b3868b-92c6-48c3-a4b7-6a574684d2ca.sequences.api.dev.brightspace.com/131726/activity/114226?filterOnDatesAndDepth=1"
+		},
+		{
+			"rel": [
+				"https://sequences.api.brightspace.com/rels/default-return-url"
+			],
+			"type": "text/html",
+			"href": "https://qa2019616161g.bspc.com/d2l/le/content/131726/Home"
+		},
+		{
+			"rel": [
+				"https://sequences.api.brightspace.com/rels/sequence-viewer-application"
+			],
+			"type": "text/html",
+			"href": "https://qa2019616161g.bspc.com/d2l/le/enhancedSequenceViewer/131726?url=https%3a%2f%2f71b3868b-92c6-48c3-a4b7-6a574684d2ca.sequences.api.dev.brightspace.com%2f131726%2factivity%2f114225%3ffilterOnDatesAndDepth%3d1"
+		},
+		{
+			"rel": [
+				"alternate"
+			],
+			"type": "text/html",
+			"href": "https://qa2019616161g.bspc.com/d2l/le/content/131726/viewContent/114225/View"
+		},
+		{
+			"rel": [
+				"up"
+			],
+			"href": "https://71b3868b-92c6-48c3-a4b7-6a574684d2ca.sequences.api.dev.brightspace.com/131726/activity/114216?filterOnDatesAndDepth=1"
+		}
+	],
+	"rel": [
+		"item"
+	]
+}
