@@ -1,0 +1,96 @@
+{
+	"properties": {
+		"title": "End of Unit"
+	},
+	"class": [
+		"sequence",
+		"sequence-description",
+		"end-of-sequence"
+	],
+	"links": [
+		{
+			"rel": [
+				"self",
+				"https://sequences.api.brightspace.com/rels/end-of-sequence"
+			],
+			"href": "https://c971c71f-d837-4775-a302-45fe983f3e2d.sequences.api.dev.brightspace.com/131726/activity/120827/end-of-sequence?filterOnDatesAndDepth=1"
+		},
+		{
+			"rel": [
+				"https://sequences.api.brightspace.com/rels/sequence-root",
+				"https://api.brightspace.com/rels/sequence-description"
+			],
+			"href": "https://c971c71f-d837-4775-a302-45fe983f3e2d.sequences.api.dev.brightspace.com/131726/activity/120827?filterOnDatesAndDepth=1"
+		},
+		{
+			"rel": [
+				"https://sequences.api.brightspace.com/rels/default-return-url"
+			],
+			"href": "https://qa2019616604g.bspc.com/d2l/le/content/131726/Home",
+			"type": "text/html"
+		},
+		{
+			"rel": [
+				"https://sequences.api.brightspace.com/rels/previous-activity"
+			],
+			"href": "https://c971c71f-d837-4775-a302-45fe983f3e2d.sequences.api.dev.brightspace.com/131726/activity/120830?filterOnDatesAndDepth=1"
+		}
+	],
+	"entities": [
+		{
+			"class": [
+				"sequenced-activity",
+				"available"
+			],
+			"rel": [
+				"self",
+				"https://api.brightspace.com/rels/sequenced-activity"
+			],
+			"href": "https://c971c71f-d837-4775-a302-45fe983f3e2d.sequences.api.dev.brightspace.com/131726/activity/120828?filterOnDatesAndDepth=1"
+		},
+		{
+			"class": [
+				"sequenced-activity",
+				"available"
+			],
+			"rel": [
+				"self",
+				"https://api.brightspace.com/rels/sequenced-activity"
+			],
+			"href": "https://c971c71f-d837-4775-a302-45fe983f3e2d.sequences.api.dev.brightspace.com/131726/activity/120829?filterOnDatesAndDepth=1"
+		},
+		{
+			"class": [
+				"sequenced-activity",
+				"available"
+			],
+			"rel": [
+				"self",
+				"https://api.brightspace.com/rels/sequenced-activity"
+			],
+			"href": "https://c971c71f-d837-4775-a302-45fe983f3e2d.sequences.api.dev.brightspace.com/131726/activity/120830?filterOnDatesAndDepth=1"
+		},
+		{
+			"class": [
+				"sequenced-activity",
+				"available"
+			],
+			"rel": [
+				"self",
+				"https://api.brightspace.com/rels/sequenced-activity"
+			],
+			"href": "https://c971c71f-d837-4775-a302-45fe983f3e2d.sequences.api.dev.brightspace.com/131726/activity/120831?filterOnDatesAndDepth=1"
+		},
+		{
+			"class": [
+				"sequenced-activity",
+				"available"
+			],
+			"rel": [
+				"self",
+				"https://api.brightspace.com/rels/sequenced-activity"
+			],
+			"href": "https://c971c71f-d837-4775-a302-45fe983f3e2d.sequences.api.dev.brightspace.com/131726/activity/120832?filterOnDatesAndDepth=1"
+		}
+	]
+}

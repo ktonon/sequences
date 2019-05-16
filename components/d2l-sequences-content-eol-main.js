@@ -1,5 +1,6 @@
 import 'd2l-button/d2l-button.js';
 import 'd2l-link/d2l-link.js';
+import 'd2l-sequence-navigator/components/d2l-missed-activity.js';
 import './d2l-sequences-content-eol-missed.js';
 import '@polymer/polymer/polymer-legacy.js';
 import 'd2l-polymer-siren-behaviors/store/entity-behavior.js';
@@ -11,6 +12,7 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 /*
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 */
+
 export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.ReturnMixin([
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Sequences.LocalizeBehavior
@@ -32,6 +34,11 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 
 			.missed-count-text {
 				color: var(--d2l-color-celestine);
+			}
+			d2l-missed-activity{
+				text-align: left;
+				margin-left: 340px !important ;
+				width: 50%;
 			}
 		</style>
 		<div class="content-eol-main-container">
@@ -69,7 +76,9 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 					<d2l-sequences-content-eol-missed href="{{href}}" token="[[token]]">
 					</d2l-sequences-content-eol-missed>
 				</template>
-			</template>	
+
+				<d2l-missed-activity href="{{href}}" token="[[token]]" if="[[!hasMissed]]"> </d2l-missed-activity>
+			</template>
 		</div>
 `;
 	}
