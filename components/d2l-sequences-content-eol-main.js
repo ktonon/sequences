@@ -60,24 +60,28 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 					<h2>
 						[[localize('niceWork')]]
 					</h2>
-					<p>
-						<s-html on-click="_setShowMissed" html="[[localize('missedActivities','count',missedCount)]]"></s-html>
-						<br>
-						[[localize('noNeedToFinish', 'count', missedCount)]]
-					</p>
-					<d2l-button on-click="_setShowMissed">
-						[[localize('showMissed')]]
-					</d2l-button>
-					<d2l-button primary="" on-click="_onClickBack">
-						[[localize('imDone')]]
-					</d2l-button>
-				</template>
-				<template is="dom-if" if="[[showMissed]]">
-					<d2l-sequences-content-eol-missed href="{{href}}" token="[[token]]">
-					</d2l-sequences-content-eol-missed>
+					<template is="dom-if" if="[[!showEnhancedView]]">
+						<p>
+							<s-html on-click="_setShowMissed" html="[[localize('missedActivities','count',missedCount)]]"></s-html>
+							<br>
+							[[localize('noNeedToFinish', 'count', missedCount)]]
+						</p>
+						<d2l-button on-click="_setShowMissed">
+							[[localize('showMissed')]]
+						</d2l-button>
+						<d2l-button primary="" on-click="_onClickBack">
+							[[localize('imDone')]]
+						</d2l-button>
+					</template>
+					<template is="dom-if" if="[[showMissed]]">
+						<d2l-sequences-content-eol-missed href="{{href}}" token="[[token]]">
+						</d2l-sequences-content-eol-missed>
+					</template>
 				</template>
 
-				<d2l-missed-activity href="{{href}}" token="[[token]]" if="[[!hasMissed]]"> </d2l-missed-activity>
+				<template is="dom-if" if="[[showEnhancedView]]">
+					<d2l-missed-activity href="{{href}}" token="[[token]]"> </d2l-missed-activity>
+				</template>
 			</template>
 		</div>
 `;
@@ -108,6 +112,11 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 			showMissed: {
 				type: Boolean,
 				value: false
+			},
+			showEnhancedView:{
+				type: Boolean,
+				alue: false,
+				computed: '_isFlagOn(entity)'
 			}
 		};
 	}
@@ -138,6 +147,10 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 	}
 	_setShowMissed() {
 		this.showMissed = true;
+	}
+
+	_isFlagOn(entity) {
+		return entity && entity.class && entity.class.includes('enhanced-end-of-sequence');
 	}
 }
 customElements.define(D2LSequencesContentEoLMain.is, D2LSequencesContentEoLMain);
