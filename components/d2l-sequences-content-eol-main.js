@@ -73,6 +73,10 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 							[[localize('imDone')]]
 						</d2l-button>
 					</template>
+					<template is="dom-if" if="[[showMissed]]">
+						<d2l-sequences-content-eol-missed href="{{href}}" token="[[token]]">
+						</d2l-sequences-content-eol-missed>
+					</template>
 				</template>
 
 				<template is="dom-if" if="[[showEnhancedView]]">
