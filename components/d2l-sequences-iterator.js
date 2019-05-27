@@ -9,6 +9,7 @@ import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 	@extends D2L.PolymerBehaviors.Sequences.LocalizeBehavior
 	@demo demos/index.html
 */
+
 export class D2LSequencesIterator extends mixinBehaviors([
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Sequences.LocalizeBehavior
@@ -98,7 +99,7 @@ export class D2LSequencesIterator extends mixinBehaviors([
 	}
 
 	_setUpMultiPageTopic(e) {
-		const data = JSON.parse(e.data);
+		const data = typeof e.data === 'object' ? e.data : JSON.parse(e.data);
 
 		if (data && data.handler === 'd2l.nav.customize') {
 			this.isMultiPage = true;
