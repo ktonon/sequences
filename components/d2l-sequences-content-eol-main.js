@@ -81,6 +81,9 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 
 				<template is="dom-if" if="[[showEnhancedView]]">
 					<d2l-missed-activity href="{{href}}" token="[[token]]"> </d2l-missed-activity>
+					<d2l-button on-click="_onClickBack">
+						[[localize('backToContents')]]
+					</d2l-button>
 				</template>
 			</template>
 		</div>
