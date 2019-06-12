@@ -145,7 +145,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 			},
 			_modulesBySequence: {
 				type: Array,
-				value: function() { return {}; }
+				value: function() { return []; }
 			},
 			_modules: {
 				type: Array,
