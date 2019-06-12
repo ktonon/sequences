@@ -1,12 +1,13 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import { EntityMixin } from 'siren-sdk/src/mixin/entity-mixin.js';
+import { SequenceEntity } from 'siren-sdk/src/sequences/SequenceEntity.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import 'd2l-link/d2l-link.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-colors/d2l-colors.js';
 import 'd2l-icons/tier1-icons.js';
 import 'd2l-typography/d2l-typography-shared-styles.js';
-import 'd2l-polymer-siren-behaviors/store/entity-behavior.js';
 import './d2l-sequences-module-name.js';
 import '../localize-behavior.js';
 
@@ -19,7 +20,7 @@ const behaviors = [
  * @customElement
  * @polymer
  */
-class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
+class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(PolymerElement)) {
 	static get template() {
 		return html`
 			<style include="d2l-typography-shared-styles">
@@ -47,7 +48,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 				.d2l-sequences-module-list-list li:first-child {
 					margin: -1px 0 -1px 0;
 				}
-				.d2l-sequences-module-list-list li d2l-link d2l-sequences-module-name {
+				.d2l-sequences-module-list-list li d2l-link div {
 					@apply --d2l-body-compact-text;
 					color: var(--d2l-color-ferrite);
 					display: block;
@@ -59,13 +60,13 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 					--d2l-link-hover_-_color: var(--d2l-color-ferrite);
 					display: block;
 				}
-				.d2l-sequences-module-list-list li d2l-link:hover d2l-sequences-module-name {
+				.d2l-sequences-module-list-list li d2l-link:hover div {
 					background-color: var(--d2l-color-regolith);
 					border-bottom: 1px solid var(--d2l-color-mica);
 					border-top: 1px solid var(--d2l-color-mica);
 					padding: 12px 20px;
 				}
-				.d2l-sequences-module-list-list li d2l-sequences-module-name::before {
+				.d2l-sequences-module-list-list li div::before {
 					content: attr(module) " " counter(d2l-sequence-module-list-counter) ": ";
 				}
 				.d2l-sequences-module-list-vertical-flip {
@@ -112,7 +113,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
 								<d2l-link href="#" on-focus="_onFocus" on-blur="_onBlur">
-									<d2l-sequences-module-name module$="[[localize('module')]]" href="[[item]]" token="[[token]]"></d2l-sequences-module-name>
+									<div module$="[[localize('module')]]">[[item.title]]</div>
 								</d2l-link>
 							</li>
 						</template>
@@ -143,16 +144,24 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 				type: String,
 				value: 'd2l-tier1:arrow-collapse'
 			},
+			_modulesBySequence: {
+				type: Object,
+				value: function() { return {}; }
+			},
 			_modules: {
 				type: Array,
-				value: () => []
+				value: function() { return []; }
 			}
 		};
 	}
 	static get observers() {
 		return [
-			'_handleModuleData(entity)'
+			'_onSequenceRootChange(_entity)'
 		];
+	}
+	constructor() {
+		super();
+		this._setEntityType(SequenceEntity);
 	}
 	open() {
 		if (this.disabled) {
@@ -182,10 +191,13 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, PolymerElement) {
 		return cond ? t : f;
 	}
 
-	_handleModuleData(modules) {
-		this._modules = modules && modules.getSubEntities
-			? modules.getSubEntities('https://api.brightspace.com/rels/sequenced-activity').map(e => e.href)
-			: [];
+	_onSequenceRootChange(sequenceRoot) {
+		sequenceRoot.onSubSequencesChange((subSequence) => {
+			this._modulesBySequence[subSequence.index()] = {
+				title: subSequence.title()
+			};
+			this._modules = Object.keys(this._modulesBySequence).sort((a, b) => a < b).map(index => this._modulesBySequence[index]);
+		});
 	}
 
 	_collapseTitle(modules, opened) {
