@@ -8,7 +8,6 @@ import 'd2l-icons/d2l-icon.js';
 import 'd2l-colors/d2l-colors.js';
 import 'd2l-icons/tier1-icons.js';
 import 'd2l-typography/d2l-typography-shared-styles.js';
-import './d2l-sequences-module-name.js';
 import '../localize-behavior.js';
 
 const behaviors = [
