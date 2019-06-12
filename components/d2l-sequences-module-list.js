@@ -111,7 +111,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 					<ol class="d2l-sequences-module-list-list">
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
-								<d2l-link href="#" on-focus="_onFocus" on-blur="_onBlur">
+								<d2l-link href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur">
 									<div module$="[[localize('module')]]">[[item.title]]</div>
 								</d2l-link>
 							</li>
@@ -190,8 +190,10 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 		const modulesBySequence = [];
 		sequenceRoot.onSubSequencesChange((subSequence) => {
 			modulesBySequence[subSequence.index()] = {
-				title: subSequence.title()
+				title: subSequence.title(),
+				href: subSequence.sequenceViewerApplicationHref()
 			};
+
 			this._modules = modulesBySequence.filter(element => typeof(element) !== 'undefined');
 		});
 	}

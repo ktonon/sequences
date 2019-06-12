@@ -74,7 +74,13 @@
 	"links": [{
 		"rel": ["self", "describes"],
 		"href": "data/l2-m1-activity1.json"
-	},{
+	}, {
+		"rel": [
+			"https://sequences.api.brightspace.com/rels/sequence-viewer-application"
+		],
+		"type": "text/html",
+		"href": "#activity1"
+	}, {
 		"rel": ["next"],
 		"href": "data/l2-m1-activity2.json"
 		},{
