@@ -41,7 +41,6 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 				}
 				.d2l-sequences-module-list-list li {
 					box-sizing: content-box;
-					counter-increment: d2l-sequence-module-list-counter;
 					margin: 0 0 -1px 0;
 					width: 100%;
 				}
@@ -51,13 +50,11 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 				.d2l-sequences-module-list-list li d2l-link div {
 					@apply --d2l-body-compact-text;
 					color: var(--d2l-color-ferrite);
-					display: block;
+					display: flex;
+					justify-content: space-between;
 					letter-spacing: 0.4px;
 					line-height: 1.19;
 					padding: 13px 20px;
-				}
-				.d2l-sequences-module-list-list li d2l-link d2l-icon {
-					float: right;
 				}
 				.d2l-sequences-module-list-list li d2l-link {
 					--d2l-link-hover_-_color: var(--d2l-color-ferrite);
@@ -68,9 +65,6 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 					border-bottom: 1px solid var(--d2l-color-mica);
 					border-top: 1px solid var(--d2l-color-mica);
 					padding: 12px 20px;
-				}
-				.d2l-sequences-module-list-list li div::before {
-					content: attr(module) " " counter(d2l-sequence-module-list-counter) ": ";
 				}
 				.d2l-sequences-module-list-vertical-flip {
 					-moz-transform: scale(1, -1);
@@ -116,7 +110,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
 								<d2l-link href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur">
-									<div module$="[[localize('module')]]">
+									<div>
 										<span>[[item.title]]</span>
 										<d2l-icon hidden$="[[!item.completed]]" aria-label$="[[localize('completed')]]" icon="d2l-tier1:check"></d2l-icon>
 									</div>
