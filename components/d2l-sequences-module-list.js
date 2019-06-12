@@ -143,6 +143,10 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 				type: String,
 				value: 'd2l-tier1:arrow-collapse'
 			},
+			_modulesBySequence: {
+				type: Array,
+				value: function() { return {}; }
+			},
 			_modules: {
 				type: Array,
 				value: function() { return []; }
@@ -188,11 +192,10 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 
 	_onSequenceRootChange(sequenceRoot) {
 		sequenceRoot.onSubSequencesChange((subSequence) => {
-			const modules = this._modules;
-			modules[subSequence.index()] = {
+			this._modulesBySequence[subSequence.index()] = {
 				title: subSequence.title()
 			};
-			this._modules = modules.filter(element => typeof(element) !== 'undefined');
+			this._modules = this._modulesBySequence.filter(element => typeof(element) !== 'undefined');
 		});
 	}
 
