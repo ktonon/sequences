@@ -60,6 +60,15 @@
 					"rel": ["item"]
 				}],
 				"class": ["completion", "completed"]
+			}, {
+				"class": ["completion", "incomplete"],
+					"properties": {
+						"completed": 0,
+						"optionalTotal": 5,
+						"optionalViewed": 0,
+						"total": 1
+					},
+				"rel": ["item", "https://api.brightspace.com/rels/completion"]
 			}],
 			"actions": [{
 				"name": "view-activity",

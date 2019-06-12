@@ -70,6 +70,15 @@
 				"method": "PUT",
 				"href": "123187/activity/104507/view"
 			}]
+		}, {
+			"class": ["completion", "incomplete"],
+				"properties": {
+					"completed": 0,
+					"optionalTotal": 5,
+					"optionalViewed": 0,
+					"total": 1
+				},
+			"rel": ["item", "https://api.brightspace.com/rels/completion"]
 		}],
 	"links": [{
 		"rel": ["self", "describes"],

@@ -2,6 +2,7 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { EntityMixin } from 'siren-sdk/src/mixin/entity-mixin.js';
 import { SequenceEntity } from 'siren-sdk/src/sequences/SequenceEntity.js';
+import 'd2l-sequence-navigator/components/d2l-completion-status.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import 'd2l-link/d2l-link.js';
 import 'd2l-icons/d2l-icon.js';
@@ -54,6 +55,9 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 					letter-spacing: 0.4px;
 					line-height: 1.19;
 					padding: 13px 20px;
+				}
+				.d2l-sequences-module-list-list li d2l-link d2l-icon {
+					float: right;
 				}
 				.d2l-sequences-module-list-list li d2l-link {
 					--d2l-link-hover_-_color: var(--d2l-color-ferrite);
@@ -112,7 +116,10 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
 								<d2l-link href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur">
-									<div module$="[[localize('module')]]">[[item.title]]</div>
+									<div module$="[[localize('module')]]">
+										<span>[[item.title]]</span>
+										<d2l-icon hidden$="[[!item.completed]]" aria-label$="[[localize('completed')]]" icon="d2l-tier1:check"></d2l-icon>
+									</div>
 								</d2l-link>
 							</li>
 						</template>
@@ -191,7 +198,8 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 		sequenceRoot.onSubSequencesChange((subSequence) => {
 			modulesBySequence[subSequence.index()] = {
 				title: subSequence.title(),
-				href: subSequence.sequenceViewerApplicationHref()
+				href: subSequence.sequenceViewerApplicationHref(),
+				entityHref: subSequence.self()
 			};
 
 			this._modules = modulesBySequence.filter(element => typeof(element) !== 'undefined');
