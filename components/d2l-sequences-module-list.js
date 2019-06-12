@@ -2,6 +2,7 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { EntityMixin } from 'siren-sdk/src/mixin/entity-mixin.js';
 import { SequenceEntity } from 'siren-sdk/src/sequences/SequenceEntity.js';
+import 'd2l-sequence-navigator/components/d2l-completion-status.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import 'd2l-link/d2l-link.js';
 import 'd2l-icons/d2l-icon.js';
@@ -40,7 +41,6 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 				}
 				.d2l-sequences-module-list-list li {
 					box-sizing: content-box;
-					counter-increment: d2l-sequence-module-list-counter;
 					margin: 0 0 -1px 0;
 					width: 100%;
 				}
@@ -50,7 +50,8 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 				.d2l-sequences-module-list-list li d2l-link div {
 					@apply --d2l-body-compact-text;
 					color: var(--d2l-color-ferrite);
-					display: block;
+					display: flex;
+					justify-content: space-between;
 					letter-spacing: 0.4px;
 					line-height: 1.19;
 					padding: 13px 20px;
@@ -59,14 +60,16 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 					--d2l-link-hover_-_color: var(--d2l-color-ferrite);
 					display: block;
 				}
+				.d2l-sequences-module-list-list li d2l-link[continue],
+				.d2l-sequences-module-list-list li d2l-link[continue] div {
+					--d2l-link-hover_-_color: var(--d2l-color-celestine);
+					color: var(--d2l-color-celestine);
+				}
 				.d2l-sequences-module-list-list li d2l-link:hover div {
 					background-color: var(--d2l-color-regolith);
 					border-bottom: 1px solid var(--d2l-color-mica);
 					border-top: 1px solid var(--d2l-color-mica);
 					padding: 12px 20px;
-				}
-				.d2l-sequences-module-list-list li div::before {
-					content: attr(module) " " counter(d2l-sequence-module-list-counter) ": ";
 				}
 				.d2l-sequences-module-list-vertical-flip {
 					-moz-transform: scale(1, -1);
@@ -111,8 +114,12 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 					<ol class="d2l-sequences-module-list-list">
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
-								<d2l-link href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur">
-									<div module$="[[localize('module')]]">[[item.title]]</div>
+								<d2l-link href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur" continue$="[[item.continue]]">
+									<div>
+										<span>[[item.title]]</span>
+										<span hidden$="[[!item.continue]]">[[localize('continue')]]</span>
+										<d2l-icon hidden$="[[!item.isCompleted]]" aria-label$="[[localize('completed')]]" icon="d2l-tier1:check"></d2l-icon>
+									</div>
 								</d2l-link>
 							</li>
 						</template>
@@ -189,12 +196,25 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 	_onSequenceRootChange(sequenceRoot) {
 		const modulesBySequence = [];
 		sequenceRoot.onSubSequencesChange((subSequence) => {
+			const completion = subSequence.completion();
+			const isCompleted = completion && completion.isCompleted;
+
 			modulesBySequence[subSequence.index()] = {
 				title: subSequence.title(),
-				href: subSequence.sequenceViewerApplicationHref()
+				href: subSequence.sequenceViewerApplicationHref(),
+				isCompleted
 			};
 
-			this._modules = modulesBySequence.filter(element => typeof(element) !== 'undefined');
+			let foundCountinue = false;
+			this._modules = modulesBySequence.filter(element => typeof(element) !== 'undefined')
+				.map((subSequence) => {
+					subSequence.continue = false;
+					if (!foundCountinue && !subSequence.isCompleted) {
+						subSequence.continue = true;
+						foundCountinue = true;
+					}
+					return subSequence;
+				});
 		});
 	}
 
