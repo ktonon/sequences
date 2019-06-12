@@ -202,7 +202,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 			modulesBySequence[subSequence.index()] = {
 				title: subSequence.title(),
 				href: subSequence.sequenceViewerApplicationHref(),
-				isCompleted: isCompleted,
+				isCompleted,
 				continue: false
 			};
 
