@@ -60,6 +60,11 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 					--d2l-link-hover_-_color: var(--d2l-color-ferrite);
 					display: block;
 				}
+				.d2l-sequences-module-list-list li d2l-link[continue],
+				.d2l-sequences-module-list-list li d2l-link[continue] div {
+					--d2l-link-hover_-_color: var(--d2l-color-celestine);
+					color: var(--d2l-color-celestine);
+				}
 				.d2l-sequences-module-list-list li d2l-link:hover div {
 					background-color: var(--d2l-color-regolith);
 					border-bottom: 1px solid var(--d2l-color-mica);
@@ -109,9 +114,10 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 					<ol class="d2l-sequences-module-list-list">
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
-								<d2l-link href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur">
+								<d2l-link href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur" continue$="[[item.continue]]">
 									<div>
 										<span>[[item.title]]</span>
+										<span hidden$="[[!item.continue]]">[[localize('continue')]]</span>
 										<d2l-icon hidden$="[[!item.isCompleted]]" aria-label$="[[localize('completed')]]" icon="d2l-tier1:check"></d2l-icon>
 									</div>
 								</d2l-link>
@@ -196,10 +202,20 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 			modulesBySequence[subSequence.index()] = {
 				title: subSequence.title(),
 				href: subSequence.sequenceViewerApplicationHref(),
-				isCompleted: isCompleted
+				isCompleted: isCompleted,
+				continue: false
 			};
 
-			this._modules = modulesBySequence.filter(element => typeof(element) !== 'undefined');
+			let lastOneWasCompleted = true;
+			this._modules = modulesBySequence.filter(element => typeof(element) !== 'undefined')
+				.map((subSequence) => {
+					if (lastOneWasCompleted && !subSequence.isCompleted) {
+						subSequence.continue = true;
+						lastOneWasCompleted = false;
+					}
+					lastOneWasCompleted = lastOneWasCompleted && subSequence.isCompleted;
+					return subSequence;
+				});
 		});
 	}
 
