@@ -209,6 +209,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 			let lastOneWasCompleted = true;
 			this._modules = modulesBySequence.filter(element => typeof(element) !== 'undefined')
 				.map((subSequence) => {
+					subSequence.continue = false;
 					if (lastOneWasCompleted && !subSequence.isCompleted) {
 						subSequence.continue = true;
 						lastOneWasCompleted = false;
