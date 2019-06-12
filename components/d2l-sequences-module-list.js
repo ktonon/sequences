@@ -202,19 +202,17 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 			modulesBySequence[subSequence.index()] = {
 				title: subSequence.title(),
 				href: subSequence.sequenceViewerApplicationHref(),
-				isCompleted,
-				continue: false
+				isCompleted
 			};
 
-			let lastOneWasCompleted = true;
+			let foundCountinue = false;
 			this._modules = modulesBySequence.filter(element => typeof(element) !== 'undefined')
 				.map((subSequence) => {
 					subSequence.continue = false;
-					if (lastOneWasCompleted && !subSequence.isCompleted) {
+					if (!foundCountinue && !subSequence.isCompleted) {
 						subSequence.continue = true;
-						lastOneWasCompleted = false;
+						foundCountinue = true;
 					}
-					lastOneWasCompleted = lastOneWasCompleted && subSequence.isCompleted;
 					return subSequence;
 				});
 		});
