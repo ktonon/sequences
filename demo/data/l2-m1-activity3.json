@@ -60,15 +60,6 @@
 					"rel": ["item"]
 				}],
 				"class": ["completion", "completed"]
-			}, {
-				"class": ["completion", "incomplete"],
-					"properties": {
-						"completed": 0,
-						"optionalTotal": 5,
-						"optionalViewed": 0,
-						"total": 1
-					},
-				"rel": ["item", "https://api.brightspace.com/rels/completion"]
 			}],
 			"actions": [{
 				"name": "view-activity",
@@ -79,6 +70,15 @@
 				"method": "PUT",
 				"href": "123187/activity/113355/view"
 			}]
+		}, {
+			"class": ["completion", "incomplete"],
+				"properties": {
+					"completed": 0,
+					"optionalTotal": 5,
+					"optionalViewed": 0,
+					"total": 1
+				},
+			"rel": ["item", "https://api.brightspace.com/rels/completion"]
 		}],
 	"links": [{
 		"rel": ["self", "describes"],

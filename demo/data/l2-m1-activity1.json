@@ -71,9 +71,9 @@
 				"href": "123187/activity/104507/view"
 			}]
 		}, {
-			"class": ["completion", "incomplete"],
+			"class": ["completion", "complete"],
 				"properties": {
-					"completed": 0,
+					"completed": 1,
 					"optionalTotal": 5,
 					"optionalViewed": 0,
 					"total": 1

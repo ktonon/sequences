@@ -112,7 +112,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 								<d2l-link href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur">
 									<div>
 										<span>[[item.title]]</span>
-										<d2l-icon hidden$="[[!item.completed]]" aria-label$="[[localize('completed')]]" icon="d2l-tier1:check"></d2l-icon>
+										<d2l-icon hidden$="[[!item.isCompleted]]" aria-label$="[[localize('completed')]]" icon="d2l-tier1:check"></d2l-icon>
 									</div>
 								</d2l-link>
 							</li>
@@ -190,10 +190,13 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 	_onSequenceRootChange(sequenceRoot) {
 		const modulesBySequence = [];
 		sequenceRoot.onSubSequencesChange((subSequence) => {
+			const completion = subSequence.completion();
+			const isCompleted = completion && completion.isCompleted;
+
 			modulesBySequence[subSequence.index()] = {
 				title: subSequence.title(),
 				href: subSequence.sequenceViewerApplicationHref(),
-				entityHref: subSequence.self()
+				isCompleted: isCompleted
 			};
 
 			this._modules = modulesBySequence.filter(element => typeof(element) !== 'undefined');
