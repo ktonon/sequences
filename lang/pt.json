@@ -1,7 +1,10 @@
 {
    "activitiesFinishedGreatJob" : "Você concluiu todas as atividades nesta unidade. Bom trabalho!",
+   "backToContents" : "Voltar para Sumário",
    "cannotBeRendered" : "Este item de conteúdo não pode ser processado.",
+   "completed" : "Concluído",
    "congratulations" : "Parabéns!",
+   "continue" : "Continuar",
    "download" : "Download",
    "downloadInvalidFile" : "Fazer download do arquivo e exibi-lo em outro aplicativo.",
    "fileSize" : "Tamanho do arquivo: {size}",

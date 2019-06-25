@@ -1,7 +1,10 @@
 {
    "activitiesFinishedGreatJob" : "이 단원의 모든 활동을 완료했습니다. 잘 하셨습니다!",
+   "backToContents" : "목차로 돌아가기",
    "cannotBeRendered" : "이 콘텐츠 항목을 렌더링할 수 없습니다.",
+   "completed" : "완료됨",
    "congratulations" : "축하합니다!",
+   "continue" : "계속",
    "download" : "다운로드",
    "downloadInvalidFile" : "다른 애플리케이션에서 파일을 다운로드하고 확인하십시오.",
    "fileSize" : "파일 크기: {size}",

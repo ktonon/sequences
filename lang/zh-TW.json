@@ -1,7 +1,10 @@
 {
    "activitiesFinishedGreatJob" : "您已完成此單元的所有活動。做得好！",
+   "backToContents" : "返回「目錄」",
    "cannotBeRendered" : "無法轉譯此內容項目。",
+   "completed" : "已完成",
    "congratulations" : "恭喜！",
+   "continue" : "繼續",
    "download" : "下載",
    "downloadInvalidFile" : "請改用其他應用程式下載及檢視檔案。",
    "fileSize" : "檔案大小：{size}",

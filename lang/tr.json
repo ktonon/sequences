@@ -1,7 +1,10 @@
 {
    "activitiesFinishedGreatJob" : "Bu ünitedeki tüm etkinlikleri tamamladınız. Harika gidiyorsunuz!",
+   "backToContents" : "İçindekilere Geri Dön",
    "cannotBeRendered" : "Bu içerik öğesi işlenemiyor.",
+   "completed" : "Tamamlandı",
    "congratulations" : "Tebrikler!",
+   "continue" : "Devam",
    "download" : "İndir",
    "downloadInvalidFile" : "Bunun yerine dosyayı başka bir uygulamada indirip görüntüleyin.",
    "fileSize" : "Dosya boyutu: {size}",

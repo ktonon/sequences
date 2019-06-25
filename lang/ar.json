@@ -1,7 +1,10 @@
 {
    "activitiesFinishedGreatJob" : "لقد أكملت كل النشاطات في هذه الوحدة. أحسنت!",
+   "backToContents" : "العودة إلى جدول المحتويات",
    "cannotBeRendered" : "لا يمكن عرض مادة المحتوى هذه.",
+   "completed" : "تم الإكمال",
    "congratulations" : "تهانينا!",
+   "continue" : "متابعة",
    "download" : "تنزيل",
    "downloadInvalidFile" : "عوضًا عن ذلك، قم بتنزيل الملف وعرضه في تطبيق آخر.",
    "fileSize" : "حجم الملف: {size}",
