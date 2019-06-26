@@ -1,7 +1,10 @@
 {
    "activitiesFinishedGreatJob" : "You have completed all of the activities in this unit.Great job!",
+   "backToContents" : "返回目录",
    "cannotBeRendered" : "This content item cannot be rendered.",
+   "completed" : "已完成",
    "congratulations" : "恭喜！",
+   "continue" : "继续",
    "download" : "下载",
    "downloadInvalidFile" : "请下载另一应用程序以查看文件。",
    "fileSize" : "File size: {size}",
