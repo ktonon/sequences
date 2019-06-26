@@ -1,7 +1,10 @@
 {
    "activitiesFinishedGreatJob" : "Je hebt alle activiteiten in deze eenheid voltooid. Goed gedaan!",
+   "backToContents" : "Terug naar Inhoudsopgave",
    "cannotBeRendered" : "Dit inhoudsitem kan niet worden weergegeven.",
+   "completed" : "Voltooid",
    "congratulations" : "Gefeliciteerd!",
+   "continue" : "Doorgaan",
    "download" : "Downloaden",
    "downloadInvalidFile" : "Download het bestand en bekijk het in een andere applicatie.",
    "fileSize" : "Bestandsgrootte: {size}",

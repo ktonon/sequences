@@ -1,7 +1,10 @@
 {
    "activitiesFinishedGreatJob" : "Vous avez terminé toutes les activités de cette unité. Bon travail !",
+   "backToContents": "Back to Table of Contents",
    "cannotBeRendered" : "Cet élément de contenu ne peut pas être rendu.",
+   "completed": "Completed",
    "congratulations" : "Félicitations !",
+   "continue": "Continue",
    "download" : "Télécharger",
    "downloadInvalidFile" : "Télécharger et afficher le fichier dans une autre application.",
    "fileSize" : "Taille du fichier : {size}",

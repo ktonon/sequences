@@ -1,7 +1,10 @@
 {
    "activitiesFinishedGreatJob" : "Du har fuldført alle aktiviteterne i denne enhed. Godt klaret!",
+   "backToContents": "Back to Table of Contents",
    "cannotBeRendered" : "Dette indholdselement kan ikke gengives.",
+   "completed": "Completed",
    "congratulations" : "Tillykke!",
+   "continue": "Continue",
    "download" : "Download",
    "downloadInvalidFile" : "Download og se filen i et andet program i stedet.",
    "fileSize" : "Filstørrelse: {size}",
