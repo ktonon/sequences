@@ -32,18 +32,23 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 			title: {
 				type: String,
 				computed: '_getTitle(entity)'
-			}
+			},
+			_navigateMultiPageFileListener: Function
 		};
+	}
+	ready() {
+		super.ready();
+		this._navigateMultiPageFileListener = this._navigateMultiPageFile.bind(this);
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.multiPageNavListener = window.addEventListener('d2l-sequence-viewer-multipage-navigation', this._navigateMultiPageFile.bind(this));
+		window.addEventListener('d2l-sequence-viewer-multipage-navigation', this._navigateMultiPageFileListener);
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		window.removeEventListener('d2l-sequence-viewer-multipage-navigation', this.multiPageNavListener);
+		window.removeEventListener('d2l-sequence-viewer-multipage-navigation', this._navigateMultiPageFileListener);
 		window.postMessage(JSON.stringify({ handler: 'd2l.nav.reset' }), '*');
 	}
 

@@ -78,7 +78,8 @@ export class D2LSequencesIterator extends mixinBehaviors([
 			},
 			multiPageHasPrev: {
 				type: Boolean
-			}
+			},
+			_setUpMultiPageTopicListener: Function
 		};
 	}
 	static get observers() {
@@ -88,14 +89,19 @@ export class D2LSequencesIterator extends mixinBehaviors([
 		];
 	}
 
+	ready() {
+		super.ready();
+		this._setUpMultiPageTopicListener = this._setUpMultiPageTopic.bind(this);
+	}
+
 	connectedCallback() {
 		super.connectedCallback();
-		window.addEventListener('message', this._setUpMultiPageTopic.bind(this));
+		window.addEventListener('message', this._setUpMultiPageTopicListener);
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		window.removeEventListener('message', this._setUpMultiPageTopic.bind(this));
+		window.removeEventListener('message', this._setUpMultiPageTopicListener);
 	}
 
 	_setUpMultiPageTopic(e) {
