@@ -50,7 +50,7 @@ function RouterMixin(getEntityType) {
 		disconnectedCallback() {
 			super.disconnectedCallback();
 			this.removeEventListener('hrefUpdated', this._hrefUpdated);
-			this.removeEventListener('message', this._D2LErrorListener);
+			window.removeEventListener('message', this._D2LErrorListener);
 		}
 
 		_render(entity, error) {

@@ -37,8 +37,8 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 			}
 			d2l-missed-activity{
 				text-align: left;
-				margin-left: 340px !important ;
 				width: 50%;
+				margin: auto!important;
 			}
 		</style>
 		<div class="content-eol-main-container">
