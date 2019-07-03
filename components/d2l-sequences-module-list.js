@@ -4,7 +4,7 @@ import { EntityMixin } from 'siren-sdk/src/mixin/entity-mixin.js';
 import { SequenceEntity } from 'siren-sdk/src/sequences/SequenceEntity.js';
 import 'd2l-sequence-navigator/components/d2l-completion-status.js';
 import '@polymer/iron-collapse/iron-collapse.js';
-import 'd2l-link/d2l-link.js';
+import 'd2l-link/d2l-link-shared-styles.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-colors/d2l-colors.js';
 import 'd2l-icons/tier1-icons.js';
@@ -23,6 +23,7 @@ const behaviors = [
 class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(PolymerElement)) {
 	static get template() {
 		return html`
+			<style include="d2l-link-shared-styles"></style>
 			<style include="d2l-typography-shared-styles">
 				.d2l-sequences-module-list-container {
 					background-color: #ffffff;
@@ -47,7 +48,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 				.d2l-sequences-module-list-list li:first-child {
 					margin: -1px 0 -1px 0;
 				}
-				.d2l-sequences-module-list-list li d2l-link div {
+				.d2l-sequences-module-list-list li a div {
 					@apply --d2l-body-compact-text;
 					color: var(--d2l-color-ferrite);
 					display: flex;
@@ -56,16 +57,19 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 					line-height: 1.19;
 					padding: 13px 20px;
 				}
-				.d2l-sequences-module-list-list li d2l-link {
+				.d2l-sequences-module-list-list li a {
 					--d2l-link-hover_-_color: var(--d2l-color-ferrite);
+					@apply --d2l-link;
 					display: block;
 				}
-				.d2l-sequences-module-list-list li d2l-link[continue],
-				.d2l-sequences-module-list-list li d2l-link[continue] div {
-					--d2l-link-hover_-_color: var(--d2l-color-celestine);
+				.d2l-sequences-module-list-list li a:hover {
+					@apply --d2l-link-hover;
+				}
+				.d2l-sequences-module-list-list li a[continue],
+				.d2l-sequences-module-list-list li a[continue] div {
 					color: var(--d2l-color-celestine);
 				}
-				.d2l-sequences-module-list-list li d2l-link:hover div {
+				.d2l-sequences-module-list-list li a:hover div {
 					background-color: var(--d2l-color-regolith);
 					border-bottom: 1px solid var(--d2l-color-mica);
 					border-top: 1px solid var(--d2l-color-mica);
@@ -98,7 +102,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 				.d2l-sequences-module-list-collapse-title:hover {
 					background-color: var(--d2l-color-regolith);
 				}
-				.d2l-sequences-module-list-list d2l-link[focus=focus],
+				.d2l-sequences-module-list-list a[focus=focus],
 				.d2l-sequences-module-list-collapse-title[focus=focus] {
 					border-color: rgba(0, 111, 191, 0.4);
 					border-radius: 6px;
@@ -114,13 +118,13 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 					<ol class="d2l-sequences-module-list-list">
 						<template is="dom-repeat" items="[[_modules]]">
 							<li>
-								<d2l-link href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur" continue$="[[item.continue]]">
+								<a href$="[[item.href]]" on-focus="_onFocus" on-blur="_onBlur" continue$="[[item.continue]]">
 									<div>
 										<span>[[item.title]]</span>
 										<span hidden$="[[!item.continue]]">[[localize('continue')]]</span>
 										<d2l-icon hidden$="[[!item.isCompleted]]" aria-label$="[[localize('completed')]]" icon="d2l-tier1:check"></d2l-icon>
 									</div>
-								</d2l-link>
+								</a>
 							</li>
 						</template>
 					</ol>
