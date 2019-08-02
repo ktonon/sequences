@@ -86,6 +86,10 @@ describe('d2l-sequences-content-router', () => {
 			const element = await loadFileWithDelay('data/activity-link-scorm.json');
 			expect(element.shadowRoot.querySelector(D2LSequencesContentLinkScorm.is)).to.exist;
 		});
+		it('should handle scorm links that are embedded', async() => {
+			const element = await loadFileWithDelay('data/activity-link-scorm-embed.json');
+			expect(element.shadowRoot.querySelector(D2LSequencesContentLink.is)).to.exist;
+		});
 		it('should handle scorm 2004 links', async() => {
 			const element = await loadFileWithDelay('data/activity-link-scorm-2004.json');
 			expect(element.shadowRoot.querySelector(D2LSequencesContentLinkScorm.is)).to.exist;
