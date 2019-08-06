@@ -84,7 +84,7 @@ function getEntityType(entity) {
 				case D2LSequencesContentRouter.linkActivity:
 					return getLinkEntityType(subEntity);
 				case D2LSequencesContentLinkScorm.contentClass:
-					return D2LSequencesContentLinkScorm.is;
+					return subEntity.hasClass('open-in-new-tab') ? D2LSequencesContentLinkScorm.is : D2LSequencesContentLink.is;
 				case 'link-scorm-2004':
 					return D2LSequencesContentLinkScorm.is;
 				case 'link-scorm-1-2':
