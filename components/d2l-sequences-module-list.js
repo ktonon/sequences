@@ -175,6 +175,16 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 		}
 		this.opened = true;
 	}
+	_focusFirst() {
+		var item = this._tryGetFirstFocusable();
+		if (item) {
+			item.focus();
+		}
+	}
+	_tryGetFirstFocusable() {
+		return this.shadowRoot.querySelector('ol > li > a');
+	}
+
 	close() {
 		if (this.disabled) {
 			return;
@@ -182,7 +192,7 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 		this.opened = false;
 	}
 
-	toggle() {
+	toggle(e) {
 		if (this.disabled) {
 			return;
 		}
@@ -190,6 +200,9 @@ class D2lSequenceModuleList extends mixinBehaviors(behaviors, EntityMixin(Polyme
 			this.close();
 		} else {
 			this.open();
+			if (e.screenX === 0 && e.screenY === 0) {
+				this._focusFirst();
+			}
 		}
 	}
 
