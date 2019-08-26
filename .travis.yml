@@ -6,3 +6,17 @@ addons:
 script:
 - npm run lint
 - npm run test
+after_success:
+- frauci-update-version && export TRAVIS_TAG=$(frauci-get-version)
+deploy:
+  provider: releases
+  api_key: "$GITHUB_RELEASE_TOKEN"
+  on:
+    tags: true
+env:
+  global:
+  - OWNER_NAME: Brightspacehypermediacomponents
+  - REPO_NAME: sequences
+  - DEFAULT_INCREMENT: patch
+  # GITHUB_RELEASE_TOKEN (9737......e79d)
+  - secure: X3aD9X/kD366xLqBhHrO4VVQIWfGg+xJ9XoUt092cS4X14BBkMs1pwb7vd6/5Fq/69OawayqTkUcvuV6KTFfrq+lAY004hCqR2SyspilgyG05p2KO4X0pGMC2lx3bBqIu3AwFf3zWe0/KFQHlH7DT9y4pYvXyDMvC+492+45Sm6zDeEXHzg7d9Hyi0d4O1ypg7rLY5SKoEIgb/8ZRjR8uwUfmW+6qtMsdTyh2xo5zH8thqevcCG5t+DQQv3/y6KR/tCm6xCsEHOFUud0naDH+PAAKLe8q9Abo2pQZA5mp5UbQDVk2N63pJo+HKenOwVX3L91t9dsIZNO/nhsSKFv3k80dKCllpr+J4vtpKjSdh1x+yaS1L7EGRYmGcP8bx4UMJYS6ry1czmP03epFeMH0jBsnbhtB87gULDhe+FVnwWKPZ5dZr23fZP3zqgaWEG3VShywmBH2p7o+FhmQCijBr/qQEsPRfJHMhr5H5KBvDJEBT/gqzx3V4ln/YEpv1Nf1w5FWNbBJmcuxO7SDrDEP4DtF5QwnjwpFiEl+WxQNMTk7sjdl9YD3XEb8//DJyks0riFNoLOX6I/XFrsHXoMJoZXkUPO7P2zL7pDSpi54aOO54cgV6gztbRoHGCW0bZr2VYER98c0eh8d+qA34vzMMHsbMEVfyRxxRQ3UuDUgQY=
