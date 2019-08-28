@@ -22,15 +22,12 @@ function AutomaticCompletionTrackingMixin() {
 
 		connectedCallback() {
 			super.connectedCallback();
-			var completionFunction = function() {
-				this.finishCompletion();
-			}.bind( this );
-			window.addEventListener('beforeunload', completionFunction);
+			window.addEventListener('beforeunload', this.finishCompletion.bind(this));
 		}
 
 		disconnectedCallback() {
 			super.disconnectedCallback();
-			window.removeEventListener('beforeunload', completionFunction);
+			window.removeEventListener('beforeunload', this.finishCompletion);
 			this.finishCompletion();
 		}
 
