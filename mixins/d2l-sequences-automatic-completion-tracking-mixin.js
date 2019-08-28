@@ -24,6 +24,7 @@ function AutomaticCompletionTrackingMixin() {
 		}
 
 		ready() {
+			super.ready();
 			this._finishCompletionCallback = this.finishCompletion.bind(this);
 		}
 
