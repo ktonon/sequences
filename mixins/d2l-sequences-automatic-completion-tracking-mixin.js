@@ -12,6 +12,9 @@ function AutomaticCompletionTrackingMixin() {
 				},
 				_previousHref: {
 					type: String
+				},
+				_finishCompletionCallback: {
+					type: Function
 				}
 			};
 		}
@@ -20,14 +23,19 @@ function AutomaticCompletionTrackingMixin() {
 			return ['_entityUpdated(entity)'];
 		}
 
+		ready() {
+			super.ready();
+			this._finishCompletionCallback = this.finishCompletion.bind(this);
+		}
+
 		connectedCallback() {
 			super.connectedCallback();
-			window.addEventListener('beforeunload', this.finishCompletion);
+			window.addEventListener('beforeunload', this._finishCompletionCallback);
 		}
 
 		disconnectedCallback() {
 			super.disconnectedCallback();
-			window.removeEventListener('beforeunload', this.finishCompletion);
+			window.removeEventListener('beforeunload', this._finishCompletionCallback);
 			this.finishCompletion();
 		}
 
