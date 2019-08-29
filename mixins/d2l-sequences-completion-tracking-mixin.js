@@ -30,6 +30,7 @@ function CompletionTrackingMixin() {
 
 		finishCompletion() {
 			this._fireToastEvent();
+			debugger;
 
 			if (!this._completionEntity || this._skipCompletion) {
 				return;
@@ -51,6 +52,7 @@ function CompletionTrackingMixin() {
 
 		_performViewActions(entity, actionName) {
 			return new Promise((resolve, reject) => {
+				debugger;
 				const action = Maybe.of(entity)
 					.chain(
 						e => e.getSubEntityByClass('activity'),
