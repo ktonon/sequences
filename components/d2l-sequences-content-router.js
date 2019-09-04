@@ -15,6 +15,9 @@ import { D2LSequencesContentUnknown } from './d2l-sequences-content-unknown.js';
 import { D2LSequencesContentModule } from './d2l-sequences-content-module.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { D2LSequencesContentFileDownload } from './d2l-sequences-content-file-download.js';
+import { D2LSequencesContentContentServiceLink } from './d2l-sequences-content-content-service-link.js';
+import { isMobile, isIOS, isSafari } from '../util/util.js';
+
 class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin(getEntityType) {
 	static get template() {
 		return html`
@@ -84,7 +87,7 @@ function getEntityType(entity) {
 				case D2LSequencesContentRouter.linkActivity:
 					return getLinkEntityType(subEntity);
 				case D2LSequencesContentLinkScorm.contentClass:
-					return subEntity.hasClass('open-in-new-tab') ? D2LSequencesContentLinkScorm.is : D2LSequencesContentLink.is;
+					return subEntity.hasClass('open-in-new-tab') ? D2LSequencesContentLinkScorm.is : D2LSequencesContentContentServiceLink.is;
 				case 'link-scorm-2004':
 					return D2LSequencesContentLinkScorm.is;
 				case 'link-scorm-1-2':
@@ -119,19 +122,4 @@ function getLinkEntityType(linkActivity) {
 	} else {
 		return D2LSequencesContentLinkMixed.is;
 	}
-}
-
-function isMobile() {
-	return /iP[ao]d|iPhone|Android|Windows (?:Phone|CE)|PlayBook|BlackBerry|Vodafone|Mobile/.test(window.navigator.userAgent);
-}
-
-function isIOS() {
-	return /iP[ao]d|iPhone/.test(window.navigator.userAgent);
-}
-
-function isSafari() {
-	return (
-		window.navigator.userAgent.indexOf('Safari/') >= 0 &&
-		window.navigator.userAgent.indexOf('Chrome/') === -1
-	);
 }
