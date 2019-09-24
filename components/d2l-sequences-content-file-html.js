@@ -4,13 +4,20 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 	static get template() {
 		return html`
 		<style>
+			.d2l-sequences-scroll-container {
+				-webkit-overflow-scrolling: touch;
+				overflow-y: auto;
+				height: 100%;
+			}
 			iframe {
 				width: 100%;
 				height: calc(100% - 12px);
 				overflow: hidden;
 			}
 		</style>
-		<iframe id="content" frameborder="0" src$="[[_fileLocation]]" title$="[[title]]"></iframe>
+		<div class="d2l-sequences-scroll-container">
+			<iframe id="content" frameborder="0" src$="[[_fileLocation]]" title$="[[title]]"></iframe>
+		</div>
 `;
 	}
 
