@@ -48,7 +48,7 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 					[[localize('congratulations')]]
 				</h2>
 				<p>
-					[[localize('activitiesFinishedGreatJob')]]
+					[[sequenceFinishedLangTerm]]
 				</p>
 				<d2l-button primary="" on-click="_onClickBack">
 					[[localize('imDone')]]
@@ -120,6 +120,10 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 				type: Boolean,
 				alue: false,
 				computed: '_isFlagOn(entity)'
+			},
+			sequenceFinishedLangTerm: {
+				type: String,
+				computed: '_getSequenceFinishedLangTerm(entity)'
 			}
 		};
 	}
@@ -154,6 +158,10 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 
 	_isFlagOn(entity) {
 		return entity && entity.class && entity.class.includes('enhanced-end-of-sequence');
+	}
+
+	_getSequenceFinishedLangTerm(entity) {
+		return entity && entity.properties && entity.properties.sequenceFinishedLangTerm || '';
 	}
 }
 customElements.define(D2LSequencesContentEoLMain.is, D2LSequencesContentEoLMain);
