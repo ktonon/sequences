@@ -1,4 +1,5 @@
 import '../mixins/d2l-sequences-automatic-completion-tracking-mixin.js';
+import 'd2l-pdf-viewer/d2l-pdf-viewer.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
 	static get template() {
@@ -15,9 +16,14 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 				overflow: hidden;
 			}
 		</style>
-		<div class="d2l-sequences-scroll-container">
-			<iframe id="content" frameborder="0" src$="[[_fileLocation]]" title$="[[title]]"></iframe>
-		</div>
+		<template is="dom-if" if="[[_usePdfViewer]]">
+			<d2l-pdf-viewer src="[[_fileLocation]]"></d2l-pdf-viewer>
+		</template>
+		<template is="dom-if" if="[[!_usePdfViewer]]">
+			<div class="d2l-sequences-scroll-container">
+				<iframe id="content" frameborder="0" src$="[[_fileLocation]]" title$="[[title]]"></iframe>
+			</div>
+		</template>
 `;
 	}
 
@@ -40,7 +46,11 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 				type: String,
 				computed: '_getTitle(entity)'
 			},
-			_navigateMultiPageFileListener: Function
+			_navigateMultiPageFileListener: Function,
+			_usePdfViewer: {
+				type: Boolean,
+				computed: '_isPdf(entity)'
+			}
 		};
 	}
 	ready() {
@@ -64,14 +74,11 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 	}
 
 	_getFileLocation(entity) {
-		try {
-			const fileActivity = entity.getSubEntityByClass('file-activity');
-			const file = fileActivity.getSubEntityByClass('file');
-			const link = file.getLinkByClass('pdf') || file.getLinkByClass('embed') || file.getLinkByRel('alternate');
-			return link.href;
-		} catch (e) {
-			return '';
-		}
+		const file = this._getFileEntity(entity);
+		const link = file
+			? file.getLinkByClass('pdf') || file.getLinkByClass('embed') || file.getLinkByRel('alternate')
+			: { href: '' };
+		return link.href;
 	}
 	_getTitle(entity) {
 		return entity && entity.properties && entity.properties.title || '';
@@ -84,6 +91,22 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 				handler: 'd2l.nav.client',
 				action: e.detail
 			}), '*');
+		}
+	}
+
+	_isPdf(entity) {
+		const file = this._getFileEntity(entity);
+		return file
+			? file.hasLinkByClass('pdf')
+			: false;
+	}
+
+	_getFileEntity(entity) {
+		try {
+			const fileActivity = entity.getSubEntityByClass('file-activity');
+			return fileActivity.getSubEntityByClass('file');
+		} catch (e) {
+			return null;
 		}
 	}
 }
