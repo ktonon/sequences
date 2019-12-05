@@ -97,7 +97,7 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 	_isPdf(entity) {
 		const file = this._getFileEntity(entity);
 		return file
-			? file.hasLinkByClass('pdf')
+			? (file.properties || {}).type === 'application/pdf'
 			: false;
 	}
 
