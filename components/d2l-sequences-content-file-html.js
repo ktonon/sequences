@@ -10,14 +10,19 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 				overflow-y: auto;
 				height: 100%;
 			}
-			iframe {
+			iframe,
+			d2l-pdf-viewer {
 				width: 100%;
 				height: calc(100% - 12px);
 				overflow: hidden;
 			}
 		</style>
 		<template is="dom-if" if="[[_usePdfViewer]]">
-			<d2l-pdf-viewer src="[[_fileLocation]]"></d2l-pdf-viewer>
+			<d2l-pdf-viewer
+				src="[[_fileLocation]]"
+				pdf-js-worker-src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.worker.min.js"
+			>
+			</d2l-pdf-viewer>
 		</template>
 		<template is="dom-if" if="[[!_usePdfViewer]]">
 			<div class="d2l-sequences-scroll-container">
