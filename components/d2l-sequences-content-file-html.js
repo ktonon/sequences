@@ -20,7 +20,7 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 		<template is="dom-if" if="[[_usePdfViewer]]">
 			<d2l-pdf-viewer
 				src="[[_fileLocation]]"
-				pdf-js-worker-src="https://pdfjs-dist-modules-test.s3.us-east-2.amazonaws.com/pdf.worker.min.js"
+				pdf-js-remote-path="https://pdfjs-dist-modules-test.s3.us-east-2.amazonaws.com"
 			>
 			</d2l-pdf-viewer>
 		</template>
