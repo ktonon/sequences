@@ -11,7 +11,7 @@ export class D2LSequencesContentFilePdf extends D2L.Polymer.Mixins.Sequences.Aut
 				overflow: hidden;
 			}
 		</style>
-		<d2l-pdf-viewer src="[[_fileLocation]]">
+		<d2l-pdf-viewer src="[[_fileLocation]]" pdf-js-worker-src="../../pdfjs-dist-modules/pdf.worker.min.js">
 		</d2l-pdf-viewer>
 `;
 	}
