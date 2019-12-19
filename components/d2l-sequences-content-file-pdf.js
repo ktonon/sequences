@@ -13,8 +13,8 @@ export class D2LSequencesContentFilePdf extends D2L.Polymer.Mixins.Sequences.Aut
 		</style>
 		<d2l-pdf-viewer
 			src="[[_fileLocation]]"
-			import-method="script"
-			from-cdn="true"
+			loader="script"
+			from-cdn
 		>
 		</d2l-pdf-viewer>
 `;
