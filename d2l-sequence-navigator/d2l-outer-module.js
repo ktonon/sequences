@@ -7,7 +7,6 @@ import 'd2l-accordion/d2l-accordion.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/icons/icon.js';
 import 'd2l-offscreen/d2l-offscreen.js';
-import d2lIntl from 'd2l-intl';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 /*
 @memberOf window.D2L.Polymer.Mixins;
@@ -419,9 +418,6 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 
 	getFormatedDate(entity) {
 
-		const formatter = new d2lIntl.DateTimeFormat(this.language, {
-			format: 'medium'
-		});
 		const currentDate = new Date();
 		let startDate;
 		let result = '';
@@ -440,15 +436,11 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 		}
 
 		if (startDate && startDate > currentDate) {
-			result = formatter.formatDate(
-				startDate
-			);
+			result = this.formatDate(startDate, {format: 'medium'});
 			return this.localize('sequenceNavigator.starts', 'startDate', result);
 		}
 		if (dueDate) {
-			result = formatter.formatDate(
-				dueDate
-			);
+			result = this.formatDate(dueDate,  {format: 'medium'});
 			return this.localize('sequenceNavigator.due', 'dueDate', result);
 		}
 		return result;
