@@ -3,7 +3,7 @@ import './d2l-activity-link.js';
 import { CompletionStatusMixin } from '../mixins/completion-status-mixin.js';
 import { PolymerASVLaunchMixin } from '../mixins/polymer-asv-launch-mixin.js';
 import { ASVFocusWithinMixin } from '../mixins/asv-focus-within-mixin.js';
-import 'd2l-accordion/d2l-accordion.js';
+import '@brightspace-ui-labs/accordion/accordion.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/icons/icon.js';
 import 'd2l-offscreen/d2l-offscreen.js';
@@ -142,7 +142,7 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 			d2l-icon {
 				color: var(--d2l-outer-module-text-color);
 			}
-			d2l-accordion-collapse > a {
+			d2l-labs-accordion-collapse > a {
 				outline: none;
 			}
 
@@ -175,7 +175,7 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 
 		</style>
 
-		<d2l-accordion-collapse no-icons="" flex="">
+		<d2l-labs-accordion-collapse no-icons="" flex="">
 			<div slot="header" id="header-container" class$="[[_getIsSelected(currentActivity, focusWithin)]] [[isEmpty(subEntities)]] [[_getHideDescriptionClass(_hideModuleDescription, isSidebar)]]" on-click="_onHeaderClicked" is-sidebar$="[[isSidebar]]">
 				<div class="bkgd"></div>
 				<div class="border"></div>
@@ -217,7 +217,7 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 					</li>
 				</template>
 			</ol>
-		</d2l-accordion-collapse>
+		</d2l-labs-accordion-collapse>
 		`;
 	}
 
@@ -286,31 +286,31 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 	}
 
 	_disableAccordions(disabled) {
-		if (!disabled || !this.shadowRoot || !this.shadowRoot.querySelector('d2l-accordion-collapse')) {
+		if (!disabled || !this.shadowRoot || !this.shadowRoot.querySelector('d2l-labs-accordion-collapse')) {
 			return;
 		}
-		this.shadowRoot.querySelector('d2l-accordion-collapse').setAttribute('opened', '');
-		this.shadowRoot.querySelector('d2l-accordion-collapse').setAttribute('disabled', '');
-		this.shadowRoot.querySelector('d2l-accordion-collapse').setAttribute('aria-disabled', true);
+		this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('opened', '');
+		this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('disabled', '');
+		this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('aria-disabled', true);
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.addEventListener('d2l-accordion-collapse-clicked', this._onHeaderClicked);
-		this.addEventListener('d2l-accordion-collapse-state-changed', this._updateHeaderClass);
+		this.addEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
+		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateHeaderClass);
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		this.removeEventListener('d2l-accordion-collapse-clicked', this._onHeaderClicked);
-		this.removeEventListener('d2l-accordion-collapse-state-changed', this._updateHeaderClass);
+		this.removeEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
+		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateHeaderClass);
 	}
 
 	_isAccordionOpen() {
-		if (!this.shadowRoot || !this.shadowRoot.querySelector('d2l-accordion-collapse')) {
+		if (!this.shadowRoot || !this.shadowRoot.querySelector('d2l-labs-accordion-collapse')) {
 			return false;
 		}
-		return this.shadowRoot.querySelector('d2l-accordion-collapse').hasAttribute('opened');
+		return this.shadowRoot.querySelector('d2l-labs-accordion-collapse').hasAttribute('opened');
 	}
 
 	_isOptionalModule() {
@@ -395,7 +395,7 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 	}
 
 	childIsActiveEvent() {
-		this.shadowRoot.querySelector('d2l-accordion-collapse').setAttribute('opened', '');
+		this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('opened', '');
 	}
 
 	isLastOfSubModule(entities, index) {
