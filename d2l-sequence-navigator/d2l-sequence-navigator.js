@@ -2,7 +2,7 @@ import '@polymer/polymer/polymer-legacy.js';
 
 import 'd2l-polymer-siren-behaviors/store/entity-behavior.js';
 import './d2l-outer-module.js';
-import 'd2l-accordion/d2l-accordion.js';
+import '@brightspace-ui-labs/accordion/accordion.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import 'siren-entity/siren-entity.js';
 import '../localize-behavior.js';
@@ -72,7 +72,7 @@ PolymerElement
 		</style>
 		<siren-entity href="[[rootHref]]" token="[[token]]" entity="{{_lessonEntity}}"></siren-entity>
 		<slot name="lesson-header"></slot>
-		<d2l-accordion auto-close="" class="module-content" id="sidebarContent" on-scroll="onSidebarScroll">
+		<d2l-labs-accordion auto-close="" class="module-content" id="sidebarContent" on-scroll="onSidebarScroll">
 			<ol class="module-item-list">
 				<template is="dom-repeat" items="[[subEntities]]" as="childLink">
 					<template is="dom-if" if="[[childLink.href]]">
@@ -88,7 +88,7 @@ PolymerElement
 				</template>
 			</ol>
 			<slot name="end-of-lesson"></slot>
-		</d2l-accordion>
+		</d2l-labs-accordion>
 		`;
 	}
 

@@ -73,7 +73,7 @@ describe('d2l-outer-module', () => {
 		});
 
 		it('should select the module by clicking on it', done => {
-			const accordionElement = element.shadowRoot.querySelector('d2l-accordion-collapse');
+			const accordionElement = element.shadowRoot.querySelector('d2l-labs-accordion-collapse');
 			const headerElement = element.shadowRoot.querySelector('#header-container');
 			expect(headerElement)
 				.not.to.have
@@ -122,7 +122,7 @@ describe('d2l-outer-module', () => {
 
 		it('should not show anything in the header, when the accordion is open', done => {
 
-			const accordionElement = element.shadowRoot.querySelector('d2l-accordion-collapse');
+			const accordionElement = element.shadowRoot.querySelector('d2l-labs-accordion-collapse');
 			accordionElement.addEventListener('click', () => {
 				const dynamicElements = accordionElement.shadowRoot.querySelectorAll('dom-if');
 				if (dynamicElements) {
@@ -172,7 +172,7 @@ describe('d2l-outer-module', () => {
 		});
 
 		it('should only show the count, when the accordion is open', done => {
-			const accordionElement = element.shadowRoot.querySelector('d2l-accordion-collapse');
+			const accordionElement = element.shadowRoot.querySelector('d2l-labs-accordion-collapse');
 			accordionElement.addEventListener('click', () => {
 				const dynamicElements = accordionElement.querySelectorAll('dom-if');
 				if (dynamicElements) {
@@ -227,7 +227,7 @@ describe('d2l-outer-module', () => {
 		// then try to recreate this scenario with a better test.
 		// it('should only show the count, when the accordion is open', done => {
 		//
-		// 	const accordionElement = element.shadowRoot.querySelector('d2l-accordion-collapse');
+		// 	const accordionElement = element.shadowRoot.querySelector('d2l-labs-accordion-collapse');
 		// 	accordionElement.addEventListener('click', () => {
 		// 		const dynamicElements = accordionElement.shadowRoot.querySelectorAll('dom-if');
 		// 		if (dynamicElements) {
@@ -281,7 +281,7 @@ describe('d2l-outer-module', () => {
 
 		it('should only show the count, when the accordion is open', done => {
 
-			const accordionElement = element.shadowRoot.querySelector('d2l-accordion-collapse');
+			const accordionElement = element.shadowRoot.querySelector('d2l-labs-accordion-collapse');
 			accordionElement.addEventListener('click', () => {
 				const dynamicElements = accordionElement.shadowRoot.querySelectorAll('dom-if');
 				if (dynamicElements) {
@@ -333,7 +333,7 @@ describe('d2l-outer-module', () => {
 
 		it('should only show the count, when accordion is open', done => {
 
-			const accordionElement = element.shadowRoot.querySelector('d2l-accordion-collapse');
+			const accordionElement = element.shadowRoot.querySelector('d2l-labs-accordion-collapse');
 			accordionElement.addEventListener('click', () => {
 				const dynamicElements = accordionElement.shadowRoot.querySelectorAll('dom-if');
 				if (dynamicElements) {
@@ -369,8 +369,8 @@ describe('d2l-outer-module', () => {
 			element = await SirenFixture('data/lesson1.json', fixture('DisabledModuleWithChildrenFixture'));
 		});
 
-		it('should have the d2l-accordion-collapse elements opened and disabled, regardless of clicked', done => {
-			const accordionElement = element.shadowRoot.querySelector('d2l-accordion-collapse');
+		it('should have the d2l-labs-accordion-collapse elements opened and disabled, regardless of clicked', done => {
+			const accordionElement = element.shadowRoot.querySelector('d2l-labs-accordion-collapse');
 			accordionElement.addEventListener('click', () => {
 				const dynamicElements = accordionElement.shadowRoot.querySelectorAll('dom-if');
 				if (dynamicElements) {
