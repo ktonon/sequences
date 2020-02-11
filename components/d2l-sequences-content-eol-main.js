@@ -44,9 +44,9 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 			}
 		</style>
 		<div class="content-eol-main-container">
-			 <template is="dom-if" if="[[!hasMissed]]">
-			 <d2l-end-of-lessons-progress href="{{href}}" token="[[token]]">
-			 </d2l-end-of-lessons-progress>
+			<template is="dom-if" if="[[!hasMissed]]">
+			<d2l-end-of-lessons-progress href="{{_getRootHref(entity)}}" token="[[token]]">
+			</d2l-end-of-lessons-progress>
 				<h2>
 					[[localize('congratulations')]]
 				</h2>
@@ -57,9 +57,9 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 					[[localize('imDone')]]
 				</d2l-button>
 			</template>
-			 <template is="dom-if" if="[[hasMissed]]">
+			<template is="dom-if" if="[[hasMissed]]">
 				<template is="dom-if" if="[[!showMissed]]">
-					<d2l-end-of-lessons-progress href="{{href}}" token="[[token]]">
+					<d2l-end-of-lessons-progress href="{{_getRootHref(entity)}}" token="[[token]]">
 					</d2l-end-of-lessons-progress>
 					<h2>
 						[[localize('niceWork')]]
@@ -189,6 +189,11 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 	}
 	_setShowMissed() {
 		this.showMissed = true;
+	}
+
+	_getRootHref(entity) {
+		const rootLink = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/sequence-root');
+		return rootLink && rootLink.href || '';
 	}
 
 	_isFlagOn(entity) {

@@ -16,7 +16,7 @@ class D2LEndOfLessonsProgress extends ASVFocusWithinMixin(CompletionStatusMixin(
 						class="d2l-progress"
 						value="[[completionCount.completed]]"
 						max="[[completionCount.total]]"
-						style="width:25%">
+						style="width:12%">
 					</d2l-meter-circle>
 `;
 	}
