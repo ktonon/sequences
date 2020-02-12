@@ -1,8 +1,8 @@
 import './d2l-eol-activity-link.js';
+import '../localize-behavior.js';
 import { CompletionStatusMixin } from '../mixins/completion-status-mixin.js';
 import { PolymerASVLaunchMixin } from '../mixins/polymer-asv-launch-mixin.js';
 import { ASVFocusWithinMixin } from '../mixins/asv-focus-within-mixin.js';
-import '@brightspace-ui-labs/accordion/accordion.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 /*
 @memberOf window.D2L.Polymer.Mixins;
@@ -34,10 +34,12 @@ class D2LMissedActivity extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Comple
 				padding: 0px;
 			}
 
-			d2l-labs-accordion-collapse {
+			h3{
+				text-align: center;
+			}
+
+			div {
 				padding: 18px;
-				border-top: 1px solid var(--d2l-color-mica);
-				border-bottom: 1px solid var(--d2l-color-mica);
 				margin-bottom: 18px;
 			}
 
@@ -46,16 +48,18 @@ class D2LMissedActivity extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Comple
 			}
 
 		</style>
-
- 		<d2l-labs-accordion-collapse title="[[localize('sequenceNavigator.missedItems', 'numberOfMissedActivities', numberOfMissedActivity)]]" flex opened>
-		<ol>
-				<template is="dom-repeat" items="[[subEntities]]" as="childLink">
-					<li>
-						<d2l-eol-activity-link href="[[childLink.href]]" token="[[token]]"></d2l-eol-activity-link>
-					</li>
-				</template>
-		</ol>
-		</d2l-labs-accordion-collapse>
+		<div>
+			<h3>
+				[[Localize('sequenceNavigator.missedActivitiesListHeader')]]
+			</h3>
+			<ol>
+					<template is="dom-repeat" items="[[subEntities]]" as="childLink">
+						<li>
+							<d2l-eol-activity-link href="[[childLink.href]]" token="[[token]]"></d2l-eol-activity-link>
+						</li>
+					</template>
+			</ol>
+		</div>
 
 `;
 	}
