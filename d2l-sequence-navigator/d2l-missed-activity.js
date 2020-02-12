@@ -50,7 +50,7 @@ class D2LMissedActivity extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Comple
 		</style>
 		<div>
 			<h3>
-				[[Localize('sequenceNavigator.missedActivitiesListHeader')]]
+				[[localize('sequenceNavigator.missedActivitiesListHeader')]]
 			</h3>
 			<ol>
 					<template is="dom-repeat" items="[[subEntities]]" as="childLink">
