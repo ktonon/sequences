@@ -6,6 +6,7 @@ import '@polymer/polymer/polymer-legacy.js';
 import 'd2l-polymer-siren-behaviors/store/entity-behavior.js';
 import '../localize-behavior.js';
 import './d2l-end-of-lesson-image.js';
+import './d2l-end-of-lesson-progress.js';
 import '../mixins/d2l-sequences-return-mixin.js';
 import 's-html/s-html.js';
 import { D2LPoller } from 'd2l-poller/d2l-poller.js';
@@ -43,8 +44,9 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 			}
 		</style>
 		<div class="content-eol-main-container">
-			 <template is="dom-if" if="[[!hasMissed]]">
-				<d2l-end-of-lesson-image completed=""></d2l-end-of-lesson-image>
+			<template is="dom-if" if="[[!hasMissed]]">
+				<d2l-end-of-lesson-progress href="{{_getRootHref(entity)}}" token="[[token]]">
+				</d2l-end-of-lesson-progress>
 				<h2>
 					[[localize('congratulations')]]
 				</h2>
@@ -55,9 +57,10 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 					[[localize('imDone')]]
 				</d2l-button>
 			</template>
-			 <template is="dom-if" if="[[hasMissed]]">
+			<template is="dom-if" if="[[hasMissed]]">
 				<template is="dom-if" if="[[!showMissed]]">
-					<d2l-end-of-lesson-image></d2l-end-of-lesson-image>
+					<d2l-end-of-lesson-progress href="{{_getRootHref(entity)}}" token="[[token]]">
+					</d2l-end-of-lesson-progress>
 					<h2>
 						[[localize('niceWork')]]
 					</h2>
@@ -186,6 +189,11 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 	}
 	_setShowMissed() {
 		this.showMissed = true;
+	}
+
+	_getRootHref(entity) {
+		const rootLink = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/sequence-root');
+		return rootLink && rootLink.href || '';
 	}
 
 	_isFlagOn(entity) {

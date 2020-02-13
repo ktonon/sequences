@@ -1,6 +1,6 @@
 {
 	"activitiesFinishedGreatJob": "You have completed all of the activities in this unit. Great job!",
-	"backToContents": "Back to Table of Contents",
+	"backToContents": "Back to Content",
 	"cannotBeRendered": "This content item cannot be rendered.",
 	"completed": "Completed",
 	"congratulations": "Congratulations!",
@@ -30,6 +30,7 @@
 	"sequenceNavigator.due": "Due {dueDate}",
 	"sequenceNavigator.exempt":"Exempt",
 	"sequenceNavigator.optional":"Optional",
+	"sequenceNavigator.missedActivitiesListHeader": "These are the pieces left to complete this unit:",
 	"sequenceNavigator.requirementsCompleted":"{completed} of {total, plural, one {# requirement} other {# requirements}} completed",
 	"sequenceNavigator.starts": "Starts {startDate}",
 	"missedItems": "You have {numberOfMissedActivities, plural, one {# item} other {# items}} left in this module.",

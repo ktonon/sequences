@@ -1,6 +1,6 @@
 {
    "activitiesFinishedGreatJob" : "Vous avez terminé toutes les activités de cette unité. Bon travail !",
-   "backToContents": "Back to Table of Contents",
+   "backToContents": "Retour au contenu",
    "cannotBeRendered" : "Cet élément de contenu ne peut pas être rendu.",
    "completed": "Completed",
    "congratulations" : "Félicitations !",
@@ -30,6 +30,7 @@
    "sequenceNavigator.currentModule": "Unit {current} of {total}",
    "sequenceNavigator.due": "Dû le {dueDate}",
    "sequenceNavigator.exempt" : "Dispenser",
+   "sequenceNavigator.missedActivitiesListHeader": "Ce sont les pièces restantes pour compléter cette unité:",
    "sequenceNavigator.missedItems" : "Il vous reste {numberOfMissedActivities, plural, one {# élément} other {# éléments}} activités dans ce module.",
    "sequenceNavigator.optional" : "Facultatif",
    "sequenceNavigator.requirementsCompleted" : "{completed} activité(s) terminée(s) sur {total, plural, one {# exigence} other {# exigences}}",
