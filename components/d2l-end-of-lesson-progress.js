@@ -10,12 +10,14 @@ class D2LEndOfLessonsProgress extends ASVFocusWithinMixin(CompletionStatusMixin(
 			:host {
 				display: block;
 			}
+			d2l-meter-circle {
+				width: 12%;
+			}
 		</style>
 		<d2l-meter-circle
 			class="d2l-progress"
 			value="[[completionCount.completed]]"
-			max="[[completionCount.total]]"
-			style="width:12%">
+			max="[[completionCount.total]]">
 		</d2l-meter-circle>
 `;
 	}
