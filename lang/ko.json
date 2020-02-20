@@ -31,6 +31,7 @@
    "sequenceNavigator.currentModule" : "단위 {current}/{total}",
    "sequenceNavigator.due" : "기한 {dueDate}일",
    "sequenceNavigator.exempt" : "면제",
+   "sequenceNavigator.missedActivitiesListHeader" : "These are the pieces left to complete this unit:",
    "sequenceNavigator.optional" : "선택사항",
    "sequenceNavigator.requirementsCompleted" : "{completed}/{total, plural, one {# requirement} other {# requirements}}개 완료됨",
    "sequenceNavigator.starts" : "{startDate}에 시작",
