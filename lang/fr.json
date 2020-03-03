@@ -26,7 +26,7 @@
    "openOnedriveFile" : "Ouvrir le fichier OneDrive dans un nouvel onglet.",
    "openUnsecureContent" : "Votre navigateur croit que ce contenu est publié à un endroit moins sécuritaire. Ne vous en faites pas, ouvrez simplement le contenu dans une nouvelle fenêtre.",
    "sequenceNavigator.completed" : "terminé",
-   "sequenceNavigator.completedMofN" : "{Completed}/{total} terminé(s)",
+   "sequenceNavigator.completedMofN" : "{completed}/{total} terminé(s)",
    "sequenceNavigator.countStatus" : "{completed}/{total}",
    "sequenceNavigator.currentModule" : "Unité {current} de {total}",
    "sequenceNavigator.due" : "Échéance le {dueDate}",
