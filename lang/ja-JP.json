@@ -30,6 +30,7 @@
    "sequenceNavigator.currentModule" : "単位 {current}/{total}",
    "sequenceNavigator.due" : "期限 {dueDate}",
    "sequenceNavigator.exempt" : "免除",
+   "sequenceNavigator.missedActivitiesListHeader" : "このユニットを完了するために残された部分は次のとおりです。",
    "sequenceNavigator.missedItems" : "このモジュールに {numberOfMissedActivities, plural, one {# 項目} other {# 項目}} 残っています。",
    "sequenceNavigator.optional" : "オプション",
    "sequenceNavigator.requirementsCompleted" : "{total, plural, one {必須 # 項目} other {必須 # 項目}}のうち {completed} 項目完了",

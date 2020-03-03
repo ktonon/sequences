@@ -30,6 +30,7 @@
    "sequenceNavigator.currentModule" : "Birim {current} / {total}",
    "sequenceNavigator.due" : "Teslim Tarihi: {dueDate}",
    "sequenceNavigator.exempt" : "Muaf Tut",
+   "sequenceNavigator.missedActivitiesListHeader" : "Bu ünitede tamamlanması gereken kısımlar şunlardır:",
    "sequenceNavigator.missedItems" : "Bu modülde {numberOfMissedActivities, plural, one {# öğeniz} other {# öğeniz}} kaldı.",
    "sequenceNavigator.optional" : "İsteğe Bağlı",
    "sequenceNavigator.requirementsCompleted" : "{completed} / {total, plural, one {# gereklilik} other {# gereklilik}} tamamlandı",

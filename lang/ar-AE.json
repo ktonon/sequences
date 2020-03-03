@@ -30,6 +30,7 @@
    "sequenceNavigator.currentModule" : "الوحدة {current} من أصل {total}",
    "sequenceNavigator.due" : "تاريخ الاستحقاق في {dueDate}",
    "sequenceNavigator.exempt" : "إعفاء",
+   "sequenceNavigator.missedActivitiesListHeader" : "هذه هي الأقسام المتبقية لإكمال هذه الوحدة:",
    "sequenceNavigator.missedItems" : "يتبقّى {numberOfMissedActivities, plural, one {# عنصر} other {# من العناصر}} في هذه الوحدة النمطية.",
    "sequenceNavigator.optional" : "اختياري",
    "sequenceNavigator.requirementsCompleted" : "اكتمال {completed} من أصل {total, plural, one {# متطلب} other {# من المتطلبات}}",

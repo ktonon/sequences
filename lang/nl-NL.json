@@ -30,6 +30,7 @@
    "sequenceNavigator.currentModule" : "Eenheid {current} van {total}",
    "sequenceNavigator.due" : "Uiterste datum {dueDate}",
    "sequenceNavigator.exempt" : "Vrijstellen",
+   "sequenceNavigator.missedActivitiesListHeader" : "Dit zijn de onderdelen die nog voltooid moeten worden:",
    "sequenceNavigator.missedItems" : "Je hebt nog {numberOfMissedActivities, plural, one {# item} other {# items}} in deze module.",
    "sequenceNavigator.optional" : "Optioneel",
    "sequenceNavigator.requirementsCompleted" : "{completed} van {total, plural, one {# vereiste} other {# vereisten}} voltooid",
