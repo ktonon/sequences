@@ -30,6 +30,7 @@
    "sequenceNavigator.currentModule" : "Einheit {current} von {total}",
    "sequenceNavigator.due" : "Abgabetermin: {dueDate}",
    "sequenceNavigator.exempt" : "Ausgenommen",
+   "sequenceNavigator.missedActivitiesListHeader": "These are the pieces left to complete this unit:",
    "sequenceNavigator.missedItems" : "Es sind noch {numberOfMissedActivities, plural, one {# Element} other {# Elemente}} in diesem Modul übrig.",
    "sequenceNavigator.optional" : "Optional",
    "sequenceNavigator.requirementsCompleted" : "{completed} von {total, plural, one {# Erforderlichen} other {# Erforderlichen}} abgeschlossen",

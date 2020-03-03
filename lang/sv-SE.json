@@ -30,6 +30,7 @@
    "sequenceNavigator.currentModule" : "Enhet {current} av {total}",
    "sequenceNavigator.due" : "Förfaller {dueDate}",
    "sequenceNavigator.exempt" : "Undantagen",
+   "sequenceNavigator.missedActivitiesListHeader" : "Det här är kvarvarande delar för att slutföra den här enheten:",
    "sequenceNavigator.missedItems" : "Du har {numberOfMissedActivities, plural, one {# objekt} other {# objekt}} kvar i den här modulen.",
    "sequenceNavigator.optional" : "Valfritt",
    "sequenceNavigator.requirementsCompleted" : "{completed} av {total, plural, one {# krav} other {# krav}} slutförda",

@@ -28,6 +28,7 @@
 	"sequenceNavigator.completedMofN": "Fuldført {completed}/{total}",
 	"sequenceNavigator.countStatus": "{completed}/{total}",
 	"sequenceNavigator.exempt": "Foretag undtagelse",
+	"sequenceNavigator.missedActivitiesListHeader": "These are the pieces left to complete this unit:",
 	"sequenceNavigator.due": "Due",
 	"sequenceNavigator.missedItems": "Du har {numberOfMissedActivities, plural, one {# element} other {# elementer}} tilbage i dette modul.",
 	"sequenceNavigator.optional": "Valgfri",
