@@ -17,7 +17,7 @@
    "iterateToParent" : "Gå til forældreaktivitet",
    "iterateToPrevious" : "Tidligere aktivitet",
    "missedActivities" : "Du <d2l-link href=\"javascript:void(0)\">har gået glip af {count, plural, one {# activity} other {# activities}}</d2l-link>.",
-   "missedItems" : "You have {numberOfMissedActivities, plural, one {# item} other {# items}} left in this module.",
+   "missedItems" : "Du har {numberOfMissedActivities, plural, one {# element} other {# elementer}} tilbage i dette modul.",
    "module" : "Modul",
    "niceWork" : "Godt arbejde indtil videre!",
    "noNeedToFinish" : "Hvis det ikke er nødvendigt at afslutte {count, plural, one {it} other {them}}, intet problem.",
