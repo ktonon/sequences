@@ -154,13 +154,13 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 	static get is() {
 		return 'd2l-eol-activity-link';
 	}
+
+	static get observers() {
+		return ['_onFocusWithinChange(focusWithin)'];
+	}
+
 	static get properties() {
 		return {
-			class: {
-				type: String,
-				reflectToAttribute: true,
-				computed:'_focusWithinClass(focusWithin)'
-			},
 			hasIcon: {
 				type: Boolean,
 				computed: '_hasIcon(entity)'
@@ -194,6 +194,14 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 	_getIconSetKey(entity) {
 		const tierClass = 'tier1';
 		return (entity.getSubEntityByClass(tierClass)).properties.iconSetKey;
+	}
+
+	_onFocusWithinChange(focusWithin) {
+		if (focusWithin) {
+			this.classList.add('d2l-asv-focus-within');
+		} else {
+			this.classList.remove('d2l-asv-focus-within');
+		}
 	}
 }
 customElements.define(D2LEolActivityLink.is, D2LEolActivityLink);
