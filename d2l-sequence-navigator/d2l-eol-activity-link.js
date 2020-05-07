@@ -156,6 +156,11 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 	}
 	static get properties() {
 		return {
+			class: {
+				type: String,
+				reflectToAttribute: true,
+				computed:'_focusWithinClass(focusWithin)'
+			},
 			hasIcon: {
 				type: Boolean,
 				computed: '_hasIcon(entity)'
