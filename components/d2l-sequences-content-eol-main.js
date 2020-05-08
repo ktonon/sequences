@@ -43,7 +43,9 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 				margin: auto!important;
 			}
 			@media (max-width:550px) {
-				d2l-missed-activity { width: 100%; }
+				d2l-missed-activity {
+					width: 100%;
+				}
 			}
 		</style>
 		<div class="content-eol-main-container">
