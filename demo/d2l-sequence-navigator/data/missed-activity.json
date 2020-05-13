@@ -5,7 +5,8 @@
 	"class": [
 		"sequence",
 		"sequence-description",
-		"end-of-sequence"
+		"end-of-sequence",
+		"enhanced-end-of-sequence"
 	],
 	"links": [
 		{

@@ -37,10 +37,15 @@ export class D2LSequencesContentEoLMain extends D2L.Polymer.Mixins.Sequences.Ret
 			.missed-count-text {
 				color: var(--d2l-color-celestine);
 			}
-			d2l-missed-activity{
+			d2l-missed-activity {
 				text-align: left;
 				width: 50%;
 				margin: auto!important;
+			}
+			@media (max-width:550px) {
+				d2l-missed-activity {
+					width: 100%;
+				}
 			}
 		</style>
 		<div class="content-eol-main-container">
