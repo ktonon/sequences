@@ -12,7 +12,7 @@ class D2LSequenceEnd extends ASVFocusWithinMixin(
 		return html`
 			<style>
 				#d2l-sequence-end-container {
-					--d2l-sequence-end-text-color: var(--d2l-asv-text-color);
+					--d2l-sequence-end-text-color: var(--d2l-color-ferrite);
 					--d2l-sequence-end-background-color: transparent;
 					--d2l-sequence-end-border-color: var(--d2l-sequence-end-background-color);
 					--d2l-sequence-end-opacity: 1;
@@ -41,7 +41,7 @@ class D2LSequenceEnd extends ASVFocusWithinMixin(
 				#d2l-sequence-end-container:hover {
 					--d2l-sequence-end-background-color: var(--d2l-asv-primary-color);
 					--d2l-sequence-end-border-color: rgba(0, 0, 0, 0.42);
-					--d2l-sequence-end-text-color: var(--d2l-asv-text-color);
+					--d2l-sequence-end-text-color: var(--d2l-color-ferrite);
 					--d2l-sequence-end-opacity: 0.26;
 					cursor: pointer;
 				}

@@ -16,7 +16,7 @@ class D2LMissedActivity extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Comple
 		return html`
 		<style>
 			:host {
-				--d2l-inner-module-text-color: var(--d2l-asv-text-color);
+				--d2l-inner-module-text-color: var(--d2l-color-ferrite);
 				--d2l-activity-link-padding: 10px 14px;
 				display: block;
 				cursor: pointer;

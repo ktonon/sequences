@@ -16,7 +16,7 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 		<style>
 			:host {
 				--d2l-activity-link-border-color: var(--d2l-activity-link-background-color);
-				--d2l-activity-link-text-color: var(--d2l-asv-text-color);
+				--d2l-activity-link-text-color: var(--d2l-color-ferrite);
 				--d2l-activity-link-opacity: 1;
 				--d2l-activity-link-backdrop-opacity: 0;
 				--d2l-left-icon-padding: 15px;
@@ -52,9 +52,9 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 			:host(:focus),
 			:host(:hover) {
 				--d2l-activity-link-background-color: var(--d2l-asv-hover-color);
-				--d2l-activity-link-subtext-color: var(--d2l-asv-text-color);
+				--d2l-activity-link-subtext-color: var(--d2l-color-ferrite);
 				--d2l-activity-link-border-color: rgba(0, 0, 0, 0.42);
-				--d2l-activity-link-text-color: var(--d2l-asv-text-color);
+				--d2l-activity-link-text-color: var(--d2l-color-ferrite);
 				--d2l-activity-link-opacity: 0.26;
 				--d2l-activity-link-backdrop-opacity: 1;
 			}

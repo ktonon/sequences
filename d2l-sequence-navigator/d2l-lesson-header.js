@@ -50,7 +50,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		:host(:hover:not(.hide-description)) {
 			--d2l-lesson-header-background-color: var(--d2l-asv-primary-color);
 			--d2l-lesson-header-border-color: rgba(0, 0, 0, 0.42);
-			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
+			--d2l-lesson-header-text-color: var(--d2l-color-ferrite);
 			--d2l-lesson-header-opacity: 0.26;
 		}
 
@@ -163,20 +163,20 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress,
 		:host(:hover:not(.hide-description)) progress.d2l-progress {
 			background-color: transparent;
-			border: 1px solid var(--d2l-asv-text-color);
+			border: 1px solid var(--d2l-color-ferrite);
 			box-shadow: none;
 		}
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress::-webkit-progress-value,
 		:host(:hover:not(.hide-description)) progress.d2l-progress::-webkit-progress-value {
-			background-color: var(--d2l-asv-text-color);
+			background-color: var(--d2l-color-ferrite);
 		}
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress::-moz-progress-bar,
 		:host(:hover:not(.hide-description)) progress.d2l-progress::-moz-progress-bar {
-			background-color: var(--d2l-asv-text-color);
+			background-color: var(--d2l-color-ferrite);
 		}
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress::-ms-fill,
 		:host(:hover:not(.hide-description)) progress.d2l-progress::-ms-fill {
-			background-color: var(--d2l-asv-text-color, #565a5c);
+			background-color: var(--d2l-color-ferrite, #565a5c);
 		}
 
 		div.title-container {

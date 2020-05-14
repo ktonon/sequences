@@ -126,7 +126,7 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			}
 
 			d2l-completion-status {
-				color: var(--d2l-asv-text-color);
+				color: var(--d2l-color-ferrite);
 			}
 
 			@keyframes loadingShimmer {
