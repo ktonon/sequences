@@ -21,7 +21,9 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				@apply --d2l-body-compact-text;
 			}
 
-			:focus {
+			#content-container:focus,
+			#content-container:focus-within {
+				outline: none;
 				border: 2px solid var(--d2l-color-celestine);
 			}
 
@@ -54,16 +56,20 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				padding: 12px;
 				align-items: center;
 				border-radius: 6px;
+				border: 2px solid transparent;
 			}
 
+			:host([is-current-activity]) #content-container,
 			#content-container:hover {
 				background: var(--d2l-color-gypsum);
 			}
 
+			:host([is-current-activity]) #content-container a,
 			#content-container:hover a {
 				color: var(--d2l-color-celestine-minus-1);
 			}
 
+			:host([is-current-activity]) #content-container d2l-icon,
 			#content-container:hover d2l-icon {
 				color: var(--d2l-color-celestine-minus-1);
 			}
@@ -116,6 +122,7 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			d2l-icon {
 				padding-right: var(--d2l-left-icon-padding);
 				color: var(--d2l-color-celestine);
+				min-width: 18px;
 			}
 
 			d2l-completion-status {
@@ -159,13 +166,13 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				<div id="skeleton" class="skeleton"></div>
 			</template>
 			<template is="dom-if" if="[[!showLoadingSkeleton]]">
-				<div id="content-container" on-click="_contentObjectClick">
+				<div id="content-container" on-click="_contentObjectClick" tabindex="0">
 					<div id="title-container">
 						<template is="dom-if" if="[[hasIcon]]">
 							<d2l-icon icon="[[_getIconSetKey(entity)]]"></d2l-icon>
 						</template>
 						<div class="d2l-activity-link-title">
-							<a on-click="setCurrent" class$="[[completionRequirementClass]]" href="javascript:void(0)">
+							<a on-click="setCurrent" class$="[[completionRequirementClass]]" href="javascript:void(0)" tabindex="-1">
 								[[entity.properties.title]]
 							</a>
 							<d2l-completion-requirement href="[[href]]" token="[[token]]">
@@ -207,8 +214,18 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				reflectToAttribute: true
 			},
 			showUnderline: {
+				type: Boolean,
 				value: false,
 				reflectToAttribute: true
+			},
+			isSidebar: {
+				type: Boolean,
+				reflectToAttribute: true
+			},
+			isCurrentActivity: {
+				type: Boolean,
+				reflectToAttribute: true,
+				computed: '_getIsCurrentActivity(entity, currentActivity)'
 			}
 		};
 	}
@@ -260,6 +277,10 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				return 'd2l-activity-link-one-line';
 		}
 		return '';
+	}
+
+	_getIsCurrentActivity(entity, currentActivity) {
+		return entity && entity.getLinkByRel && entity.getLinkByRel('self').href === currentActivity;
 	}
 
 	_onEntityLoaded(entity) {

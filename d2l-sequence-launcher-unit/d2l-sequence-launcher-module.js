@@ -24,7 +24,8 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				--d2l-outer-module-text-color: var(--d2l-asv-text-color);
 			}
 
-			:focus {
+			d2l-labs-accordion-collapse:focus {
+				outline: none;
 				border: 2px solid var(--d2l-color-celestine);
 			}
 
@@ -35,7 +36,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 
 			#header-container {
 				box-sizing: border-box;
-				padding: 15px 24px;
+				padding: 15px 18px;
 				color: var(--d2l-outer-module-text-color);
 				cursor: pointer;
 			}
@@ -95,7 +96,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				list-style-type: none;
 				border-collapse: collapse;
 				margin: 0;
-				padding: 0 20px;
+				padding: 0 18px;
 			}
 
 			.optionalStatus {
@@ -104,9 +105,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 
 			d2l-icon {
 				color: var(--d2l-outer-module-text-color);
-			}
-			d2l-labs-accordion-collapse > a {
-				outline: none;
 			}
 
 			hr {
@@ -136,6 +134,10 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				align-items: center;
 				justify-content: center;
 				padding: 5px 0;
+			}
+
+			:host([is-sidebar]) #launch-module-container {
+				display: none;
 			}
 
 			:host([show-loading-skeleton]) #launch-module-container > d2l-button-subtle {
@@ -211,8 +213,9 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		</style>
 
 		<siren-entity href="[[lastViewedContentObject]]" token="[[token]]" entity="{{_lastViewedContentObjectEntity}}"></siren-entity>
+		<siren-entity href="[[currentActivity]]" token="[[token]]" entity="{{_currentActivityEntity}}"></siren-entity>
 		<d2l-labs-accordion-collapse no-icons="" flex="">
-			<div slot="header" id="header-container" class$="[[isEmpty(subEntities)]] [[_getHideDescriptionClass(_hideModuleDescription, isSidebar)]]" is-sidebar$="[[isSidebar]]">
+			<div slot="header" id="header-container" class$="[[isEmpty(subEntities)]] [[_getHideDescriptionClass(_hideModuleDescription)]]">
 				<div id="header-skeleton-container">
 					<div id="header-skeleton" class="skeleton"></div>
 					<div id="completion-skeleton" class="skeleton"></div>
@@ -267,13 +270,13 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 								<d2l-activity-link
 									show-loading-skeleton="[[_showChildSkeletons(showLoadingSkeleton, _childrenLoading)]]"
 									last-module$="[[lastModule]]"
-									is-sidebar$="[[isSidebar]]"
 									href="[[childLink.href]]"
 									token="[[token]]"
 									current-activity="{{currentActivity}}"
 									on-sequencenavigator-d2l-activity-link-current-activity="childIsActiveEvent"
 									on-d2l-content-entity-loaded="checkIfChildrenDoneLoading"
 									show-underline="[[_nextActivitySiblingIsActivity(subEntities, index)]]"
+									is-sidebar="[[isSidebar]]"
 								></d2l-activity-link>
 							</template>
 							<template is="dom-if" if="[[!_isActivity(childLink)]]">
@@ -284,6 +287,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 									current-activity="{{currentActivity}}"
 									on-sequencenavigator-d2l-inner-module-current-activity="childIsActiveEvent"
 									on-d2l-content-entity-loaded="checkIfChildrenDoneLoading"
+									is-sidebar="[[isSidebar]]"
 								></d2l-inner-module>
 							</template>
 						</li>
@@ -309,6 +313,9 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				value: '',
 				notify: true
 			},
+			_currentActivityEntity: {
+				type: Object
+			},
 			subEntities: {
 				type: Array,
 				computed: 'getSubEntities(entity)'
@@ -331,9 +338,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				type: Boolean,
 				value: false,
 				computed: '_showOptional(completionCount)'
-			},
-			isSidebar: {
-				type: Boolean
 			},
 			lastModule: {
 				type: Boolean,
@@ -360,7 +364,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			},
 			_moduleStartOpen: {
 				type: Boolean,
-				computed: '_getModuleStartOpen(entity, subEntities, _lastViewedContentObjectEntity)'
+				computed: '_getModuleStartOpen(entity, subEntities, _lastViewedContentObjectEntity, _currentActivityEntity)'
 			},
 			_moduleWasExpanded: {
 				type: Boolean,
@@ -377,6 +381,10 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			_iconName: {
 				type: String,
 				value: 'tier1:arrow-expand-small'
+			},
+			isSidebar: {
+				type: Boolean,
+				reflectToAttribute: true
 			}
 		};
 	}
@@ -418,12 +426,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 
 	_isActivity(link) {
 		return link && link.hasClass('sequenced-activity');
-	}
-
-	_getStartingCollapseIconName(entity, subEntities, _lastViewedContentObjectEntity) {
-		return this._getModuleStartOpen(entity, subEntities, _lastViewedContentObjectEntity)
-			? 'tier1:arrow-collapse-small'
-			: 'tier1:arrow-expand-small';
 	}
 
 	_nextActivitySiblingIsActivity(subEntities, index) {
@@ -480,20 +482,33 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		return entity && entity.getSubEntities().length !== 0;
 	}
 
-	_getModuleStartOpen(entity, subEntities, _lastViewedContentObjectEntity) {
-		if (!entity || !_lastViewedContentObjectEntity) {
+	_getModuleStartOpen(entity, subEntities, _lastViewedContentObjectEntity, _currentActivityEntity) {
+		if (!entity || (!_lastViewedContentObjectEntity && !_currentActivityEntity)) {
 			return false;
 		}
 		// Set the starting icon depending on the collapse state
 		this._updateCollapseIconName();
 
-		const lastViewedParentHref = _lastViewedContentObjectEntity.getLinkByRel('up').href;
+		// FixMe: This is kind of gross. ideally we decouple all the isSidebar stuff into separate components
+		// If this is a sidebar, we use the currentActivity to detect if this should be open.
+		// If on the launcher, lastViewedContentObject is used.
+		if (this.isSidebar) {
+			const currentActivityParentHref = _currentActivityEntity.getLinkByRel('up').href;
 
-		const isCurrentModuleLastViewedContentObject = _lastViewedContentObjectEntity.getLinkByRel('self').href === this.href;
-		const isDirectChildOfCurrentModule = lastViewedParentHref === this.href;
-		const isChildOfSubModule = subEntities.some((s) => s.href === lastViewedParentHref);
+			const isCurrentModuleCurrentActivity = _currentActivityEntity.getLinkByRel('self').href === this.href;
+			const isDirectChildOfCurrentModule = currentActivityParentHref === this.href;
+			const isChildOfSubModule = subEntities.some((s) => s.href === currentActivityParentHref);
 
-		return isCurrentModuleLastViewedContentObject || isDirectChildOfCurrentModule || isChildOfSubModule;
+			return isCurrentModuleCurrentActivity || isDirectChildOfCurrentModule || isChildOfSubModule;
+		} else {
+			const lastViewedParentHref = _lastViewedContentObjectEntity.getLinkByRel('up').href;
+
+			const isCurrentModuleLastViewedContentObject = _lastViewedContentObjectEntity.getLinkByRel('self').href === this.href;
+			const isDirectChildOfCurrentModule = lastViewedParentHref === this.href;
+			const isChildOfSubModule = subEntities.some((s) => s.href === lastViewedParentHref);
+
+			return isCurrentModuleLastViewedContentObject || isDirectChildOfCurrentModule || isChildOfSubModule;
+		}
 	}
 
 	_onActivityClicked(e) {
@@ -520,12 +535,8 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('opened', '');
 	}
 
-	isLastOfSubModule(entities, index) {
-		return !!(entities.length <= index + 1 && !this._isActivity(entities[index]) && (!this.lastModule || this.isSidebar));
-	}
-
 	isEmpty(subEntities) {
-		if ((subEntities === null || subEntities.length === 0) && (!this.lastModule || this.isSidebar)) {
+		if ((subEntities === null || subEntities.length === 0) && !this.lastModule) {
 			return 'empty-module-header-container';
 		}
 		else {
@@ -583,8 +594,8 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		}
 	}
 
-	_getHideDescriptionClass(_hideModuleDescription, isSidebar) {
-		return _hideModuleDescription && !isSidebar ? 'hide-description' : '';
+	_getHideDescriptionClass(_hideModuleDescription) {
+		return _hideModuleDescription ? 'hide-description' : '';
 	}
 
 	_openModule(_moduleStartOpen) {

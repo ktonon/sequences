@@ -21,7 +21,9 @@ class D2LInnerModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				color: var(--d2l-color-celestine);
 			}
 
-			:focus {
+			#module-header:focus,
+			#module-header:focus-within {
+				outline: none;
 				border: 2px solid var(--d2l-color-celestine);
 			}
 
@@ -37,16 +39,20 @@ class D2LInnerModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				cursor: pointer;
 				padding: 12px;
 				border-radius: 6px;
+				border: 2px solid transparent;
 			}
 
+			:host([is-current-activity]) #module-header,
 			#module-header:hover {
 				background: var(--d2l-color-gypsum);
 			}
 
+			:host([is-current-activity]) #module-header a,
 			#module-header:hover a {
 				color: var(--d2l-color-celestine-minus-1);
 			}
 
+			:host([is-current-activity]) #module-header d2l-icon,
 			#module-header:hover d2l-icon {
 				color: var(--d2l-color-celestine-minus-1);
 			}
@@ -61,6 +67,7 @@ class D2LInnerModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			d2l-icon {
 				padding-right: 15px;
 				color: var(--d2l-color-celestine);
+				min-width: 18px;
 			}
 
 			.count-status {
@@ -76,7 +83,7 @@ class D2LInnerModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				list-style-type: none;
 				border-collapse: collapse;
 				margin: 0;
-				padding: 8px 20px 0 30px;
+				padding: 0 18px 0 30px;
 			}
 
 			li {
@@ -126,10 +133,10 @@ class D2LInnerModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			}
 		</style>
 		<div id="skeleton"></div>
-		<div id="module-header" class$="[[[[_getHideDescriptionClass(_hideDescription)]]" on-click="_onHeaderClicked">
+		<div id="module-header" class$="[[[[_getHideDescriptionClass(_hideDescription)]]" on-click="_onHeaderClicked" tabindex="0">
 			<div id="title-container">
 				<d2l-icon icon="tier1:folder"></d2l-icon>
-				<a href="javascript:void(0)">[[entity.properties.title]]</a>
+				<a href="javascript:void(0)" tabindex="-1">[[entity.properties.title]]</a>
 			</div>
 			<span class="count-status" aria-hidden="true">
 				[[localize('sequenceNavigator.countStatus', 'completed', completionCompleted, 'total', completionTotal)]]
@@ -145,6 +152,7 @@ class D2LInnerModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 						on-sequencenavigator-d2l-activity-link-current-activity="childIsActiveEvent"
 						on-d2l-content-entity-loaded="checkIfChildrenDoneLoading"
 						show-underline="[[_nextActivitySiblingIsActivity(subEntities, index)]]"
+						is-sidebar="[[isSidebar]]"
 					></d2l-activity-link>
 				</li>
 			</template>
@@ -191,6 +199,15 @@ class D2LInnerModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			_childrenLoadingTracker: {
 				type: Object,
 				computed: '_setUpChildrenLoadingTracker(subEntities)'
+			},
+			isSidebar: {
+				type: Boolean,
+				reflectToAttribute: true
+			},
+			isCurrentActivity: {
+				type: Boolean,
+				reflectToAttribute: true,
+				computed: '_getIsCurrentActivity(entity, currentActivity)'
 			}
 		};
 	}
@@ -225,6 +242,10 @@ class D2LInnerModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 
 	_getHref(entity) {
 		return entity && entity.getLinkByRel && entity.getLinkByRel('self') || entity || '';
+	}
+
+	_getIsCurrentActivity(entity, currentActivity) {
+		return entity && entity.getLinkByRel && entity.getLinkByRel('self').href === currentActivity;
 	}
 
 	_onHeaderClicked() {
