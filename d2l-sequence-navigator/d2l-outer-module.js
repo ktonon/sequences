@@ -23,7 +23,7 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 				display: block;
 				@apply --d2l-body-compact-text;
 				width: 100%;
-				--d2l-outer-module-text-color: var(--d2l-asv-text-color);
+				--d2l-outer-module-text-color: var(--d2l-color-ferrite);
 				--d2l-outer-module-background-color: transparent;
 				--d2l-activity-link-padding: 10px 24px;
 				margin-top: -1px;
