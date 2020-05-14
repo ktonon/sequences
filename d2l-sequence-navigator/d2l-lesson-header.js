@@ -22,7 +22,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		return html`
 		<style>
 		:host {
-			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
+			--d2l-lesson-header-text-color: var(--d2l-color-ferrite);
 			--d2l-lesson-header-background-color: transparent;
 			--d2l-lesson-header-border-color: transparent;
 			--d2l-lesson-header-opacity: 1;
