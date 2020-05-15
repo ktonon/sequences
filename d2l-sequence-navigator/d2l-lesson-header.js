@@ -198,8 +198,9 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		div.unit-info {
 			font-size: 14px;
 		}
-
 		</style>
+
+		<siren-entity href="[[_moduleProgressHref]]" token="[[token]]" entity="{{_moduleProgress}}"></siren-entity>
 		<div class="bkgd"></div>
 		<div class="border"></div>
 		<a href="javascript:void(0)" class="d2l-header-lesson-link" on-click="_onHeaderClicked">
@@ -248,6 +249,10 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 				notify: true,
 				observer: '_lightenMeter'
 			},
+			_moduleProgressHref: {
+				type: String,
+				computed: '_getModuleProgressHref(entity)'
+			},
 			_useModuleIndex: {
 				type: Boolean,
 				value: false,
@@ -255,11 +260,11 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			},
 			_moduleIndex: {
 				type: Number,
-				computed: '_getModuleIndex(entity.properties)'
+				computed: '_getModuleIndex(_moduleProgress.properties)'
 			},
 			_siblingModules: {
 				type: Number,
-				computed: '_getSiblingModules(entity.properties)'
+				computed: '_getSiblingModules(_moduleProgress.properties)'
 			},
 			_moduleTitle: {
 				type: String,
@@ -283,6 +288,9 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			_completionProgress: {
 				type: String,
 				computed: '_getCompletionProgress(entity.properties, _self)'
+			},
+			_moduleProgress: {
+				type: Object
 			},
 			_self: Object
 		};
@@ -360,6 +368,11 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 
 	_getUseNewProgressBar(properties) {
 		return properties && properties.useNewProgressBar;
+	}
+
+	_getModuleProgressHref(entity) {
+		const rootLink = entity && entity.getLinkByRel('module-progress-info');
+		return rootLink && rootLink.href || '';
 	}
 }
 
