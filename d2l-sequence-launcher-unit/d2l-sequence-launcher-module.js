@@ -21,7 +21,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			:host {
 				display: block;
 				@apply --d2l-body-compact-text;
-				--d2l-outer-module-text-color: var(--d2l-asv-text-color);
+				--d2l-outer-module-text-color: var(--d2l-color-ferrite);
 			}
 
 			d2l-labs-accordion-collapse:focus {

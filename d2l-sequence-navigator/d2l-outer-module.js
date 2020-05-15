@@ -23,7 +23,7 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 				display: block;
 				@apply --d2l-body-compact-text;
 				width: 100%;
-				--d2l-outer-module-text-color: var(--d2l-asv-text-color);
+				--d2l-outer-module-text-color: var(--d2l-color-ferrite);
 				--d2l-outer-module-background-color: transparent;
 				--d2l-activity-link-padding: 10px 24px;
 				margin-top: -1px;
@@ -58,7 +58,7 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 			#header-container:hover:not(.hide-description) {
 				--d2l-outer-module-background-color: var(--d2l-asv-primary-color);
 				--d2l-outer-module-border-color: rgba(0, 0, 0, 0.42);
-				--d2l-outer-module-text-color: var(--d2l-asv-text-color);
+				--d2l-outer-module-text-color: var(--d2l-color-ferrite);
 				--d2l-outer-module-opacity: 0.26;
 			}
 
@@ -147,7 +147,7 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 			}
 
 			.d2l-asv-current .optionalStatus {
-				color: var(--d2l-asv-text-color);
+				color: var(--d2l-color-ferrite);
 			}
 
 			.d2l-asv-current:not(:hover) .optionalStatus {
