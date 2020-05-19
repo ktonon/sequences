@@ -22,7 +22,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		return html`
 		<style>
 		:host {
-			--d2l-lesson-header-text-color: var(--d2l-color-ferrite);
+			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
 			--d2l-lesson-header-background-color: transparent;
 			--d2l-lesson-header-border-color: transparent;
 			--d2l-lesson-header-opacity: 1;
@@ -34,6 +34,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			display: block;
 			position: relative;
 			z-index: 0;
+			width: 100%;
 		}
 
 		:host(.d2l-asv-current) {
@@ -202,7 +203,6 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 
 		<siren-entity href="[[_moduleProgressHref]]" token="[[token]]" entity="{{_moduleProgress}}"></siren-entity>
 		<div class="bkgd"></div>
-		<div class="border"></div>
 		<a href="javascript:void(0)" class="d2l-header-lesson-link" on-click="_onHeaderClicked">
 			<div class="title-container">
 				<div class="title">
@@ -256,7 +256,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			_useModuleIndex: {
 				type: Boolean,
 				value: false,
-				computed: '_checkModuleIndex(entity.properties)'
+				computed: '_checkModuleIndex(_moduleProgress.properties)'
 			},
 			_moduleIndex: {
 				type: Number,
@@ -287,7 +287,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			},
 			_completionProgress: {
 				type: String,
-				computed: '_getCompletionProgress(entity.properties, _self)'
+				computed: '_getCompletionProgress(entity.properties, _self, _moduleIndex, _siblingModules)'
 			},
 			_moduleProgress: {
 				type: Object
