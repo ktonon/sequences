@@ -333,8 +333,8 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 	}
 
 	_getCompletionProgress(properties) {
-		return properties &&  properties.completionProgressLangTerm
-		|| this._self && this._self.localize('sequenceNavigator.currentModule', 'current', this._moduleIndex, 'total', this._siblingModules)
+		return (properties && properties.completionProgressLangTerm)
+		|| (this._self && this._moduleIndex && this._siblingModules && this._self.localize('sequenceNavigator.currentModule', 'current', this._moduleIndex, 'total', this._siblingModules))
 		|| '';
 	}
 
