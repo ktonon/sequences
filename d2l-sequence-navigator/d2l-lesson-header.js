@@ -24,10 +24,9 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		:host {
 			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
 			--d2l-lesson-header-background-color: transparent;
-			--d2l-lesson-header-border-color: transparent;
 			--d2l-lesson-header-opacity: 1;
 			--d2l-meter-size: 48px;
-			background-color: transparent;
+			background-color: var(--d2l-lesson-header-background-color);
 			color: var(--d2l-lesson-header-text-color);
 			margin: 10px var(--d2l-sequence-nav-padding) 10px var(--d2l-sequence-nav-padding);
 			padding: 6px;
@@ -37,23 +36,21 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			width: 100%;
 		}
 
-		:host(.d2l-asv-current) {
-			--d2l-lesson-header-background-color: var(--d2l-asv-primary-color);
-			--d2l-lesson-header-text-color: var(--d2l-asv-selected-text-color);
-			--d2l-lesson-header-border-color: rgba(0, 0, 0, 0.6);
-		}
+		/* TODO: figure out styles on hover */
+		/* :host(.d2l-asv-current) {
+			--d2l-lesson-header-background-color: white;
+		} */
 
 		a:focus {
 			outline: none;
 		}
 
-		:host(.d2l-asv-focus-within:not(.hide-description)),
+		/* TODO: figure out styles on hover */
+		/* :host(.d2l-asv-focus-within:not(.hide-description)),
 		:host(:hover:not(.hide-description)) {
-			--d2l-lesson-header-background-color: var(--d2l-asv-primary-color);
-			--d2l-lesson-header-border-color: rgba(0, 0, 0, 0.42);
 			--d2l-lesson-header-text-color: var(--d2l-color-ferrite);
 			--d2l-lesson-header-opacity: 0.26;
-		}
+		} */
 
 		div.bkgd, div.border {
 			position: absolute;
@@ -68,15 +65,6 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			z-index: -2;
 			height: 100%;
 			width: 100%;
-		}
-
-		div.border {
-			border-style: solid;
-			border-width: 1px;
-			border-color: var(--d2l-lesson-header-border-color);
-			z-index: -1;
-			height: calc(100% - 2px);
-			width: calc(100% - 2px);
 		}
 
 		.module-title {
@@ -306,7 +294,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 
 	_lightenMeter() {
 		const style = getComputedStyle(this);
-		const bkgdColour = style.getPropertyValue('--d2l-lesson-header-background-color').trim();
+		const bkgdColour = style.getPropertyValue('--d2l-asv-primary-color').trim();
 		const opacity = style.getPropertyValue('--d2l-lesson-header-opacity');
 		const ferrite = style.getPropertyValue('--d2l-color-ferrite').trim();
 
