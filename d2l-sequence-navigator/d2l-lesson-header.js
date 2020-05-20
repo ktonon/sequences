@@ -275,7 +275,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			},
 			_completionProgress: {
 				type: String,
-				computed: '_getCompletionProgress(entity.properties, _self, _moduleIndex, _siblingModules)'
+				computed: '_getCompletionProgress(entity.properties, _moduleIndex, _siblingModules)'
 			},
 			_moduleProgress: {
 				type: Object
@@ -286,10 +286,10 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 
 	ready() {
 		super.ready();
-		this.addEventListener('mouseover', this._lightenMeter);
-		this.addEventListener('mouseout', this._lightenMeter);
-		this.addEventListener('blur', this._lightenMeter);
-		this._self = this;
+		// TODO: figure out if this is necessary
+		// this.addEventListener('mouseover', this._lightenMeter);
+		// this.addEventListener('mouseout', this._lightenMeter);
+		// this.addEventListener('blur', this._lightenMeter);
 	}
 
 	_lightenMeter() {
@@ -323,6 +323,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		}
 		this.currentActivity = this._selfLink;
 	}
+
 	isLightTheme() {
 		var styles = JSON.parse(document.getElementsByTagName('html')[0].getAttribute('data-asv-css-vars'));
 		if (styles && styles['--d2l-asv-selected-text-color'] === 'var(--d2l-color-ferrite)') {
@@ -333,7 +334,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 
 	_getCompletionProgress(properties) {
 		return (properties && properties.completionProgressLangTerm)
-		|| (this._self && this._moduleIndex && this._siblingModules && this._self.localize('sequenceNavigator.currentModule', 'current', this._moduleIndex, 'total', this._siblingModules))
+		|| (this._moduleIndex && this._siblingModules && this.localize('sequenceNavigator.currentModule', 'current', this._moduleIndex, 'total', this._siblingModules))
 		|| '';
 	}
 
