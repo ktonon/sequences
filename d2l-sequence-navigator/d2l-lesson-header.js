@@ -25,6 +25,8 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
 			--d2l-lesson-header-background-color: transparent;
 			--d2l-meter-size: 48px;
+			width: calc(100% - 14px);
+			height: calc(100% - 14px);
 			background-color: var(--d2l-lesson-header-background-color);
 			color: var(--d2l-lesson-header-text-color);
 			margin: 10px var(--d2l-sequence-nav-padding) 10px var(--d2l-sequence-nav-padding);
@@ -32,7 +34,6 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			display: block;
 			position: relative;
 			z-index: 0;
-			width: 100%;
 		}
 
 		:host(.d2l-asv-current) div.border {
@@ -60,8 +61,8 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			opacity: 1;
 			background-color: var(--d2l-lesson-header-background-color);
 			z-index: -2;
-			height: 100%;
-			width: 100%;
+			height: calc(100% + 2px);
+			width: calc(100% + 2px);
 		}
 
 		.module-title {
@@ -181,6 +182,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		div.title-container {
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 		}
 
 		div.title {
@@ -188,6 +190,8 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		}
 
 		d2l-meter-circle {
+			height: var(--d2l-meter-size);
+			min-height: var(--d2l-meter-size);
 			width: var(--d2l-meter-size);
 			min-width: var(--d2l-meter-size);
 		}
