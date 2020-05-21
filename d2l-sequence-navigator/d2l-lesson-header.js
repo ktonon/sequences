@@ -24,7 +24,6 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		:host {
 			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
 			--d2l-lesson-header-background-color: transparent;
-			--d2l-lesson-header-opacity: 1;
 			--d2l-meter-size: 48px;
 			background-color: var(--d2l-lesson-header-background-color);
 			color: var(--d2l-lesson-header-text-color);
@@ -36,21 +35,9 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			width: 100%;
 		}
 
-		/* TODO: figure out styles on hover */
-		/* :host(.d2l-asv-current) {
-			--d2l-lesson-header-background-color: white;
-		} */
-
 		a:focus {
 			outline: none;
 		}
-
-		/* TODO: figure out styles on hover */
-		/* :host(.d2l-asv-focus-within:not(.hide-description)),
-		:host(:hover:not(.hide-description)) {
-			--d2l-lesson-header-text-color: var(--d2l-color-ferrite);
-			--d2l-lesson-header-opacity: 0.26;
-		} */
 
 		div.bkgd, div.border {
 			position: absolute;
@@ -59,8 +46,18 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			border-radius: 8px;
 		}
 
+		:host(.d2l-asv-current) div.border {
+			border-style: solid;
+			border-width: 1px;
+			border-color: var(--d2l-asv-text-color);
+			border-radius: 5px;
+			z-index: -1;
+			height: calc(100% - 2px);
+			width: calc(100% - 2px);
+		}
+
 		div.bkgd {
-			opacity: var(--d2l-lesson-header-opacity);
+			opacity: 1;
 			background-color: var(--d2l-lesson-header-background-color);
 			z-index: -2;
 			height: 100%;
@@ -101,22 +98,26 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			background-color: var(--d2l-color-gypsum);
 			height:12px;
 		}
+
 		/* this is necessary to avoid white bleed over rounded corners in chrome and safari */
 		progress.d2l-progress::-webkit-progress-bar {
 			@apply --d2l-progress-webkit-progress-bar;
 		}
+
 		/* strangely, comma separating the selectors for these pseudo-elements causes them to break */
 		progress.d2l-progress::-webkit-progress-value {
 			@apply --d2l-progress-webkit-progress-value;
 			background-color: var(--d2l-color-celestine);
 			border:none;
 		}
+
 		/* note: unable to get firefox to animate the width... seems animation is not implemented for progress in FF */
 		progress.d2l-progress::-moz-progress-bar {
 			@apply --d2l-progress-moz-progress-bar;
 			background-color: var(--d2l-color-celestine);
 			border:none;
 		}
+
 		progress.d2l-progress::-ms-fill {
 			@apply --d2l-progress-ms-fill;
 			border: 1px solid transparent;
@@ -125,24 +126,30 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12837456/*/
 			background-color: var(--d2l-color-celestine, #006fbf);
 		}
+
 		:host(.hide-description) .d2l-header-lesson-link,
 		:host(.hide-description) .d2l-header-lesson-link:hover {
 			cursor:default;
 		}
+
 		:host(.d2l-asv-current) progress.d2l-progress {
 			background-color: transparent;
 			border: 1px solid var(--d2l-asv-selected-text-color);
 			box-shadow: none;
 		}
+
 		:host(.d2l-asv-current) progress.d2l-progress::-webkit-progress-value {
 			background-color: var(--d2l-asv-selected-text-color);
 		}
+
 		:host(.d2l-asv-current) progress.d2l-progress::-moz-progress-bar {
 			background-color: var(--d2l-asv-selected-text-color);
 		}
+
 		:host(.d2l-asv-current) progress.d2l-progress::-ms-fill {
 			background-color: var(--d2l-asv-selected-text-color, #fff);
 		}
+
 		/* Added light-theme id as a workaround for Edge issue with variables in -ms-fill
 		https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12837456/ */
 		:host(.d2l-asv-current) progress.d2l-progress#light-theme::-ms-fill {
@@ -155,14 +162,17 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			border: 1px solid var(--d2l-color-ferrite);
 			box-shadow: none;
 		}
+
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress::-webkit-progress-value,
 		:host(:hover:not(.hide-description)) progress.d2l-progress::-webkit-progress-value {
 			background-color: var(--d2l-color-ferrite);
 		}
+
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress::-moz-progress-bar,
 		:host(:hover:not(.hide-description)) progress.d2l-progress::-moz-progress-bar {
 			background-color: var(--d2l-color-ferrite);
 		}
+
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress::-ms-fill,
 		:host(:hover:not(.hide-description)) progress.d2l-progress::-ms-fill {
 			background-color: var(--d2l-color-ferrite, #565a5c);
@@ -172,9 +182,11 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			display: flex;
 			justify-content: space-between;
 		}
+
 		div.title {
 			width: calc(100% - var(--d2l-meter-size));
 		}
+
 		d2l-meter-circle {
 			width: var(--d2l-meter-size);
 			min-width: var(--d2l-meter-size);
@@ -191,6 +203,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 
 		<siren-entity href="[[_moduleProgressHref]]" token="[[token]]" entity="{{_moduleProgress}}"></siren-entity>
 		<div class="bkgd"></div>
+		<div class="border"></div>
 		<a href="javascript:void(0)" class="d2l-header-lesson-link" on-click="_onHeaderClicked">
 			<div class="title-container">
 				<div class="title">
@@ -295,11 +308,9 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 	_lightenMeter() {
 		const style = getComputedStyle(this);
 		const bkgdColour = style.getPropertyValue('--d2l-asv-primary-color').trim();
-		const opacity = style.getPropertyValue('--d2l-lesson-header-opacity');
 		const ferrite = style.getPropertyValue('--d2l-color-ferrite').trim();
 
-		this._lightMeter = opacity >= 1 &&
-			bkgdColour !== 'transparent' &&
+		this._lightMeter = bkgdColour !== 'transparent' &&
 			!isColorAccessible(bkgdColour, ferrite);
 	}
 
