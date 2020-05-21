@@ -35,6 +35,16 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			width: 100%;
 		}
 
+		:host(.d2l-asv-current) div.border {
+			border-style: solid;
+			border-width: 2px;
+			border-color: var(--d2l-asv-text-color);
+			border-radius: 5px;
+			z-index: -1;
+			height: calc(100% - 2px);
+			width: calc(100% - 2px);
+		}
+
 		a:focus {
 			outline: none;
 		}
@@ -44,16 +54,6 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			top: 0;
 			left: 0;
 			border-radius: 8px;
-		}
-
-		:host(.d2l-asv-current) div.border {
-			border-style: solid;
-			border-width: 1px;
-			border-color: var(--d2l-asv-text-color);
-			border-radius: 5px;
-			z-index: -1;
-			height: calc(100% - 2px);
-			width: calc(100% - 2px);
 		}
 
 		div.bkgd {
@@ -295,14 +295,6 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			},
 			_self: Object
 		};
-	}
-
-	ready() {
-		super.ready();
-		// TODO: figure out if this is necessary
-		// this.addEventListener('mouseover', this._lightenMeter);
-		// this.addEventListener('mouseout', this._lightenMeter);
-		// this.addEventListener('blur', this._lightenMeter);
 	}
 
 	_lightenMeter() {
