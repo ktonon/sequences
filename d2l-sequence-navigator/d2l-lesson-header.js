@@ -25,44 +25,17 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
 			--d2l-lesson-header-background-color: transparent;
 			--d2l-meter-size: 48px;
-			width: calc(100% - 14px);
-			height: calc(100% - 14px);
+			width: calc(100% - 12px);
+			height: calc(100% - 12px);
 			background-color: var(--d2l-lesson-header-background-color);
 			color: var(--d2l-lesson-header-text-color);
-			margin: 10px var(--d2l-sequence-nav-padding) 10px var(--d2l-sequence-nav-padding);
+			margin-right: 10px;
 			padding: 6px;
-			display: block;
-			position: relative;
-			z-index: 0;
-		}
-
-		:host(.d2l-asv-current) div.border {
-			border-style: solid;
-			border-width: 2px;
-			border-color: var(--d2l-asv-text-color);
-			border-radius: 5px;
-			z-index: -1;
-			height: calc(100% - 2px);
-			width: calc(100% - 2px);
+			display: block;;
 		}
 
 		a:focus {
 			outline: none;
-		}
-
-		div.bkgd, div.border {
-			position: absolute;
-			top: 0;
-			left: 0;
-			border-radius: 8px;
-		}
-
-		div.bkgd {
-			opacity: 1;
-			background-color: var(--d2l-lesson-header-background-color);
-			z-index: -2;
-			height: calc(100% + 2px);
-			width: calc(100% + 2px);
 		}
 
 		.module-title {
@@ -206,8 +179,6 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		</style>
 
 		<siren-entity href="[[_moduleProgressHref]]" token="[[token]]" entity="{{_moduleProgress}}"></siren-entity>
-		<div class="bkgd"></div>
-		<div class="border"></div>
 		<a href="javascript:void(0)" class="d2l-header-lesson-link" on-click="_onHeaderClicked">
 			<div class="title-container">
 				<div class="title">
