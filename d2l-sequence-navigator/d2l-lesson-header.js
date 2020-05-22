@@ -25,12 +25,11 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
 			--d2l-lesson-header-background-color: transparent;
 			--d2l-meter-size: 48px;
-			width: calc(100% - 12px);
-			height: calc(100% - 12px);
+			width: calc(100% - 20px);
+			height: calc(100% - 18px);
 			background-color: var(--d2l-lesson-header-background-color);
 			color: var(--d2l-lesson-header-text-color);
-			margin-right: 10px;
-			padding: 6px;
+			padding: 9px 10px;
 			display: block;;
 		}
 
