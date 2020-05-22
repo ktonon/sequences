@@ -276,6 +276,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		const ferrite = style.getPropertyValue('--d2l-color-ferrite').trim();
 
 		this._lightMeter = bkgdColour !== 'transparent' &&
+			bkgdColour !== '' &&
 			!isColorAccessible(bkgdColour, ferrite);
 	}
 
