@@ -266,8 +266,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			},
 			_moduleProgress: {
 				type: Object
-			},
-			_self: Object
+			}
 		};
 	}
 
