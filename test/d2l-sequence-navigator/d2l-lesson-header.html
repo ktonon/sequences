@@ -193,20 +193,6 @@ describe('d2l-lesson-header', () => {
 
 	});
 
-	describe('without unit completionProgressLangTerm', () => {
-		let element;
-		beforeEach(async()=> {
-			element = await SirenFixture('data/lesson-enhanced.json', fixture('LightBackgroundFixture'));
-		});
-		it('should use the referenced lang term', async() => {
-			const unitInfo = element.shadowRoot.querySelector('.unit-info :last-child');
-			expect(unitInfo.innerText)
-				.to
-				.equal('Unit 2 of 4');
-		});
-
-	});
-
 	describe('with the hide-description class', () => {
 		let element;
 		beforeEach(async() => {
