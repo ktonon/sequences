@@ -1,8 +1,6 @@
 {
 	"properties": {
 		"title": "Lesson 1",
-		"moduleIndex": 2,
-		"numberOfSiblingModules": 4,
 		"courseName": "My best course",
 		"useNewProgressBar": true
 	},
@@ -45,6 +43,9 @@
 	}, {
 		"rel": ["up"],
 		"href": "data/unit1.json"
+	}, {
+		"rel": ["module-progress-info"],
+		"href": "data/module-progress-info.json"
 	}],
 	"class": ["sequence", "sequence-description"]
 }

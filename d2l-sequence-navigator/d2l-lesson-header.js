@@ -231,7 +231,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			_useModuleIndex: {
 				type: Boolean,
 				value: false,
-				computed: '_checkModuleIndex(_moduleProgress.properties)'
+				computed: '_checkModuleIndex(_moduleProgress.properties, entity.properties)'
 			},
 			_moduleIndex: {
 				type: Number,
@@ -310,13 +310,19 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 	}
 
 	_getCompletionProgress(properties) {
-		return (properties && properties.completionProgressLangTerm)
-		|| (this._moduleIndex && this._siblingModules && this.localize('sequenceNavigator.currentModule', 'current', this._moduleIndex, 'total', this._siblingModules))
+		return properties && properties.completionProgressLangTerm
+		|| this._moduleIndex && this._siblingModules && this.localize('sequenceNavigator.currentModule', 'current', this._moduleIndex, 'total', this._siblingModules)
 		|| '';
 	}
 
-	_checkModuleIndex(properties) {
-		return properties && properties.moduleIndex && properties.numberOfSiblingModules;
+	_checkModuleIndex(moduleProperties, entityProperties) {
+		if (moduleProperties && moduleProperties.moduleIndex && moduleProperties.numberOfSiblingModules) {
+			return true;
+		} else if (entityProperties && entityProperties.completionProgressLangTerm) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	_getModuleIndex(properties) {

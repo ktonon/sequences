@@ -1,0 +1,11 @@
+{
+	"class": ["module-progress-info"],
+	"properties": {
+		"moduleIndex": 2,
+		"numberOfSiblingModules": 4
+	},
+	"links": [{
+		"rel": ["self"],
+		"href": "data/module-progress-info.json"
+	}]
+}
