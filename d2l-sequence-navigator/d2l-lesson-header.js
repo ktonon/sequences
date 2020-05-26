@@ -30,7 +30,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			background-color: var(--d2l-lesson-header-background-color);
 			color: var(--d2l-lesson-header-text-color);
 			padding: 9px 10px;
-			display: block;;
+			display: block;
 		}
 
 		a:focus {
@@ -231,15 +231,15 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			_useModuleIndex: {
 				type: Boolean,
 				value: false,
-				computed: '_checkModuleIndex(_moduleProgress.properties, entity.properties)'
+				computed: '_checkModuleIndex(_moduleIndex, _siblingModules, _completionProgress)'
 			},
 			_moduleIndex: {
 				type: Number,
-				computed: '_getModuleIndex(_moduleProgress.properties)'
+				computed: '_getModuleIndex(_moduleProgress.properties, entity.properties)'
 			},
 			_siblingModules: {
 				type: Number,
-				computed: '_getSiblingModules(_moduleProgress.properties)'
+				computed: '_getSiblingModules(_moduleProgress.properties, entity.properties)'
 			},
 			_moduleTitle: {
 				type: String,
@@ -315,26 +315,32 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		|| '';
 	}
 
-	_checkModuleIndex(moduleProperties, entityProperties) {
-		if (moduleProperties && moduleProperties.moduleIndex && moduleProperties.numberOfSiblingModules) {
-			return true;
-		} else if (entityProperties && entityProperties.completionProgressLangTerm) {
-			return true;
-		} else {
-			return false;
-		}
+	_checkModuleIndex(moduleIndex, siblingModules, completionProgress) {
+		return moduleIndex && siblingModules && completionProgress !== '';
 	}
 
-	_getModuleIndex(properties) {
-		return properties && properties.moduleIndex;
+	_getModuleIndex(moduleProperties, entityProperties) {
+		if (moduleProperties && moduleProperties.moduleIndex) {
+			return moduleProperties.moduleIndex;
+		} else if (entityProperties && entityProperties.moduleIndex) {
+			return entityProperties.moduleIndex;
+		} else {
+			return null;
+		}
 	}
 
 	_getModuleTitle(properties) {
 		return properties && properties.courseName;
 	}
 
-	_getSiblingModules(properties) {
-		return properties && properties.numberOfSiblingModules;
+	_getSiblingModules(moduleProperties, entityProperties) {
+		if (moduleProperties && moduleProperties.numberOfSiblingModules) {
+			return moduleProperties.numberOfSiblingModules;
+		} else if (entityProperties && entityProperties.numberOfSiblingModules) {
+			return entityProperties.numberOfSiblingModules;
+		} else {
+			return null;
+		}
 	}
 
 	_getUseNewProgressBar(properties) {
