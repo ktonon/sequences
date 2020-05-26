@@ -39,11 +39,26 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				padding: 15px 18px;
 				color: var(--d2l-outer-module-text-color);
 				cursor: pointer;
+				border-radius: 6px;
 			}
 
 			#header-container.hide-description,
 			:host([show-loading-skeleton]) #header-container {
 				cursor: default;
+			}
+
+			:host([accordion-state="closed"]) #header-container:hover {
+				background-color: var(--d2l-color-gypsum);
+			}
+
+			:host([accordion-state="open"]) #header-container:hover {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 6px #ffffff inset;
+				border-radius: 12px;
+			}
+
+			#header-container:hover * {
+				color: var(--d2l-color-celestine-minus-1);
 			}
 
 			.start-date-text {
@@ -377,6 +392,11 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			isSidebar: {
 				type: Boolean,
 				reflectToAttribute: true
+			},
+			accordionState: {
+				type: String,
+				reflectToAttribute: true,
+				value: 'closed'
 			}
 		};
 	}
@@ -392,13 +412,13 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 	connectedCallback() {
 		super.connectedCallback();
 		this.addEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
-		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseIconName);
+		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
-		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseIconName);
+		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
 	}
 
 	_isAccordionOpen() {
@@ -479,7 +499,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			return false;
 		}
 		// Set the starting icon depending on the collapse state
-		this._updateCollapseIconName();
+		this._updateCollapseStateAndIconName();
 
 		// FixMe: This is kind of gross. ideally we decouple all the isSidebar stuff into separate components
 		// If this is a sidebar, we use the currentActivity to detect if this should be open.
@@ -578,11 +598,13 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		return hasActiveTopic || hasActiveModule;
 	}
 
-	_updateCollapseIconName() {
+	_updateCollapseStateAndIconName() {
 		if (this._isAccordionOpen()) {
 			this._iconName = 'tier1:arrow-collapse-small';
+			this.accordionState = 'open';
 		} else {
 			this._iconName = 'tier1:arrow-expand-small';
+			this.accordionState = 'closed';
 		}
 	}
 
