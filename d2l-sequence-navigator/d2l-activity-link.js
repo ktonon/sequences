@@ -24,7 +24,18 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			#content-container:focus,
 			#content-container:focus-within {
 				outline: none;
-				border: 2px solid var(--d2l-color-celestine);
+				box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--d2l-color-celestine);
+				background-color: var(--d2l-color-gypsum);
+			}
+
+			#content-container:focus,
+			#content-container:focus-within a {
+				color: var(--d2l-color-celestine-minus-1);
+			}
+
+			#content-container:focus,
+			#content-container:focus-within d2l-icon {
+				color: var(--d2l-color-celestine-minus-1);
 			}
 
 			:host > div {
@@ -40,6 +51,7 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			:host([show-underline]) > #outer-container {
 				border-bottom: 1px solid var(--d2l-color-mica);
 			}
+
 			#outer-container {
 				border-bottom: 1px solid transparent;
 				display: flex;
