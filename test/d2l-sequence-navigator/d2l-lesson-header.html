@@ -81,11 +81,8 @@ describe('d2l-lesson-header', () => {
 				.text('Lesson 1');
 		});
 
-		it('should display module index given index and total', () => {
-			const useModuleIndex = !!element._checkModuleIndex({
-				moduleIndex: 2,
-				numberOfSiblingModules: 4
-			});
+		it('should display module index information given completion progress', () => {
+			const useModuleIndex = !!element._checkCompletionProgress('module 2 of 4');
 			expect(useModuleIndex)
 				.to
 				.equal(true);

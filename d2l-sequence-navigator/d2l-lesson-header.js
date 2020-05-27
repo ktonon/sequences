@@ -231,7 +231,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			_useModuleIndex: {
 				type: Boolean,
 				value: false,
-				computed: '_checkModuleIndex(_moduleIndex, _siblingModules, _completionProgress)'
+				computed: '_checkCompletionProgress(_completionProgress)'
 			},
 			_moduleIndex: {
 				type: Number,
@@ -315,8 +315,8 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		|| '';
 	}
 
-	_checkModuleIndex(moduleIndex, siblingModules, completionProgress) {
-		return moduleIndex && siblingModules && completionProgress !== '';
+	_checkCompletionProgress(completionProgress) {
+		return completionProgress && completionProgress !== '';
 	}
 
 	_getModuleIndex(moduleProperties, entityProperties) {
