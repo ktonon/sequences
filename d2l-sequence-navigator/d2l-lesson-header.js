@@ -22,60 +22,19 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		return html`
 		<style>
 		:host {
-			--d2l-lesson-header-text-color: var(--d2l-color-ferrite);
+			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
 			--d2l-lesson-header-background-color: transparent;
-			--d2l-lesson-header-border-color: transparent;
-			--d2l-lesson-header-opacity: 1;
 			--d2l-meter-size: 48px;
-			background-color: transparent;
+			width: calc(100% - 20px);
+			height: calc(100% - 18px);
+			background-color: var(--d2l-lesson-header-background-color);
 			color: var(--d2l-lesson-header-text-color);
-			margin: 10px var(--d2l-sequence-nav-padding) 10px var(--d2l-sequence-nav-padding);
-			padding: 6px;
+			padding: 9px 10px;
 			display: block;
-			position: relative;
-			z-index: 0;
-		}
-
-		:host(.d2l-asv-current) {
-			--d2l-lesson-header-background-color: var(--d2l-asv-primary-color);
-			--d2l-lesson-header-text-color: var(--d2l-asv-selected-text-color);
-			--d2l-lesson-header-border-color: rgba(0, 0, 0, 0.6);
 		}
 
 		a:focus {
 			outline: none;
-		}
-
-		:host(.d2l-asv-focus-within:not(.hide-description)),
-		:host(:hover:not(.hide-description)) {
-			--d2l-lesson-header-background-color: var(--d2l-asv-primary-color);
-			--d2l-lesson-header-border-color: rgba(0, 0, 0, 0.42);
-			--d2l-lesson-header-text-color: var(--d2l-color-ferrite);
-			--d2l-lesson-header-opacity: 0.26;
-		}
-
-		div.bkgd, div.border {
-			position: absolute;
-			top: 0;
-			left: 0;
-			border-radius: 8px;
-		}
-
-		div.bkgd {
-			opacity: var(--d2l-lesson-header-opacity);
-			background-color: var(--d2l-lesson-header-background-color);
-			z-index: -2;
-			height: 100%;
-			width: 100%;
-		}
-
-		div.border {
-			border-style: solid;
-			border-width: 1px;
-			border-color: var(--d2l-lesson-header-border-color);
-			z-index: -1;
-			height: calc(100% - 2px);
-			width: calc(100% - 2px);
 		}
 
 		.module-title {
@@ -112,22 +71,26 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			background-color: var(--d2l-color-gypsum);
 			height:12px;
 		}
+
 		/* this is necessary to avoid white bleed over rounded corners in chrome and safari */
 		progress.d2l-progress::-webkit-progress-bar {
 			@apply --d2l-progress-webkit-progress-bar;
 		}
+
 		/* strangely, comma separating the selectors for these pseudo-elements causes them to break */
 		progress.d2l-progress::-webkit-progress-value {
 			@apply --d2l-progress-webkit-progress-value;
 			background-color: var(--d2l-color-celestine);
 			border:none;
 		}
+
 		/* note: unable to get firefox to animate the width... seems animation is not implemented for progress in FF */
 		progress.d2l-progress::-moz-progress-bar {
 			@apply --d2l-progress-moz-progress-bar;
 			background-color: var(--d2l-color-celestine);
 			border:none;
 		}
+
 		progress.d2l-progress::-ms-fill {
 			@apply --d2l-progress-ms-fill;
 			border: 1px solid transparent;
@@ -136,24 +99,30 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12837456/*/
 			background-color: var(--d2l-color-celestine, #006fbf);
 		}
+
 		:host(.hide-description) .d2l-header-lesson-link,
 		:host(.hide-description) .d2l-header-lesson-link:hover {
 			cursor:default;
 		}
+
 		:host(.d2l-asv-current) progress.d2l-progress {
 			background-color: transparent;
 			border: 1px solid var(--d2l-asv-selected-text-color);
 			box-shadow: none;
 		}
+
 		:host(.d2l-asv-current) progress.d2l-progress::-webkit-progress-value {
 			background-color: var(--d2l-asv-selected-text-color);
 		}
+
 		:host(.d2l-asv-current) progress.d2l-progress::-moz-progress-bar {
 			background-color: var(--d2l-asv-selected-text-color);
 		}
+
 		:host(.d2l-asv-current) progress.d2l-progress::-ms-fill {
 			background-color: var(--d2l-asv-selected-text-color, #fff);
 		}
+
 		/* Added light-theme id as a workaround for Edge issue with variables in -ms-fill
 		https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12837456/ */
 		:host(.d2l-asv-current) progress.d2l-progress#light-theme::-ms-fill {
@@ -166,14 +135,17 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			border: 1px solid var(--d2l-color-ferrite);
 			box-shadow: none;
 		}
+
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress::-webkit-progress-value,
 		:host(:hover:not(.hide-description)) progress.d2l-progress::-webkit-progress-value {
 			background-color: var(--d2l-color-ferrite);
 		}
+
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress::-moz-progress-bar,
 		:host(:hover:not(.hide-description)) progress.d2l-progress::-moz-progress-bar {
 			background-color: var(--d2l-color-ferrite);
 		}
+
 		:host(.d2l-asv-focus-within:not(.hide-description)) progress.d2l-progress::-ms-fill,
 		:host(:hover:not(.hide-description)) progress.d2l-progress::-ms-fill {
 			background-color: var(--d2l-color-ferrite, #565a5c);
@@ -182,11 +154,16 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		div.title-container {
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 		}
+
 		div.title {
 			width: calc(100% - var(--d2l-meter-size));
 		}
+
 		d2l-meter-circle {
+			height: var(--d2l-meter-size);
+			min-height: var(--d2l-meter-size);
 			width: var(--d2l-meter-size);
 			min-width: var(--d2l-meter-size);
 		}
@@ -198,10 +175,9 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		div.unit-info {
 			font-size: 14px;
 		}
-
 		</style>
-		<div class="bkgd"></div>
-		<div class="border"></div>
+
+		<siren-entity href="[[_moduleProgressHref]]" token="[[token]]" entity="{{_moduleProgress}}"></siren-entity>
 		<a href="javascript:void(0)" class="d2l-header-lesson-link" on-click="_onHeaderClicked">
 			<div class="title-container">
 				<div class="title">
@@ -248,18 +224,22 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 				notify: true,
 				observer: '_lightenMeter'
 			},
+			_moduleProgressHref: {
+				type: String,
+				computed: '_getModuleProgressHref(entity)'
+			},
 			_useModuleIndex: {
 				type: Boolean,
 				value: false,
-				computed: '_checkModuleIndex(entity.properties)'
+				computed: '_checkCompletionProgress(_completionProgress)'
 			},
 			_moduleIndex: {
 				type: Number,
-				computed: '_getModuleIndex(entity.properties)'
+				computed: '_getModuleIndex(_moduleProgress.properties, entity.properties)'
 			},
 			_siblingModules: {
 				type: Number,
-				computed: '_getSiblingModules(entity.properties)'
+				computed: '_getSiblingModules(_moduleProgress.properties, entity.properties)'
 			},
 			_moduleTitle: {
 				type: String,
@@ -282,29 +262,21 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			},
 			_completionProgress: {
 				type: String,
-				computed: '_getCompletionProgress(entity.properties, _self)'
+				computed: '_getCompletionProgress(entity.properties, _moduleIndex, _siblingModules)'
 			},
-			_self: Object
+			_moduleProgress: {
+				type: Object
+			}
 		};
-	}
-
-	ready() {
-		super.ready();
-		this.addEventListener('mouseover', this._lightenMeter);
-		this.addEventListener('mouseout', this._lightenMeter);
-		this.addEventListener('blur', this._lightenMeter);
-		this._self = this;
 	}
 
 	_lightenMeter() {
 		const style = getComputedStyle(this);
-		const bkgdColour = style.getPropertyValue('--d2l-lesson-header-background-color').trim();
-		const opacity = style.getPropertyValue('--d2l-lesson-header-opacity');
+		const bkgdColour = style.getPropertyValue('--d2l-asv-primary-color').trim();
 		const ferrite = style.getPropertyValue('--d2l-color-ferrite').trim();
 
-		this._lightMeter = opacity >= 1 &&
-			this.currentActivity === this._selfLink &&
-			bkgdColour !== 'transparent' &&
+		this._lightMeter = bkgdColour !== 'transparent' &&
+			bkgdColour !== '' &&
 			!isColorAccessible(bkgdColour, ferrite);
 	}
 
@@ -328,6 +300,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 		}
 		this.currentActivity = this._selfLink;
 	}
+
 	isLightTheme() {
 		var styles = JSON.parse(document.getElementsByTagName('html')[0].getAttribute('data-asv-css-vars'));
 		if (styles && styles['--d2l-asv-selected-text-color'] === 'var(--d2l-color-ferrite)') {
@@ -337,29 +310,46 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 	}
 
 	_getCompletionProgress(properties) {
-		return properties &&  properties.completionProgressLangTerm
-		|| this._self && this._self.localize('sequenceNavigator.currentModule', 'current', this._moduleIndex, 'total', this._siblingModules)
+		return properties && properties.completionProgressLangTerm
+		|| this._moduleIndex && this._siblingModules && this.localize('sequenceNavigator.currentModule', 'current', this._moduleIndex, 'total', this._siblingModules)
 		|| '';
 	}
 
-	_checkModuleIndex(properties) {
-		return properties && properties.moduleIndex && properties.numberOfSiblingModules;
+	_checkCompletionProgress(completionProgress) {
+		return completionProgress && completionProgress !== '';
 	}
 
-	_getModuleIndex(properties) {
-		return properties && properties.moduleIndex;
+	_getModuleIndex(moduleProperties, entityProperties) {
+		if (moduleProperties && moduleProperties.moduleIndex) {
+			return moduleProperties.moduleIndex;
+		} else if (entityProperties && entityProperties.moduleIndex) {
+			return entityProperties.moduleIndex;
+		} else {
+			return null;
+		}
 	}
 
 	_getModuleTitle(properties) {
 		return properties && properties.courseName;
 	}
 
-	_getSiblingModules(properties) {
-		return properties && properties.numberOfSiblingModules;
+	_getSiblingModules(moduleProperties, entityProperties) {
+		if (moduleProperties && moduleProperties.numberOfSiblingModules) {
+			return moduleProperties.numberOfSiblingModules;
+		} else if (entityProperties && entityProperties.numberOfSiblingModules) {
+			return entityProperties.numberOfSiblingModules;
+		} else {
+			return null;
+		}
 	}
 
 	_getUseNewProgressBar(properties) {
 		return properties && properties.useNewProgressBar;
+	}
+
+	_getModuleProgressHref(entity) {
+		const rootLink = entity && entity.getLinkByRel('module-progress-info');
+		return rootLink && rootLink.href || '';
 	}
 }
 

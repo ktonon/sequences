@@ -81,11 +81,8 @@ describe('d2l-lesson-header', () => {
 				.text('Lesson 1');
 		});
 
-		it('should display module index given index and total', () => {
-			const useModuleIndex = !!element._checkModuleIndex({
-				moduleIndex: 2,
-				numberOfSiblingModules: 4
-			});
+		it('should display module index information given completion progress', () => {
+			const useModuleIndex = !!element._checkCompletionProgress('module 2 of 4');
 			expect(useModuleIndex)
 				.to
 				.equal(true);
@@ -189,20 +186,6 @@ describe('d2l-lesson-header', () => {
 			expect(unitInfo.innerText)
 				.to
 				.equal(entity.properties.completionProgressLangTerm);
-		});
-
-	});
-
-	describe('without unit completionProgressLangTerm', () => {
-		let element;
-		beforeEach(async()=> {
-			element = await SirenFixture('data/lesson-enhanced.json', fixture('LightBackgroundFixture'));
-		});
-		it('should use the referenced lang term', async() => {
-			const unitInfo = element.shadowRoot.querySelector('.unit-info :last-child');
-			expect(unitInfo.innerText)
-				.to
-				.equal('Unit 2 of 4');
 		});
 
 	});
