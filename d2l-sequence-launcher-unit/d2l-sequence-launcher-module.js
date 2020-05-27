@@ -217,11 +217,21 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				display: block;
 			}
 
+			:host([header-focused][accordion-state="closed"]) #header-container {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--d2l-color-celestine);
+			}
+
+			:host([header-focused][accordion-state="open"]) #header-container {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 4px #ffffff inset, 0 0 0 6px var(--d2l-color-celestine) inset;
+				border-radius: 12px;
+			}
 		</style>
 
 		<siren-entity href="[[lastViewedContentObject]]" token="[[token]]" entity="{{_lastViewedContentObjectEntity}}"></siren-entity>
 		<siren-entity href="[[currentActivity]]" token="[[token]]" entity="{{_currentActivityEntity}}"></siren-entity>
-		<d2l-labs-accordion-collapse no-icons="" flex="" has-focus-style>
+		<d2l-labs-accordion-collapse no-icons="" flex="" disable-default-trigger-focus>
 			<div slot="header" id="header-container" class$="[[isEmpty(subEntities)]] [[_getHideDescriptionClass(_hideModuleDescription)]]">
 				<div id="header-skeleton-container">
 					<div id="header-skeleton" class="skeleton"></div>
@@ -397,7 +407,12 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				type: String,
 				reflectToAttribute: true,
 				value: 'closed'
-			}
+			},
+			headerFocused: {
+				type: Boolean,
+				reflectToAttribute: true,
+				value: false
+			},
 		};
 	}
 
@@ -413,12 +428,16 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		super.connectedCallback();
 		this.addEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
 		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
+		this.addEventListener('d2l-labs-accordion-toggle-focus', this._onHeaderFocus);
+		this.addEventListener('d2l-labs-accordion-toggle-blur', this._onHeaderBlur);
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
 		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
+		this.removeEventListener('d2l-labs-accordion-toggle-focus', this._onHeaderFocus);
+		this.removeEventListener('d2l-labs-accordion-toggle-blur', this._onHeaderBlur);
 	}
 
 	_isAccordionOpen() {
@@ -661,6 +680,14 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 
 	_showChildSkeletons(showLoadingSkeleton, _childrenLoading) {
 		return showLoadingSkeleton || _childrenLoading;
+	}
+
+	_onHeaderFocus() {
+		this.headerFocused = true;
+	}
+
+	_onHeaderBlur() {
+		this.headerFocused = false;
 	}
 }
 customElements.define(D2LSequenceLauncherModule.is, D2LSequenceLauncherModule);
