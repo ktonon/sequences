@@ -221,7 +221,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 
 		<siren-entity href="[[lastViewedContentObject]]" token="[[token]]" entity="{{_lastViewedContentObjectEntity}}"></siren-entity>
 		<siren-entity href="[[currentActivity]]" token="[[token]]" entity="{{_currentActivityEntity}}"></siren-entity>
-		<d2l-labs-accordion-collapse no-icons="" flex="">
+		<d2l-labs-accordion-collapse no-icons="" flex="" has-focus-style>
 			<div slot="header" id="header-container" class$="[[isEmpty(subEntities)]] [[_getHideDescriptionClass(_hideModuleDescription)]]">
 				<div id="header-skeleton-container">
 					<div id="header-skeleton" class="skeleton"></div>
