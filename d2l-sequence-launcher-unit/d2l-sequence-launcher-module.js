@@ -42,20 +42,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				cursor: default;
 			}
 
-			:host([accordion-state="closed"]) #header-container:hover {
-				background-color: var(--d2l-color-gypsum);
-			}
-
-			:host([accordion-state="open"]) #header-container:hover .module-header {
-				background-color: var(--d2l-color-gypsum);
-				box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff;
-				border-radius: 2px;
-			}
-
-			#header-container:hover * {
-				color: var(--d2l-color-celestine-minus-1);
-			}
-
 			.start-date-text {
 				margin: 0;
 				text-align: right;
@@ -210,6 +196,20 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				height: 24px;
 				width: 20%;
 				display: block;
+			}
+
+			:host([accordion-state="closed"]) #header-container:hover {
+				background-color: var(--d2l-color-gypsum);
+			}
+
+			:host([accordion-state="open"]) #header-container:hover .module-header {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff;
+				border-radius: 2px;
+			}
+
+			#header-container:hover * {
+				color: var(--d2l-color-celestine-minus-1);
 			}
 
 			:host([header-focused][accordion-state="closed"]) #header-container {
