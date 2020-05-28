@@ -46,10 +46,10 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				background-color: var(--d2l-color-gypsum);
 			}
 
-			:host([accordion-state="open"]) #header-container:hover {
+			:host([accordion-state="open"]) #header-container:hover .module-header {
 				background-color: var(--d2l-color-gypsum);
-				box-shadow: 0 0 0 6px #ffffff inset;
-				border-radius: 12px;
+				box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff;
+				border-radius: 2px;
 			}
 
 			#header-container:hover * {
@@ -217,10 +217,14 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--d2l-color-celestine);
 			}
 
-			:host([header-focused][accordion-state="open"]) #header-container {
+			:host([header-focused][accordion-state="open"]) .module-header {
 				background-color: var(--d2l-color-gypsum);
-				box-shadow: 0 0 0 4px #ffffff inset, 0 0 0 6px var(--d2l-color-celestine) inset;
-				border-radius: 12px;
+				border-radius: 2px;
+    			box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff, 0 0 0 12px var(--d2l-color-celestine);
+			}
+
+			:host([header-focused]) .module-title {
+				color: var(--d2l-color-celestine-minus-1);
 			}
 		</style>
 
