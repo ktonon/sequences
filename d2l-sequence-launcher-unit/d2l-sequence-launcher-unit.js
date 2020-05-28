@@ -25,7 +25,6 @@ PolymerElement
 			:host {
 				display: block;
 				height: 100%;
-				box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--d2l-color-celestine);
 				border-bottom-left-radius: 6px;
 				border-bottom-right-radius: 6px;
 			}
