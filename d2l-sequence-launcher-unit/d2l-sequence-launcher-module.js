@@ -426,8 +426,8 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		super.connectedCallback();
 		this.addEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
 		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
-		this.addEventListener('d2l-labs-accordion-toggle-focus', this._onHeaderFocus);
-		this.addEventListener('d2l-labs-accordion-toggle-blur', this._onHeaderBlur);
+		this.addEventListener('d2l-labs-accordion-collapse-toggle-focus', this._onHeaderFocus);
+		this.addEventListener('d2l-labs-accordion-collapse-toggle-blur', this._onHeaderBlur);
 		this.addEventListener('d2l-labs-accordion-collapse-state-opened', this._onLaunchModuleButtonClick);
 	}
 
@@ -435,8 +435,8 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		super.disconnectedCallback();
 		this.removeEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
 		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
-		this.removeEventListener('d2l-labs-accordion-toggle-focus', this._onHeaderFocus);
-		this.removeEventListener('d2l-labs-accordion-toggle-blur', this._onHeaderBlur);
+		this.removeEventListener('d2l-labs-accordion-collapse-toggle-focus', this._onHeaderFocus);
+		this.removeEventListener('d2l-labs-accordion-collapse-toggle-blur', this._onHeaderBlur);
 		this.removeEventListener('d2l-labs-accordion-collapse-state-opened', this._onLaunchModuleButtonClick);
 	}
 
