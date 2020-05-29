@@ -275,7 +275,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 							aria-label$="[[localize('sequenceNavigator.launchModule')]]"
 							text="[[localize('sequenceNavigator.launchModule')]]"
 							icon="tier1:move-to"
-							on-click="_onLaunchModuleButtonClick"
 						></d2l-button-subtle>
 					</template>
 				</div>
@@ -429,6 +428,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
 		this.addEventListener('d2l-labs-accordion-toggle-focus', this._onHeaderFocus);
 		this.addEventListener('d2l-labs-accordion-toggle-blur', this._onHeaderBlur);
+		this.addEventListener('d2l-labs-accordion-collapse-state-opened', this._onLaunchModuleButtonClick);
 	}
 
 	disconnectedCallback() {
@@ -437,6 +437,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
 		this.removeEventListener('d2l-labs-accordion-toggle-focus', this._onHeaderFocus);
 		this.removeEventListener('d2l-labs-accordion-toggle-blur', this._onHeaderBlur);
+		this.removeEventListener('d2l-labs-accordion-collapse-state-opened', this._onLaunchModuleButtonClick);
 	}
 
 	_isAccordionOpen() {
