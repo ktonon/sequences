@@ -24,11 +24,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				--d2l-outer-module-text-color: var(--d2l-color-ferrite);
 			}
 
-			d2l-labs-accordion-collapse:focus {
-				outline: none;
-				border: 2px solid var(--d2l-color-celestine);
-			}
-
 			d2l-labs-accordion-collapse {
 				border: 1px solid var(--d2l-color-mica);
 				border-radius: 6px;
@@ -39,6 +34,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				padding: 15px 18px;
 				color: var(--d2l-outer-module-text-color);
 				cursor: pointer;
+				border-radius: 6px;
 			}
 
 			#header-container.hide-description,
@@ -202,11 +198,39 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				display: block;
 			}
 
+			:host([accordion-state="closed"]) #header-container:hover {
+				background-color: var(--d2l-color-gypsum);
+			}
+
+			:host([accordion-state="open"]) #header-container:hover .module-header {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff;
+				border-radius: 2px;
+			}
+
+			#header-container:hover * {
+				color: var(--d2l-color-celestine-minus-1);
+			}
+
+			:host([header-focused][accordion-state="closed"]) #header-container {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--d2l-color-celestine);
+			}
+
+			:host([header-focused][accordion-state="open"]) .module-header {
+				background-color: var(--d2l-color-gypsum);
+				border-radius: 2px;
+    			box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff, 0 0 0 12px var(--d2l-color-celestine);
+			}
+
+			:host([header-focused]) .module-title {
+				color: var(--d2l-color-celestine-minus-1);
+			}
 		</style>
 
 		<siren-entity href="[[lastViewedContentObject]]" token="[[token]]" entity="{{_lastViewedContentObjectEntity}}"></siren-entity>
 		<siren-entity href="[[currentActivity]]" token="[[token]]" entity="{{_currentActivityEntity}}"></siren-entity>
-		<d2l-labs-accordion-collapse no-icons="" flex="">
+		<d2l-labs-accordion-collapse no-icons="" flex="" disable-default-trigger-focus>
 			<div slot="header" id="header-container" class$="[[isEmpty(subEntities)]] [[_getHideDescriptionClass(_hideModuleDescription)]]">
 				<div id="header-skeleton-container">
 					<div id="header-skeleton" class="skeleton"></div>
@@ -251,7 +275,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 							aria-label$="[[localize('sequenceNavigator.launchModule')]]"
 							text="[[localize('sequenceNavigator.launchModule')]]"
 							icon="tier1:move-to"
-							on-click="_onLaunchModuleButtonClick"
 						></d2l-button-subtle>
 					</template>
 				</div>
@@ -377,7 +400,17 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			isSidebar: {
 				type: Boolean,
 				reflectToAttribute: true
-			}
+			},
+			accordionState: {
+				type: String,
+				reflectToAttribute: true,
+				value: 'closed'
+			},
+			headerFocused: {
+				type: Boolean,
+				reflectToAttribute: true,
+				value: false
+			},
 		};
 	}
 
@@ -392,13 +425,19 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 	connectedCallback() {
 		super.connectedCallback();
 		this.addEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
-		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseIconName);
+		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
+		this.addEventListener('d2l-labs-accordion-collapse-toggle-focus', this._onHeaderFocus);
+		this.addEventListener('d2l-labs-accordion-collapse-toggle-blur', this._onHeaderBlur);
+		this.addEventListener('d2l-labs-accordion-collapse-state-opened', this._onLaunchModuleButtonClick);
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
-		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseIconName);
+		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
+		this.removeEventListener('d2l-labs-accordion-collapse-toggle-focus', this._onHeaderFocus);
+		this.removeEventListener('d2l-labs-accordion-collapse-toggle-blur', this._onHeaderBlur);
+		this.removeEventListener('d2l-labs-accordion-collapse-state-opened', this._onLaunchModuleButtonClick);
 	}
 
 	_isAccordionOpen() {
@@ -479,7 +518,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			return false;
 		}
 		// Set the starting icon depending on the collapse state
-		this._updateCollapseIconName();
+		this._updateCollapseStateAndIconName();
 
 		// FixMe: This is kind of gross. ideally we decouple all the isSidebar stuff into separate components
 		// If this is a sidebar, we use the currentActivity to detect if this should be open.
@@ -515,8 +554,10 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 	}
 
 	_onLaunchModuleButtonClick() {
-		this.currentActivity = this.entity.getLinkByRel('self').href;
-		this._contentObjectClick();
+		if (!this._hideModuleDescription) {
+			this.currentActivity = this.entity.getLinkByRel('self').href;
+			this._contentObjectClick();
+		}
 	}
 
 	_getShowModuleChildren(_moduleStartOpen, _moduleWasExpanded) {
@@ -578,11 +619,13 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		return hasActiveTopic || hasActiveModule;
 	}
 
-	_updateCollapseIconName() {
+	_updateCollapseStateAndIconName() {
 		if (this._isAccordionOpen()) {
 			this._iconName = 'tier1:arrow-collapse-small';
+			this.accordionState = 'open';
 		} else {
 			this._iconName = 'tier1:arrow-expand-small';
+			this.accordionState = 'closed';
 		}
 	}
 
@@ -639,6 +682,14 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 
 	_showChildSkeletons(showLoadingSkeleton, _childrenLoading) {
 		return showLoadingSkeleton || _childrenLoading;
+	}
+
+	_onHeaderFocus() {
+		this.headerFocused = true;
+	}
+
+	_onHeaderBlur() {
+		this.headerFocused = false;
 	}
 }
 customElements.define(D2LSequenceLauncherModule.is, D2LSequenceLauncherModule);

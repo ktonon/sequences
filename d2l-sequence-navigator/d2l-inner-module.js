@@ -24,7 +24,18 @@ class D2LInnerModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			#module-header:focus,
 			#module-header:focus-within {
 				outline: none;
-				border: 2px solid var(--d2l-color-celestine);
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--d2l-color-celestine);
+			}
+
+			#module-header:focus,
+			#module-header:focus-within d2l-icon {
+				color: var(--d2l-color-celestine-minus-1);
+			}
+
+			#module-header:focus,
+			#module-header:focus-within a {
+				color: var(--d2l-color-celestine-minus-1);
 			}
 
 			#title-container {

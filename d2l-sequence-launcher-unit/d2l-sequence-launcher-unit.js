@@ -25,7 +25,6 @@ PolymerElement
 			:host {
 				display: block;
 				height: 100%;
-				border: 1px solid var(--d2l-color-mica);
 				border-bottom-left-radius: 6px;
 				border-bottom-right-radius: 6px;
 			}
@@ -35,7 +34,7 @@ PolymerElement
 
 			.module-item-list {
 				list-style-type: none;
-				padding: 0 18px;
+				padding: 0 30px;
 				margin: 0;
 			}
 
@@ -55,6 +54,18 @@ PolymerElement
 
 			li {
 				padding-top: 6px;
+			}
+
+			@media(max-width: 929px) {
+				.module-item-list {
+					padding: 0 24px;
+				}
+			}
+
+			@media(max-width: 767px) {
+				.module-item-list {
+					padding: 0 18px;
+				}
 			}
 		</style>
 		<siren-entity href="[[rootHref]]" token="[[token]]" entity="{{_lessonEntity}}"></siren-entity>
