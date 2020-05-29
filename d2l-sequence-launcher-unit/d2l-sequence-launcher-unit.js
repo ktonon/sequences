@@ -34,7 +34,7 @@ PolymerElement
 
 			.module-item-list {
 				list-style-type: none;
-				padding: 0 18px;
+				padding: 0 30px;
 				margin: 0;
 			}
 
@@ -54,6 +54,18 @@ PolymerElement
 
 			li {
 				padding-top: 6px;
+			}
+
+			@media(max-width: 929px) {
+				.module-item-list {
+					padding: 0 24px;
+				}
+			}
+
+			@media(max-width: 767px) {
+				.module-item-list {
+					padding: 0 18px;
+				}
 			}
 		</style>
 		<siren-entity href="[[rootHref]]" token="[[token]]" entity="{{_lessonEntity}}"></siren-entity>
