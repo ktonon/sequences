@@ -399,7 +399,8 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			},
 			isSidebar: {
 				type: Boolean,
-				reflectToAttribute: true
+				reflectToAttribute: true,
+				value: false
 			},
 			accordionState: {
 				type: String,
@@ -428,7 +429,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
 		this.addEventListener('d2l-labs-accordion-collapse-toggle-focus', this._onHeaderFocus);
 		this.addEventListener('d2l-labs-accordion-collapse-toggle-blur', this._onHeaderBlur);
-		this.addEventListener('d2l-labs-accordion-collapse-state-opened', this._onLaunchModuleButtonClick);
 	}
 
 	disconnectedCallback() {
@@ -437,7 +437,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
 		this.removeEventListener('d2l-labs-accordion-collapse-toggle-focus', this._onHeaderFocus);
 		this.removeEventListener('d2l-labs-accordion-collapse-toggle-blur', this._onHeaderBlur);
-		this.removeEventListener('d2l-labs-accordion-collapse-state-opened', this._onLaunchModuleButtonClick);
 	}
 
 	_isAccordionOpen() {
@@ -551,10 +550,8 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 
 	_onHeaderClicked() {
 		this._moduleWasExpanded = true;
-	}
-
-	_onLaunchModuleButtonClick() {
-		if (!this._hideModuleDescription) {
+		// if accordion is closed when header is clicked, the user intends to open it
+		if (!this._isAccordionOpen() && !this._hideModuleDescription && this.isSidebar) {
 			this.currentActivity = this.entity.getLinkByRel('self').href;
 			this._contentObjectClick();
 		}
