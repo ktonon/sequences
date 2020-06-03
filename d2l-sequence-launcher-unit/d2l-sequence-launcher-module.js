@@ -399,7 +399,8 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			},
 			isSidebar: {
 				type: Boolean,
-				reflectToAttribute: true
+				reflectToAttribute: true,
+				value: false
 			},
 			accordionState: {
 				type: String,
