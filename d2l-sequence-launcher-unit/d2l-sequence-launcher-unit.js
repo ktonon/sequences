@@ -5,6 +5,7 @@ import '@brightspace-ui-labs/accordion/accordion.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import 'siren-entity/siren-entity.js';
 import '../localize-behavior.js';
+import '../d2l-sequence-navigator/d2l-sequence-end.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
@@ -34,7 +35,7 @@ PolymerElement
 
 			.module-item-list {
 				list-style-type: none;
-				padding: 0 30px;
+				padding: 0;
 				margin: 0;
 			}
 
@@ -56,14 +57,18 @@ PolymerElement
 				padding-top: 6px;
 			}
 
+			.module-content {
+				padding: 0 30px;
+			}
+
 			@media(max-width: 929px) {
-				.module-item-list {
+				.module-content {
 					padding: 0 24px;
 				}
 			}
 
 			@media(max-width: 767px) {
-				.module-item-list {
+				.module-content {
 					padding: 0 18px;
 				}
 			}
@@ -103,6 +108,12 @@ PolymerElement
 					</template>
 				</template>
 			</ol>
+			<d2l-sequence-end
+				href="[[_sequenceEndHref]]"
+				token="[[token]]"
+				current-activity="{{href}}"
+				text="[[localize('endOfSequence')]]"
+			></d2l-sequence-end>
 		</d2l-labs-accordion>
 		`;
 	}
@@ -146,6 +157,10 @@ PolymerElement
 			_childrenLoadingTracker: {
 				type: Object,
 				computed: '_setUpChildrenLoadingTracker(subEntities)'
+			},
+			_sequenceEndHref: {
+				type: String,
+				computed: '_getSequenceEndHref(entity)'
 			},
 			isSidebar: {
 				type: Boolean,
@@ -248,6 +263,11 @@ PolymerElement
 
 	_showChildSkeletons(showLoadingSkeleton, _childrenLoading) {
 		return showLoadingSkeleton || _childrenLoading;
+	}
+
+	_getSequenceEndHref(entity) {
+		const endOfSequenceLink = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/end-of-sequence');
+		return endOfSequenceLink && endOfSequenceLink.href || '';
 	}
 }
 
