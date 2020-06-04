@@ -106,6 +106,7 @@ PolymerElement
 						</li>
 					</template>
 				</template>
+			</ol>
 			<slot name="end-of-lesson"></slot>
 		</d2l-labs-accordion>
 		`;
