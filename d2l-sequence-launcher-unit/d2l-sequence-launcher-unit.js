@@ -151,10 +151,6 @@ PolymerElement
 				type: Object,
 				computed: '_setUpChildrenLoadingTracker(subEntities)'
 			},
-			_sequenceEndHref: {
-				type: String,
-				computed: '_getSequenceEndHref(entity)'
-			},
 			isSidebar: {
 				type: Boolean,
 				reflectToAttribute: true,
@@ -256,11 +252,6 @@ PolymerElement
 
 	_showChildSkeletons(showLoadingSkeleton, _childrenLoading) {
 		return showLoadingSkeleton || _childrenLoading;
-	}
-
-	_getSequenceEndHref(entity) {
-		const endOfSequenceLink = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/end-of-sequence');
-		return endOfSequenceLink && endOfSequenceLink.href || '';
 	}
 }
 
