@@ -109,7 +109,7 @@ PolymerElement
 					</template>
 				</template>
 			</ol>
-			<slot name="end-of-lesson"></slot>
+			<slot name="end-of-unit"></slot>
 		</d2l-labs-accordion>
 		`;
 	}
