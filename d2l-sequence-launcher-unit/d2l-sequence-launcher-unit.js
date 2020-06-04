@@ -28,6 +28,7 @@ PolymerElement
 				border-bottom-left-radius: 6px;
 				border-bottom-right-radius: 6px;
 			}
+
 			:host([is-sidebar]) {
 				border: none;
 			}
@@ -43,6 +44,7 @@ PolymerElement
 				overflow-y: auto;
 				overflow-x: hidden;
 			}
+
 			li:first-of-type d2l-activity-link,
 			li:first-of-type {
 				margin-top: 10px;
