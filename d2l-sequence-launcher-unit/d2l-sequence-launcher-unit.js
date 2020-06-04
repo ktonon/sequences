@@ -5,7 +5,6 @@ import '@brightspace-ui-labs/accordion/accordion.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import 'siren-entity/siren-entity.js';
 import '../localize-behavior.js';
-import '../d2l-sequence-navigator/d2l-sequence-end.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
@@ -107,13 +106,7 @@ PolymerElement
 						</li>
 					</template>
 				</template>
-			</ol>
-			<d2l-sequence-end
-				href="[[_sequenceEndHref]]"
-				token="[[token]]"
-				current-activity="{{href}}"
-				text="[[localize('endOfSequence')]]"
-			></d2l-sequence-end>
+			<slot name="end-of-lesson"></slot>
 		</d2l-labs-accordion>
 		`;
 	}
