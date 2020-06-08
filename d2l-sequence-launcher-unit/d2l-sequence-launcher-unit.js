@@ -28,13 +28,14 @@ PolymerElement
 				border-bottom-left-radius: 6px;
 				border-bottom-right-radius: 6px;
 			}
+
 			:host([is-sidebar]) {
 				border: none;
 			}
 
 			.module-item-list {
 				list-style-type: none;
-				padding: 0 30px;
+				padding: 0;
 				margin: 0;
 			}
 
@@ -43,6 +44,7 @@ PolymerElement
 				overflow-y: auto;
 				overflow-x: hidden;
 			}
+
 			li:first-of-type d2l-activity-link,
 			li:first-of-type {
 				margin-top: 10px;
@@ -56,14 +58,18 @@ PolymerElement
 				padding-top: 6px;
 			}
 
+			.module-content {
+				padding: 0 30px;
+			}
+
 			@media(max-width: 929px) {
-				.module-item-list {
+				.module-content {
 					padding: 0 24px;
 				}
 			}
 
 			@media(max-width: 767px) {
-				.module-item-list {
+				.module-content {
 					padding: 0 18px;
 				}
 			}
@@ -103,6 +109,7 @@ PolymerElement
 					</template>
 				</template>
 			</ol>
+			<slot name="end-of-unit"></slot>
 		</d2l-labs-accordion>
 		`;
 	}
