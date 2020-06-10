@@ -226,6 +226,20 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 			:host([header-focused]) .module-title {
 				color: var(--d2l-color-celestine-minus-1);
 			}
+
+			:host([header-active][accordion-state="open"]) .module-header {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff;
+				border-radius: 2px;
+			}
+
+			:host([header-active][accordion-state="closed"]) #header-container {
+				background-color: var(--d2l-color-gypsum);
+			}
+
+			:host([header-active]) #header-container * {
+				color: var(--d2l-color-celestine-minus-1);
+			}
 		</style>
 
 		<siren-entity href="[[lastViewedContentObject]]" token="[[token]]" entity="{{_lastViewedContentObjectEntity}}"></siren-entity>
@@ -413,6 +427,11 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 				reflectToAttribute: true,
 				value: false
 			},
+			headerActive: {
+				type: Boolean,
+				reflectToAttribute: true,
+				computed: '_checkModuleHeaderActive(currentActivity, entity, _hideModuleDescription)'
+			}
 		};
 	}
 
@@ -693,6 +712,14 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 	_onLaunchModuleButtonClick() {
 		this.currentActivity = this.entity.getLinkByRel('self').href;
 		this._contentObjectClick();
+	}
+
+	_checkModuleHeaderActive(currentActivity, entity, _hideModuleDescription) {
+		if (entity && entity.getLinkByRel) {
+			return entity.getLinkByRel('self').href === currentActivity && !_hideModuleDescription;
+		} else {
+			return false;
+		}
 	}
 }
 customElements.define(D2LSequenceLauncherModule.is, D2LSequenceLauncherModule);
