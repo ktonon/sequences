@@ -522,7 +522,6 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		// FixMe: This is kind of gross. ideally we decouple all the isSidebar stuff into separate components
 		// If this is a sidebar, we use the currentActivity to detect if this should be open.
 		// If on the launcher, lastViewedContentObject is used.
-
 		if (this.isSidebar) {
 			const isCurrentActivityEndOfSequence = _currentActivityEntity.hasClass('end-of-sequence');
 
