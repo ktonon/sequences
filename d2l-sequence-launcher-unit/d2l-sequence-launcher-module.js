@@ -543,6 +543,12 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 		// If this is a sidebar, we use the currentActivity to detect if this should be open.
 		// If on the launcher, lastViewedContentObject is used.
 		if (this.isSidebar) {
+			const isCurrentActivityEndOfSequence = _currentActivityEntity.hasClass('end-of-sequence');
+
+			if (isCurrentActivityEndOfSequence) {
+				return false;
+			}
+
 			const currentActivityParentHref = _currentActivityEntity.getLinkByRel('up').href;
 
 			const isCurrentModuleCurrentActivity = _currentActivityEntity.getLinkByRel('self').href === this.href;
