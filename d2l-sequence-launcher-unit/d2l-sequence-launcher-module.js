@@ -570,8 +570,7 @@ class D2LSequenceLauncherModule extends PolymerASVLaunchMixin(CompletionStatusMi
 
 	_onHeaderClicked() {
 		this._moduleWasExpanded = true;
-		// if accordion is closed when header is clicked, the user intends to open it
-		if (!this._isAccordionOpen() && !this._hideModuleDescription && this.isSidebar) {
+		if (!this._hideModuleDescription && this.isSidebar) {
 			this.currentActivity = this.entity.getLinkByRel('self').href;
 			this._contentObjectClick();
 		}
