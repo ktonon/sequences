@@ -1,5 +1,6 @@
 import '../mixins/d2l-sequences-automatic-completion-tracking-mixin.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+
 export class D2LSequencesContentImage extends D2L.Polymer.Mixins.Sequences.AutomaticCompletionTrackingMixin() {
 	static get template() {
 		return html`
@@ -9,9 +10,7 @@ export class D2LSequencesContentImage extends D2L.Polymer.Mixins.Sequences.Autom
                 height: auto;
 			}
 		</style>
-		<div>
-            <img src="[[_fileLocation]]">
-		</div>
+		<img src="[[_fileLocation]]">
 `;
 	}
 
@@ -29,28 +28,21 @@ export class D2LSequencesContentImage extends D2L.Polymer.Mixins.Sequences.Autom
 			_fileLocation: {
 				type: String,
 				computed: '_getFileLocation(entity)'
-			},
-			title: {
-				type: String,
-				computed: '_getTitle(entity)'
-			},
+			}
 		};
 	}
 	_scrollToTop() {
 		window.top.scrollTo(0, 0);
 	}
 	_getFileLocation(entity) {
-		try {
+		if (entity) {
 			const fileActivity = entity.getSubEntityByClass('file-activity');
 			const file = fileActivity.getSubEntityByClass('file');
-			const link = file.getLinkByClass('pdf') || file.getLinkByClass('embed') || file.getLinkByRel('alternate');
+			const link = file.getLinkByClass('embed') || file.getLinkByRel('alternate');
 			return link.href;
-		} catch (e) {
+		} else {
 			return '';
 		}
-	}
-	_getTitle(entity) {
-		return entity && entity.properties && entity.properties.title || '';
 	}
 }
 customElements.define(D2LSequencesContentImage.is, D2LSequencesContentImage);
