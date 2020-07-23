@@ -5,6 +5,7 @@ import { D2LSequencesContentFileHtml } from './d2l-sequences-content-file-html.j
 import { D2LSequencesContentFilePdf } from './d2l-sequences-content-file-pdf.js';
 import { D2LSequencesContentVideo } from './d2l-sequences-content-video';
 import { D2LSequencesContentAudio } from './d2l-sequences-content-audio';
+import { D2LSequencesContentImage } from './d2l-sequences-content-image';
 import './d2l-sequences-content-file-html.js';
 import { D2LSequencesContentLinkMixed } from './d2l-sequences-content-link-mixed.js';
 import { D2LSequencesContentLinkNewTab } from './d2l-sequences-content-link-new-tab';
@@ -46,11 +47,11 @@ class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin
 			['audio/ogg', D2LSequencesContentAudio.is],
 			['audio/aac', D2LSequencesContentAudio.is],
 			['audio/wave', D2LSequencesContentAudio.is],
-			['image/bmp', D2LSequencesContentFileHtml.is],
-			['image/gif', D2LSequencesContentFileHtml.is],
-			['image/jpeg', D2LSequencesContentFileHtml.is],
-			['image/png', D2LSequencesContentFileHtml.is],
-			['image/svg+xml', D2LSequencesContentFileHtml.is],
+			['image/bmp', D2LSequencesContentImage.is],
+			['image/gif', D2LSequencesContentImage.is],
+			['image/jpeg', D2LSequencesContentImage.is],
+			['image/png', D2LSequencesContentImage.is],
+			['image/svg+xml', D2LSequencesContentImage.is],
 			['text/html', D2LSequencesContentFileHtml.is]
 		]);
 	}
