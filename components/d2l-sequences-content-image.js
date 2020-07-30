@@ -6,8 +6,10 @@ export class D2LSequencesContentImage extends D2L.Polymer.Mixins.Sequences.Autom
 		return html`
 		<style>
 		    img {
+				display: block;
+				margin: auto;
                 max-width: 100%;
-                height: auto;
+                max-height: 100%;
 			}
 		</style>
 		<img src="[[_fileLocation]]">
