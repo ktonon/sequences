@@ -30,7 +30,7 @@
     "moduleListExpanded": "Module list expanded",
     "newContentAvailable": "New content is now available!",
     "niceWork": "Nice work so far!",
-    "noNeedToFinish": "If you don't need to finish {count, plural, one {it} other {them}}, no problem.",
+    "noNeedToFinish": "If you don't need to finish {count, plural, one {# it} other {# them}}, no problem.",
     "openDocReader": "Open DocReader",
     "openInNewTab": "Open link in a new web browser tab.",
     "openNew": "Open in a new window",
