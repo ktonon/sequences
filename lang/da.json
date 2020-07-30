@@ -30,7 +30,7 @@
    "moduleListExpanded" : "Modullisten er udvidet",
    "newContentAvailable" : "Nyt indhold er nu tilgængeligt!",
    "niceWork" : "Godt arbejde indtil videre!",
-   "noNeedToFinish" : "Hvis det ikke er nødvendigt at afslutte {count, plural, one {it} other {them}}, intet problem.",
+   "noNeedToFinish" : "Hvis det ikke er nødvendigt at afslutte {count, plural, one {# it} other {# them}}, intet problem.",
    "openDocReader" : "Åbn DocReader",
    "openInNewTab" : "Åbn link i en ny webbrowserfane.",
    "openNew" : "Åbn i et nyt vindue",

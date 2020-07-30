@@ -30,7 +30,7 @@
    "moduleListExpanded" : "單元列表已展開",
    "newContentAvailable" : "現在可以使用新內容了！",
    "niceWork" : "目前為止表現不錯！",
-   "noNeedToFinish" : "若您不需要完成 {count, plural, one {該項目} other {那些項目}}，那就沒問題。",
+   "noNeedToFinish" : "若您不需要完成 {count, plural, one {# 該項目} other {# 那些項目}}，那就沒問題。",
    "openDocReader" : "開啟 DocReader",
    "openInNewTab" : "在新網路瀏覽器頁籤中開啟連結。",
    "openNew" : "在新視窗中開啟",

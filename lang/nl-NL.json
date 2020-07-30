@@ -30,7 +30,7 @@
     "moduleListExpanded": "Modulelijst uitgevouwen",
     "newContentAvailable": "Nieuwe content is nu beschikbaar!",
     "niceWork": "Goed gedaan tot nu toe!",
-    "noNeedToFinish": "Als je {count, plural, one {it} other {them}} niet hoeft te voltooien, is er geen probleem.",
+    "noNeedToFinish": "Als je {count, plural, one {# it} other {# them}} niet hoeft te voltooien, is er geen probleem.",
     "openDocReader": "Open DocReader",
     "openInNewTab": "Koppeling openen in een nieuw browsertabblad.",
     "openNew": "Openen in een nieuw venster",

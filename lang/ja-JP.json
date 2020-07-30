@@ -30,7 +30,7 @@
     "moduleListExpanded": "展開されたモジュールリスト",
     "newContentAvailable": "新しいコンテンツが使用可能になりました。",
     "niceWork": "ここまでは順調です。",
-    "noNeedToFinish": "{count, plural, one {これ} other {これら}}を終了する必要がない場合は、問題ありません。",
+    "noNeedToFinish": "{count, plural, one {# これ} other {# これら}}を終了する必要がない場合は、問題ありません。",
     "openDocReader": "Open DocReader",
     "openInNewTab": "Web ブラウザの新規タブでリンクを開きます。",
     "openNew": "新規ウィンドウで開く",
