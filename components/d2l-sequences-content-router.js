@@ -14,9 +14,11 @@ import { D2LSequencesContentLinkOnedrive } from './d2l-sequences-content-link-on
 import { D2LSequencesContentLinkGoogledrive } from './d2l-sequences-content-link-googledrive.js';
 import { D2LSequencesContentLink } from './d2l-sequences-content-link.js';
 import { D2LSequencesContentUnknown } from './d2l-sequences-content-unknown.js';
+import { D2LSequencesContentFileProcessing } from './d2l-sequences-content-file-processing';
 import { D2LSequencesContentModule } from './d2l-sequences-content-module.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { D2LSequencesContentContentServiceLink } from './d2l-sequences-content-content-service-link.js';
+import { D2LSequencesContentFileDownload } from './d2l-sequences-content-file-download';
 
 class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin(getEntityType) {
 	static get template() {
@@ -30,7 +32,10 @@ class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin
 		return 'file-activity';
 	}
 	static get fileUnknown() {
-		return 'd2l-sequences-content-file-download';
+		return D2LSequencesContentFileDownload.is;
+	}
+	static get fileProcessing() {
+		return D2LSequencesContentFileProcessing.is;
 	}
 	static get linkActivity() {
 		return 'link-activity';
@@ -100,8 +105,12 @@ function getFileEntityType(fileActivity) {
 	const file = fileActivity.getSubEntityByClass('file');
 	let mimeType = file && file.properties && file.properties.type;
 
-	if (file.getLinkByClass('d2l-converted-doc')) {
+	// A converted doc will either be processing,
+	// or present with the d2l-converted-doc class
+	if (file && file.getLinkByClass('d2l-converted-doc')) {
 		mimeType = file.getLinkByClass('d2l-converted-doc').type;
+	} else if (fileActivity.getSubEntityByClass('processing')) {
+		return D2LSequencesContentRouter.fileProcessing;
 	}
 
 	return D2LSequencesContentRouter.mimeType.get(mimeType) || D2LSequencesContentRouter.fileUnknown;
