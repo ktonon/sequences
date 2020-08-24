@@ -18,8 +18,10 @@ import '@brightspace-ui/core/components/button/button-subtle.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { getEntityType } from '../components/d2l-sequences-content-router.js';
 import TelemetryHelper from '../helpers/telemetry-helper.js';
 import PerformanceHelper from '../helpers/performance-helper.js';
+import { D2LSequencesContentFileHtml } from '../components/d2l-sequences-content-file-html.js';
 
 /*
 * @polymer
@@ -39,6 +41,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 		<custom-style include="d2l-typography">
 			<style is="custom-style" include="d2l-typography">
 				:host {
+					--viewer-max-width: 1170px;
 					--sidebar-max-width: 570px;
 					--sidebar-absolute-width: 80%;
 					--sidebar-min-width: 280px;
@@ -103,6 +106,14 @@ class D2LSequenceViewer extends mixinBehaviors([
 					padding: 18px 0;
 					flex-direction: column;
 				}
+
+				:host([is-not-html-entity]) #viewframe {
+					/*Viewframe max width is 1170px, but viewer has 30px
+					inherent padding horizontally to account for.*/
+					max-width: calc(var(--viewer-max-width) + 2*var(--viewframe-horizontal-margin));
+					margin: 0 auto;
+				}
+
 				d2l-button-subtle {
 					margin: 0 0 12px var(--viewframe-horizontal-margin);
 					width: min-content;
@@ -362,6 +373,11 @@ class D2LSequenceViewer extends mixinBehaviors([
 			_docReaderText: {
 				type: String,
 				value: '',
+			},
+			isNotHtmlEntity: {
+				type: Boolean,
+				reflectToAttribute: true,
+				value: true,
 			}
 		};
 	}
@@ -411,6 +427,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 
 	async _onEntityChanged(entity) {
 		this._showDocReaderContent = false;
+		this.isNotHtmlEntity = getEntityType(entity) !== D2LSequencesContentFileHtml.is;
 
 		//entity is null or not first time loading the page
 		if (!entity || this._loaded) {

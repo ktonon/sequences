@@ -63,7 +63,7 @@ class D2LSequencesContentRouter extends D2L.Polymer.Mixins.Sequences.RouterMixin
 }
 customElements.define(D2LSequencesContentRouter.is, D2LSequencesContentRouter);
 
-function getEntityType(entity) {
+export function getEntityType(entity) {
 	if (!entity || !entity.entities) {
 		return D2LSequencesContentUnknown.is;
 	}
