@@ -39,7 +39,6 @@ class D2LSequenceViewer extends mixinBehaviors([
 		<custom-style include="d2l-typography">
 			<style is="custom-style" include="d2l-typography">
 				:host {
-					--viewer-max-width: 1170px;
 					--sidebar-max-width: 570px;
 					--sidebar-absolute-width: 80%;
 					--sidebar-min-width: 280px;
@@ -96,15 +95,11 @@ class D2LSequenceViewer extends mixinBehaviors([
 					inexplicably subtracting 12px from the height of the iframe,
 					and fixing that offset here will prevent a double scrollbar */
 					height: calc(100% + 12px);
-					/*Viewframe max width is 1170px, but viewer has 30px
-					inherent padding horizontally to account for.*/
-					max-width: calc(var(--viewer-max-width) + 2*var(--viewframe-horizontal-margin));
 
 					box-sizing: border-box;
 					overflow: auto;
 					display: flex;
 					flex: 2;
-					margin: 0 auto;
 					padding: 18px 0;
 					flex-direction: column;
 				}
