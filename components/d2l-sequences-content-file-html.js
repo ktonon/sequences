@@ -71,6 +71,7 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 		const maxWidth = VIEWER_MAX_WIDTH + (2 * VIEWER_HORIZONTAL_MARGIN);
 		htmlIframe.contentDocument.body.style.maxWidth = `${maxWidth}px`;
 		htmlIframe.contentDocument.body.style.margin = '0 auto';
+		htmlIframe.contentDocument.body.style.padding = `0 ${VIEWER_HORIZONTAL_MARGIN}px`;
 	}
 
 	_scrollToTop() {

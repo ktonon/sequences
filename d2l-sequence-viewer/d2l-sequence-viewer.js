@@ -98,7 +98,6 @@ class D2LSequenceViewer extends mixinBehaviors([
 					inexplicably subtracting 12px from the height of the iframe,
 					and fixing that offset here will prevent a double scrollbar */
 					height: calc(100% + 12px);
-
 					box-sizing: border-box;
 					overflow: auto;
 					display: flex;
@@ -106,14 +105,15 @@ class D2LSequenceViewer extends mixinBehaviors([
 					padding: 18px 0;
 					flex-direction: column;
 				}
-
 				:host([is-not-html-entity]) #viewframe {
 					/*Viewframe max width is 1170px, but viewer has 30px
 					inherent padding horizontally to account for.*/
 					max-width: calc(var(--viewer-max-width) + 2*var(--viewframe-horizontal-margin));
 					margin: 0 auto;
 				}
-
+				#viewframe:focus {
+					outline: none;
+				}
 				d2l-button-subtle {
 					margin: 0 0 12px var(--viewframe-horizontal-margin);
 					width: min-content;
@@ -123,10 +123,9 @@ class D2LSequenceViewer extends mixinBehaviors([
 					display: inline-block;
 					height: 100%;
 					overflow-y: auto;
-					margin: 0 var(--viewframe-horizontal-margin);
 				}
-				#viewframe:focus {
-					outline: none;
+				:host([is-not-html-entity]) .viewer {
+					margin: 0 var(--viewframe-horizontal-margin);
 				}
 				.hide {
 					display: none;
