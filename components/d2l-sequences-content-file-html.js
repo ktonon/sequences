@@ -6,6 +6,8 @@ export class D2LSequencesContentFileHtml extends D2L.Polymer.Mixins.Sequences.Au
 		return html`
 			<style>
 				.d2l-sequences-content-container {
+					-webkit-overflow-scrolling: touch;
+					overflow-y: auto;
 					height: 100%;
 				}
 				iframe {
