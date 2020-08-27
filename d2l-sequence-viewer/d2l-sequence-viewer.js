@@ -18,7 +18,7 @@ import '@brightspace-ui/core/components/button/button-subtle.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { getEntityType } from '../components/d2l-sequences-content-router.js';
+import EntityTypeHelper from '../helpers/entity-type-helper.js';
 import TelemetryHelper from '../helpers/telemetry-helper.js';
 import PerformanceHelper from '../helpers/performance-helper.js';
 import { D2LSequencesContentFileHtml } from '../components/d2l-sequences-content-file-html.js';
@@ -426,7 +426,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 
 	async _onEntityChanged(entity) {
 		this._showDocReaderContent = false;
-		this.isNotHtmlEntity = getEntityType(entity) !== D2LSequencesContentFileHtml.is;
+		this.isNotHtmlEntity = EntityTypeHelper.getEntityType(entity) !== D2LSequencesContentFileHtml.is;
 
 		//entity is null or not first time loading the page
 		if (!entity || this._loaded) {
