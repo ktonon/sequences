@@ -1,11 +1,9 @@
 import { D2LSequencesContentEoLMain } from '../components/d2l-sequences-content-eol-main.js';
-import '../components/d2l-sequences-content-file-download.js';
 import { D2LSequencesContentFileHtml } from '../components/d2l-sequences-content-file-html.js';
 import { D2LSequencesContentFilePdf } from '../components/d2l-sequences-content-file-pdf.js';
 import { D2LSequencesContentVideo } from '../components/d2l-sequences-content-video';
 import { D2LSequencesContentAudio } from '../components/d2l-sequences-content-audio';
 import { D2LSequencesContentImage } from '../components/d2l-sequences-content-image';
-import '../components/d2l-sequences-content-file-html.js';
 import { D2LSequencesContentLinkMixed } from '../components/d2l-sequences-content-link-mixed.js';
 import { D2LSequencesContentLinkNewTab } from '../components/d2l-sequences-content-link-new-tab';
 import { D2LSequencesContentLinkScorm } from '../components/d2l-sequences-content-link-scorm.js';

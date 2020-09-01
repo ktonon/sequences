@@ -2,88 +2,44 @@ import './d2l-inner-module.js';
 import './d2l-activity-link.js';
 import { CompletionStatusMixin } from '../mixins/completion-status-mixin.js';
 import { PolymerASVLaunchMixin } from '../mixins/polymer-asv-launch-mixin.js';
-import { ASVFocusWithinMixin } from '../mixins/asv-focus-within-mixin.js';
 import '@brightspace-ui-labs/accordion/accordion.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/icons/icon.js';
+import '@brightspace-ui/core/components/button/button-subtle.js';
 import 'd2l-offscreen/d2l-offscreen.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 /*
 @memberOf window.D2L.Polymer.Mixins;
 @mixes D2L.Polymer.Mixins.CompletionStatusMixin
 @mixes D2L.Polymer.Mixins.PolymerASVLaunchMixin
-@mixes D2L.Polymer.Mixins.ASVFocusWithinMixin
 */
 
-class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(CompletionStatusMixin())) {
+class D2LOuterModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 	static get template() {
 		return html`
 		<style>
 			:host {
 				display: block;
 				@apply --d2l-body-compact-text;
-				width: 100%;
 				--d2l-outer-module-text-color: var(--d2l-color-ferrite);
-				--d2l-outer-module-background-color: transparent;
-				--d2l-activity-link-padding: 10px 24px;
-				margin-top: -1px;
+			}
+
+			d2l-labs-accordion-collapse {
+				border: 1px solid var(--d2l-color-mica);
+				border-radius: 6px;
 			}
 
 			#header-container {
-				--d2l-outer-module-border-color: var(--d2l-outer-module-background-color);
-				--d2l-outer-module-opacity: 1;
 				box-sizing: border-box;
-				padding: var(--d2l-activity-link-padding);
+				padding: 15px 18px;
 				color: var(--d2l-outer-module-text-color);
-				background-color: transparent;
-				border-style: solid;
-				border-width: var(--d2l-outer-module-border-width, 1px);
-				border-color: transparent;
-				position: relative;
-				z-index: 0;
 				cursor: pointer;
+				border-radius: 6px;
 			}
 
-			#header-container.hide-description {
+			#header-container.hide-description,
+			:host([show-loading-skeleton]) #header-container {
 				cursor: default;
-			}
-
-			#header-container.d2l-asv-current {
-				--d2l-outer-module-background-color: var(--d2l-asv-primary-color);
-				--d2l-outer-module-text-color: var(--d2l-asv-selected-text-color);
-				--d2l-outer-module-border-color: rgba(0, 0, 0, 0.6);
-			}
-
-			#header-container.d2l-asv-focus-within:not(.hide-description),
-			#header-container:hover:not(.hide-description) {
-				--d2l-outer-module-background-color: var(--d2l-asv-primary-color);
-				--d2l-outer-module-border-color: rgba(0, 0, 0, 0.42);
-				--d2l-outer-module-text-color: var(--d2l-color-ferrite);
-				--d2l-outer-module-opacity: 0.26;
-			}
-
-			div.bkgd, div.border {
-				position: absolute;
-				top: 0;
-				left: 0;
-				border-radius: 8px;
-			}
-
-			div.bkgd {
-				opacity: var(--d2l-outer-module-opacity);
-				background-color: var(--d2l-outer-module-background-color);
-				z-index: -2;
-				height: 100%;
-				width: 100%;
-			}
-
-			div.border {
-				border-style: solid;
-				border-width: 1px;
-				border-color:	var(--d2l-outer-module-border-color);
-				z-index: -1;
-				height: calc(100% - 2px);
-				width: calc(100% - 2px);
 			}
 
 			.start-date-text {
@@ -98,11 +54,18 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 				width: 100%;
 			}
 
+			:host([show-loading-skeleton]) .module-header {
+				display: none;
+			}
+
+			#top-header-container {
+				display: flex;
+				justify-content: space-between;
+			}
+
 			.module-title {
 				@apply --d2l-body-compact-text;
 				font-weight: 700;
-				width: calc(100% - 2rem - 24px);
-
 				overflow: hidden;
 				text-overflow: ellipsis;
 				float: left;
@@ -118,21 +81,18 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 				color: var(--d2l-outer-module-text-color);
 				text-align: right;
 				float: right;
-				display: table-cell;
-				width: 2rem;
+				display: flex;
 				line-height: inherit !important;
-				padding-left: 24px;
-			}
-
-			.should-pad {
-				padding: 0 10px;
+				align-items: center;
+				justify-content: center;
+				margin: 0;
 			}
 
 			ol {
 				list-style-type: none;
 				border-collapse: collapse;
-				margin: 0px;
-				padding: 0;
+				margin: 0;
+				padding: 0 18px;
 			}
 
 			.optionalStatus {
@@ -141,17 +101,6 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 
 			d2l-icon {
 				color: var(--d2l-outer-module-text-color);
-			}
-			d2l-labs-accordion-collapse > a {
-				outline: none;
-			}
-
-			.d2l-asv-current .optionalStatus {
-				color: var(--d2l-color-ferrite);
-			}
-
-			.d2l-asv-current:not(:hover) .optionalStatus {
-				color: var(--d2l-asv-selected-text-color);
 			}
 
 			hr {
@@ -163,60 +112,218 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 
 			li {
 				padding-top: 6px;
-				padding-bottom: 6px;
 			}
 
-			#startDate{
+			#startDate {
 				color: var(--d2l-outer-module-text-color, inherit);
 				font-size: var(--d2l-body-small-text_-_font-size);
 				font-weight: var(--d2l-body-small-text_-_font-weight);
 				line-height: var(--d2l-body-small-text_-_line-height);
 			}
 
+			:host([show-loading-skeleton]) #startDate {
+				display: none;
+			}
+
+			#launch-module-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 5px 0;
+			}
+
+			:host([is-sidebar]) #launch-module-container {
+				display: none;
+			}
+
+			:host([show-loading-skeleton]) #launch-module-container > d2l-button-subtle {
+				display: none;
+			}
+
+			#expand-icon {
+				padding-left: 10px;
+			}
+
+			@keyframes loadingShimmer {
+				0% { background-color: var(--d2l-color-sylvite); }
+				50% { background-color: var(--d2l-color-regolith); }
+				75% { background-color: var(--d2l-color-sylvite); }
+				100% { background-color: var(--d2l-color-sylvite); }
+			}
+			@-webkit-keyframes webkitLoadingShimmer {
+				0% { background-color: var(--d2l-color-sylvite); }
+				50% { background-color: var(--d2l-color-regolith); }
+				75% { background-color: var(--d2l-color-sylvite); }
+				100% { background-color: var(--d2l-color-sylvite); }
+			}
+
+			.skeleton {
+				animation: loadingShimmer 1.8s ease-in-out infinite;
+				-webkit-animation: webkitLoadingShimmer 1.8s ease-in-out infinite;
+				display: none;
+				border-radius: 4px;
+				background-color: var(--d2l-color-sylvite);
+				overflow: hidden;
+				position: relative;
+			}
+
+			:host([show-loading-skeleton]) .skeleton {
+				display: block;
+			}
+
+			#header-skeleton-container {
+				display: none;
+				justify-content: space-between;
+				height: 18px;
+				width: 100%;
+			}
+
+			:host([show-loading-skeleton]) #header-skeleton-container {
+				display: flex;
+			}
+
+			#header-skeleton {
+				height: 100%;
+				width: 35%;
+			}
+
+			#completion-skeleton {
+				height: 100%;
+				width: 10%;
+			}
+
+			div#launch-module-skeleton.skeleton {
+				height: 24px;
+				width: 20%;
+				display: block;
+			}
+
+			:host([accordion-state="closed"]) #header-container:hover {
+				background-color: var(--d2l-color-gypsum);
+			}
+
+			:host([accordion-state="open"]) #header-container:hover .module-header {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff;
+				border-radius: 2px;
+			}
+
+			#header-container:hover * {
+				color: var(--d2l-color-celestine-minus-1);
+			}
+
+			:host([header-focused][accordion-state="closed"]) #header-container {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--d2l-color-celestine);
+			}
+
+			:host([header-focused][accordion-state="open"]) .module-header {
+				background-color: var(--d2l-color-gypsum);
+				border-radius: 2px;
+    			box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff, 0 0 0 12px var(--d2l-color-celestine);
+			}
+
+			:host([header-focused]) .module-title {
+				color: var(--d2l-color-celestine-minus-1);
+			}
+
+			:host([header-active][accordion-state="open"]) .module-header {
+				background-color: var(--d2l-color-gypsum);
+				box-shadow: 0 0 0 8px var(--d2l-color-gypsum), 0 0 0 10px #ffffff;
+				border-radius: 2px;
+			}
+
+			:host([header-active][accordion-state="closed"]) #header-container {
+				background-color: var(--d2l-color-gypsum);
+			}
+
+			:host([header-active]) #header-container * {
+				color: var(--d2l-color-celestine-minus-1);
+			}
 		</style>
 
-		<d2l-labs-accordion-collapse no-icons="" flex="">
-			<div slot="header" id="header-container" class$="[[_getIsSelected(currentActivity, focusWithin)]] [[isEmpty(subEntities)]] [[_getHideDescriptionClass(_hideModuleDescription, isSidebar)]]" on-click="_onHeaderClicked" is-sidebar$="[[isSidebar]]">
-				<div class="bkgd"></div>
-				<div class="border"></div>
-				<div class="module-header">
-					<span class="module-title">[[entity.properties.title]]</span>
-					<span class="module-completion-count">
-						<template is="dom-if" if="[[showCount]]">
-							<span class="countStatus" aria-hidden="true">
-								[[localize('sequenceNavigator.countStatus', 'completed', completionCompleted, 'total', completionTotal)]]
-							</span>
-							<d2l-offscreen>[[localize('sequenceNavigator.requirementsCompleted', 'completed', completionCompleted, 'total', completionTotal)]]</d2l-offscreen>
-						</template>
-						<template is="dom-if" if="[[showCheckmark]]">
-							<span class="completedStatus">
-								<d2l-icon aria-label$="[[localize('sequenceNavigator.completed')]]" icon="tier1:check"></d2l-icon>
-							</span>
-						</template>
-						<template is="dom-if" if="[[!showCheckmark]]">
-							<h6 class="start-date-text" aria-label$="[[entity.properties.startDateText]]" >[[entity.properties.startDateText]]</h6>
-						</template>
-						<template is="dom-if" if="[[showOptional]]">
-							<span class="optionalStatus">
-								[[localize('sequenceNavigator.optional')]]
-							</span>
-						</template>
-					</span>
+		<siren-entity href="[[lastViewedContentObject]]" token="[[token]]" entity="{{_lastViewedContentObjectEntity}}"></siren-entity>
+		<siren-entity href="[[currentActivity]]" token="[[token]]" entity="{{_currentActivityEntity}}"></siren-entity>
+		<d2l-labs-accordion-collapse no-icons="" flex="" disable-default-trigger-focus>
+			<div slot="header" id="header-container" class$="[[isEmpty(subEntities)]] [[_getHideDescriptionClass(_hideModuleDescription)]]">
+				<div id="header-skeleton-container">
+					<div id="header-skeleton" class="skeleton"></div>
+					<div id="completion-skeleton" class="skeleton"></div>
 				</div>
-				<div id ="startDate">[[startDate]]</div>
+				<div class="module-header">
+					<div id="top-header-container">
+						<span class="module-title">[[entity.properties.title]]</span>
+						<div class="module-completion-count">
+							<template is="dom-if" if="[[showCount]]">
+								<span class="countStatus" aria-hidden="true">
+									[[localize('sequenceNavigator.countStatus', 'completed', completionCompleted, 'total', completionTotal)]]
+								</span>
+								<d2l-offscreen>[[localize('sequenceNavigator.requirementsCompleted', 'completed', completionCompleted, 'total', completionTotal)]]</d2l-offscreen>
+							</template>
+							<template is="dom-if" if="[[showCheckmark]]">
+								<span class="completedStatus">
+									<d2l-icon aria-label$="[[localize('sequenceNavigator.completed')]]" icon="tier1:check"></d2l-icon>
+								</span>
+							</template>
+							<template is="dom-if" if="[[!showCheckmark]]">
+								<h6 class="start-date-text" aria-label$="[[entity.properties.startDateText]]" >[[entity.properties.startDateText]]</h6>
+							</template>
+							<template is="dom-if" if="[[showOptional]]">
+								<span class="optionalStatus">
+									[[localize('sequenceNavigator.optional')]]
+								</span>
+							</template>
+							<d2l-icon id="expand-icon" icon="[[_iconName]]"></d2l-icon>
+						</div>
+					</div>
+					<div id ="startDate">[[startDate]]</div>
+				</div>
 			</div>
-			<ol>
-				<template is="dom-repeat" items="[[subEntities]]" as="childLink">
-					<li on-click="_onActivityClicked" class$="[[_padOnActivity(childLink)]]">
-						<template is="dom-if" if="[[_isActivity(childLink)]]">
-							<d2l-activity-link last-module$="[[lastModule]]" is-sidebar$="[[isSidebar]]" href="[[childLink.href]]" token="[[token]]" current-activity="{{currentActivity}}" on-sequencenavigator-d2l-activity-link-current-activity="childIsActiveEvent"></d2l-activity-link>
-						</template>
-						<template is="dom-if" if="[[!_isActivity(childLink)]]">
-							<d2l-inner-module href="[[childLink.href]]" token="[[token]]" current-activity="{{currentActivity}}" on-sequencenavigator-d2l-inner-module-current-activity="childIsActiveEvent"></d2l-inner-module>
-						</template>
-					</li>
-				</template>
-			</ol>
+			<template is="dom-if" if="[[_getShowModuleChildren(_moduleStartOpen, accordionState)]]">
+				<div id="launch-module-container">
+					<template is="dom-if" if="[[_showChildSkeletons(showLoadingSkeleton, _childrenLoading)]]">
+						<div id="launch-module-skeleton" class="skeleton"></div>
+					</template>
+					<template is="dom-if" if="[[!_showChildSkeletons(showLoadingSkeleton, _childrenLoading)]]">
+						<d2l-button-subtle
+							aria-label$="[[localize('sequenceNavigator.launchModule')]]"
+							text="[[localize('sequenceNavigator.launchModule')]]"
+							icon="tier1:move-to"
+							on-click="_onLaunchModuleButtonClick"
+						></d2l-button-subtle>
+					</template>
+				</div>
+				<ol>
+					<template is="dom-repeat" items="[[subEntities]]" as="childLink">
+						<li on-click="_onActivityClicked">
+							<template is="dom-if" if="[[_isActivity(childLink)]]">
+								<d2l-activity-link
+									show-loading-skeleton="[[_showChildSkeletons(showLoadingSkeleton, _childrenLoading)]]"
+									last-module$="[[lastModule]]"
+									href="[[childLink.href]]"
+									token="[[token]]"
+									current-activity="{{currentActivity}}"
+									on-sequencenavigator-d2l-activity-link-current-activity="childIsActiveEvent"
+									on-d2l-content-entity-loaded="checkIfChildrenDoneLoading"
+									show-underline="[[_nextActivitySiblingIsActivity(subEntities, index)]]"
+									is-sidebar="[[isSidebar]]"
+								></d2l-activity-link>
+							</template>
+							<template is="dom-if" if="[[!_isActivity(childLink)]]">
+								<d2l-inner-module
+									show-loading-skeleton="[[_showChildSkeletons(showLoadingSkeleton, _childrenLoading)]]"
+									href="[[childLink.href]]"
+									token="[[token]]"
+									current-activity="{{currentActivity}}"
+									on-sequencenavigator-d2l-inner-module-current-activity="childIsActiveEvent"
+									on-d2l-content-entity-loaded="checkIfChildrenDoneLoading"
+									is-sidebar="[[isSidebar]]"
+								></d2l-inner-module>
+							</template>
+						</li>
+					</template>
+				</ol>
+			</template>
 		</d2l-labs-accordion-collapse>
 		`;
 	}
@@ -235,6 +342,9 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 				type: String,
 				value: '',
 				notify: true
+			},
+			_currentActivityEntity: {
+				type: Object
 			},
 			subEntities: {
 				type: Array,
@@ -259,13 +369,6 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 				value: false,
 				computed: '_showOptional(completionCount)'
 			},
-			disabled: {
-				type: Boolean,
-				observer: '_disableAccordions'
-			},
-			isSidebar: {
-				type: Boolean
-			},
 			lastModule: {
 				type: Boolean,
 				value: false
@@ -274,36 +377,87 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 				type: String,
 				computed: 'getFormattedDate(entity)'
 			},
+			showLoadingSkeleton: {
+				type: Boolean,
+				value: true,
+				reflectToAttribute: true
+			},
 			_hideModuleDescription: {
 				type: Boolean,
 				computed: '_getHideModuleDescription(entity)'
+			},
+			lastViewedContentObject: {
+				type: String
+			},
+			_lastViewedContentObjectEntity: {
+				type: Object
+			},
+			_moduleStartOpen: {
+				type: Boolean,
+				computed: '_getModuleStartOpen(entity, subEntities, _lastViewedContentObjectEntity, _currentActivityEntity)'
+			},
+			_childrenLoading: {
+				type: Boolean,
+				value: true
+			},
+			_childrenLoadingTracker: {
+				type: Object,
+				computed: '_setUpChildrenLoadingTracker(subEntities)'
+			},
+			_iconName: {
+				type: String,
+				value: 'tier1:arrow-expand-small'
+			},
+			isSidebar: {
+				type: Boolean,
+				reflectToAttribute: true,
+				value: false
+			},
+			accordionState: {
+				type: String,
+				reflectToAttribute: true,
+				value: 'closed'
+			},
+			headerFocused: {
+				type: Boolean,
+				reflectToAttribute: true,
+				value: false
+			},
+			headerActive: {
+				type: Boolean,
+				reflectToAttribute: true,
+				computed: '_checkModuleHeaderActive(currentActivity, entity, _hideModuleDescription)'
 			}
 		};
 	}
 
-	_accordionCollapseClass(focusWithin) {
-		return this._focusWithinClass(focusWithin);
+	ready() {
+		super.ready();
+		// Set the starting icon depending on the collapse state
+		this._updateCollapseStateAndIconName();
 	}
 
-	_disableAccordions(disabled) {
-		if (!disabled || !this.shadowRoot || !this.shadowRoot.querySelector('d2l-labs-accordion-collapse')) {
-			return;
-		}
-		this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('opened', '');
-		this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('disabled', '');
-		this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('aria-disabled', true);
+	static get observers() {
+		return [
+			'_openModule(_moduleStartOpen)',
+			'_checkForEarlyLoadEvent(entity, subEntities, _moduleStartOpen)',
+		];
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
 		this.addEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
-		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateHeaderClass);
+		this.addEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
+		this.addEventListener('d2l-labs-accordion-collapse-toggle-focus', this._onHeaderFocus);
+		this.addEventListener('d2l-labs-accordion-collapse-toggle-blur', this._onHeaderBlur);
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener('d2l-labs-accordion-collapse-clicked', this._onHeaderClicked);
-		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateHeaderClass);
+		this.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._updateCollapseStateAndIconName);
+		this.removeEventListener('d2l-labs-accordion-collapse-toggle-focus', this._onHeaderFocus);
+		this.removeEventListener('d2l-labs-accordion-collapse-toggle-blur', this._onHeaderBlur);
 	}
 
 	_isAccordionOpen() {
@@ -323,6 +477,16 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 
 	_isActivity(link) {
 		return link && link.hasClass('sequenced-activity');
+	}
+
+	_nextActivitySiblingIsActivity(subEntities, index) {
+		if (index >= subEntities.length) {
+			return false;
+		}
+
+		const nextSibling = subEntities[index + 1];
+
+		return this._isActivity(nextSibling);
 	}
 
 	_showCount() {
@@ -369,15 +533,37 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 		return entity && entity.getSubEntities().length !== 0;
 	}
 
-	_getIsSelected(currentActivity, focusWithin) {
-		const selected = this.entity && this.entity.getLinkByRel('self').href === currentActivity;
-		return this._getTrueClass(focusWithin, selected);
-	}
+	_getModuleStartOpen(entity, subEntities, _lastViewedContentObjectEntity, _currentActivityEntity) {
+		if (!entity || (!_lastViewedContentObjectEntity && !_currentActivityEntity)) {
+			return false;
+		}
 
-	_padOnActivity(childLink) {
-		return this.isSidebar || this._isActivity(childLink)
-			? ''
-			: 'should-pad';
+		// FixMe: This is kind of gross. ideally we decouple all the isSidebar stuff into separate components
+		// If this is a sidebar, we use the currentActivity to detect if this should be open.
+		// If on the launcher, lastViewedContentObject is used.
+		if (this.isSidebar) {
+			const isCurrentActivityEndOfSequence = _currentActivityEntity.hasClass('end-of-sequence');
+
+			if (isCurrentActivityEndOfSequence) {
+				return false;
+			}
+
+			const currentActivityParentHref = _currentActivityEntity.getLinkByRel('up').href;
+
+			const isCurrentModuleCurrentActivity = _currentActivityEntity.getLinkByRel('self').href === this.href;
+			const isDirectChildOfCurrentModule = currentActivityParentHref === this.href;
+			const isChildOfSubModule = subEntities.some((s) => s.href === currentActivityParentHref);
+
+			return isCurrentModuleCurrentActivity || isDirectChildOfCurrentModule || isChildOfSubModule;
+		} else {
+			const lastViewedParentHref = _lastViewedContentObjectEntity.getLinkByRel('up').href;
+
+			const isCurrentModuleLastViewedContentObject = _lastViewedContentObjectEntity.getLinkByRel('self').href === this.href;
+			const isDirectChildOfCurrentModule = lastViewedParentHref === this.href;
+			const isChildOfSubModule = subEntities.some((s) => s.href === lastViewedParentHref);
+
+			return isCurrentModuleLastViewedContentObject || isDirectChildOfCurrentModule || isChildOfSubModule;
+		}
 	}
 
 	_onActivityClicked(e) {
@@ -388,27 +574,22 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 	}
 
 	_onHeaderClicked() {
-		if (!this._hideModuleDescription) {
+		if (!this._hideModuleDescription && this.isSidebar) {
 			this.currentActivity = this.entity.getLinkByRel('self').href;
 			this._contentObjectClick();
 		}
+	}
+
+	_getShowModuleChildren(_moduleStartOpen, accordionState) {
+		return _moduleStartOpen || accordionState === 'open';
 	}
 
 	childIsActiveEvent() {
 		this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('opened', '');
 	}
 
-	isLastOfSubModule(entities, index) {
-		if (entities.length <= index + 1 && !this._isActivity(entities[index]) && (!this.lastModule || this.isSidebar)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
 	isEmpty(subEntities) {
-		if ((subEntities === null || subEntities.length === 0) && (!this.lastModule || this.isSidebar)) {
+		if ((subEntities === null || subEntities.length === 0) && !this.lastModule) {
 			return 'empty-module-header-container';
 		}
 		else {
@@ -458,15 +639,94 @@ class D2LOuterModule extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Completio
 		return hasActiveTopic || hasActiveModule;
 	}
 
-	_updateHeaderClass() {
-		if (this.isSidebar && this._hideModuleDescription) {
-			const active = this._hasActiveChild(this.entity, this.currentActivity) && !this._isAccordionOpen();
-			this.$['header-container'].setAttribute('class', this._getTrueClass(this.focusWithin, active));
+	_updateCollapseStateAndIconName() {
+		if (this._isAccordionOpen()) {
+			this._iconName = 'tier1:arrow-collapse-small';
+			this.accordionState = 'open';
+		} else {
+			this._iconName = 'tier1:arrow-expand-small';
+			this.accordionState = 'closed';
 		}
 	}
 
-	_getHideDescriptionClass(_hideModuleDescription, isSidebar) {
-		return _hideModuleDescription && !isSidebar ? 'hide-description' : '';
+	_getHideDescriptionClass(_hideModuleDescription) {
+		return _hideModuleDescription ? 'hide-description' : '';
+	}
+
+	_openModule(_moduleStartOpen) {
+		if (_moduleStartOpen) {
+			this.shadowRoot.querySelector('d2l-labs-accordion-collapse').setAttribute('opened', '');
+		}
+	}
+
+	_setUpChildrenLoadingTracker(subEntities) {
+		if (!subEntities) {
+			return {};
+		}
+
+		return subEntities.reduce((acc, { href }) => {
+			let hasLoaded = false;
+			if (this._childrenLoadingTracker && this._childrenLoadingTracker[href]) {
+				hasLoaded = this._childrenLoadingTracker[href];
+			}
+			return {
+				...acc,
+				[href]: hasLoaded
+			};
+		}, {});
+	}
+
+	checkIfChildrenDoneLoading(contentLoadedEvent) {
+		const childHref = contentLoadedEvent.detail.href;
+
+		if (!this._childrenLoadingTracker || !this._childrenLoading) {
+			return;
+		}
+
+		if (this._childrenLoadingTracker[childHref] !== undefined) {
+			this._childrenLoadingTracker[childHref] = true;
+			contentLoadedEvent.stopPropagation();
+		}
+
+		if (!Object.values(this._childrenLoadingTracker).some(loaded => !loaded)) {
+			this._childrenLoading = false;
+			this.dispatchEvent(new CustomEvent('d2l-content-entity-loaded', {detail: { href: this.href}}));
+		}
+	}
+
+	// This function is for determining if the module should fire off an "I'm loaded" event before its
+	// children are finished loading. Two scenarios where this happens:
+	// 1. The module has no children
+	// 2. The module has children and does not start open
+	_checkForEarlyLoadEvent(entity, subEntities, _moduleStartOpen) {
+		if (entity && subEntities && (subEntities.length <= 0 || !_moduleStartOpen)) {
+			this.dispatchEvent(new CustomEvent('d2l-content-entity-loaded', {detail: { href: this.href}}));
+		}
+	}
+
+	_showChildSkeletons(showLoadingSkeleton, _childrenLoading) {
+		return showLoadingSkeleton || _childrenLoading;
+	}
+
+	_onHeaderFocus() {
+		this.headerFocused = true;
+	}
+
+	_onHeaderBlur() {
+		this.headerFocused = false;
+	}
+
+	_onLaunchModuleButtonClick() {
+		this.currentActivity = this.entity.getLinkByRel('self').href;
+		this._contentObjectClick();
+	}
+
+	_checkModuleHeaderActive(currentActivity, entity, _hideModuleDescription) {
+		if (entity && entity.getLinkByRel) {
+			return entity.getLinkByRel('self').href === currentActivity && !_hideModuleDescription;
+		} else {
+			return false;
+		}
 	}
 }
 customElements.define(D2LOuterModule.is, D2LOuterModule);
