@@ -26,13 +26,21 @@ export class D2LSequencesContentLinkNewTab extends D2L.Polymer.Mixins.Sequences.
 				color: var(--d2l-color-celestine-plus-1);
 			}
 
-			#linkImage{
-				margin-left:60px;
+			#linkImage {
+				margin-left: 60px;
+			}
+
+			:host(:dir(rtl)) #linkImage {
+				margin-left: initial;
+				margin-right: 60px;
+				-webkit-transform: scale(-1, 1);
+				transform: scale(-1, 1);
+				transform-origin: center;
 			}
 
 		</style>
 		<div class="content-link-new-tab-container">
-			<svg id= "linkImage" xmlns="http://www.w3.org/2000/svg" width="252" height="200" viewBox="0 0 252 200">
+			<svg id="linkImage" xmlns="http://www.w3.org/2000/svg" width="252" height="200" viewBox="0 0 252 200">
 				<g fill="none" fill-rule="evenodd" transform="translate(-1180 -98)">
 					<circle cx="1280" cy="198" r="100" fill="#E8F2F9"/>
 					<g fill-rule="nonzero">
