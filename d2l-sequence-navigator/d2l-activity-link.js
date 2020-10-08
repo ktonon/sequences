@@ -16,7 +16,7 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 		return html`
 		<style>
 			:host {
-				--d2l-left-icon-padding: 15px;
+				--d2l-icon-padding: 15px;
 				display: block;
 				@apply --d2l-body-compact-text;
 			}
@@ -136,13 +136,13 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			}
 
 			d2l-icon {
-				padding-right: var(--d2l-left-icon-padding);
+				padding-right: var(--d2l-icon-padding);
 				color: var(--d2l-color-celestine);
 				min-width: 18px;
 			}
 			:host(:dir(rtl)) d2l-icon {
-				padding-right: 0;
-				padding-left: var(--d2l-left-icon-padding);
+				padding-right: initial;
+				padding-left: var(--d2l-icon-padding);
 			}
 
 			d2l-completion-status {

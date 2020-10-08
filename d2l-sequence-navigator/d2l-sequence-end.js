@@ -11,15 +11,18 @@ class D2LSequenceEnd extends ASVFocusWithinMixin(
 	static get template() {
 		return html`
 			<style>
+				:host {
+					--d2l-sequence-end-container-padding: 40px;
+				}
 				#d2l-sequence-end-container {
 					color: var(--d2l-color-ferrite);
 					border-radius: 6px;
-					padding: 20px 40px 20px 20px;
+					padding: 20px var(--d2l-sequence-end-container-padding) 20px 20px;
 					position: relative;
 					margin: 6px 0;
 				}
 				:host(:dir(rtl)) #d2l-sequence-end-container {
-					padding: 20px 20px 20px 40px;
+					padding: 20px 20px 20px var(--d2l-sequence-end-container-padding);
 				}
 
 				#d2l-sequence-end-container.d2l-asv-current {

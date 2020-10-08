@@ -11,6 +11,9 @@ export class D2LSequencesContentLinkNewTab extends D2L.Polymer.Mixins.Sequences.
 	static get template() {
 		return html`
 		<style>
+			:host {
+				--svg-center-offset: 60px;
+			}
 			.content-link-new-tab-container {
 				padding-top: 100px;
 				text-align: center;
@@ -27,12 +30,12 @@ export class D2LSequencesContentLinkNewTab extends D2L.Polymer.Mixins.Sequences.
 			}
 
 			#linkImage {
-				margin-left: 60px;
+				margin-left: var(--svg-center-offset);
 			}
 
 			:host(:dir(rtl)) #linkImage {
 				margin-left: initial;
-				margin-right: 60px;
+				margin-right: var(--svg-center-offset);
 				-webkit-transform: scale(-1, 1);
 				transform: scale(-1, 1);
 				transform-origin: center;

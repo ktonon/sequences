@@ -22,6 +22,7 @@ class D2LOuterModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				display: block;
 				@apply --d2l-body-compact-text;
 				--d2l-outer-module-text-color: var(--d2l-color-ferrite);
+				--expand-icon-padding: 10px;
 			}
 
 			d2l-labs-accordion-collapse {
@@ -141,12 +142,12 @@ class D2LOuterModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 			}
 
 			#expand-icon {
-				padding-left: 10px;
+				padding-left: var(--expand-icon-padding);
 			}
 
 			:host(:dir(rtl)) #expand-icon {
 				padding-left: initial;
-				padding-right: 10px;
+				padding-right: var(--expand-icon-padding);
 			}
 
 			@keyframes loadingShimmer {

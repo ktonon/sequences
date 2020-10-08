@@ -25,6 +25,7 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			--d2l-lesson-header-text-color: var(--d2l-asv-text-color);
 			--d2l-lesson-header-background-color: transparent;
 			--d2l-meter-size: 48px;
+			--module-completion-count-padding: 3px;
 			width: calc(100% - 20px);
 			height: calc(100% - 18px);
 			background-color: var(--d2l-lesson-header-background-color);
@@ -56,12 +57,12 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			color: var(--d2l-lesson-header-text-color);
 			text-align: right;
 			padding-top: 10px;
-			padding-right: 3px;
+			padding-right: var(--module-completion-count-padding);
 		}
 
 		:host(:dir(rtl)) .module-completion-count {
 			padding-right: initial;
-			padding-left: 3px;
+			padding-left: var(--module-completion-count-padding);
 			text-align: left;
 		}
 
