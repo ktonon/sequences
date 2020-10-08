@@ -18,6 +18,9 @@ class D2LSequenceEnd extends ASVFocusWithinMixin(
 					position: relative;
 					margin: 6px 0;
 				}
+				:host(:dir(rtl)) #d2l-sequence-end-container {
+					padding: 20px 20px 20px 40px;
+				}
 
 				#d2l-sequence-end-container.d2l-asv-current {
 					background-color: var(--d2l-color-gypsum);
