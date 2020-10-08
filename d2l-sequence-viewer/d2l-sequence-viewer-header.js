@@ -35,11 +35,6 @@ PolymerElement) {
 				display: flex;
 				flex: 1;
 			}
-			:host([is-sidebar-closed]) #header-left-inner {
-				max-width: 260px;
-				border-right: none;
-				box-shadow: none;
-			}
 			#header-left-inner {
 				display: flex;
 				flex: 1;
@@ -53,6 +48,15 @@ PolymerElement) {
 				-o-transition: max-width 0.4s ease-in-out;
 				transition: max-width 0.4s ease-in-out;
 			}
+			:host(:dir(rtl)) #header-left-inner {
+				border-right: none;
+				border-left: 1px solid #00000029;
+			}
+			:host([is-sidebar-closed]) #header-left-inner {
+				max-width: 260px;
+				border: none;
+				box-shadow: none;
+			}
 			#header-right {
 				display: flex;
 				flex: 1;
@@ -65,10 +69,20 @@ PolymerElement) {
 			#header-right d2l-sequence-viewer-iterator.next-button {
 				padding-right: 24px;
 			}
+			:host(:dir(rtl)) #header-right d2l-sequence-viewer-iterator.next-button {
+				padding-right: initial;
+				padding-left: 24px;
+			}
 			.back-to-module {
 				@apply --d2l-body-small-text;
 				padding-left: 24px;
 				margin-left: 0;
+			}
+			:host(:dir(rtl)) .back-to-module {
+				padding-left: initial;;
+				padding-right: 24px;
+				margin-left: initial;
+				margin-right: 0;
 			}
 			.flyout-menu {
 				display: flex;
@@ -76,8 +90,15 @@ PolymerElement) {
 				align-items: center;
 				margin-left: auto;
 			}
+			:host(:dir(rtl)) .flyout-menu {
+				margin-left: initial;
+				margin-right: auto;
+			}
 			.d2l-flyout-menu {
 				padding: 0 24px 0 15px;
+			}
+			:host(:dir(rtl)) .d2l-flyout-menu {
+				padding: 0 15px 0 24px;
 			}
 			.topic-name {
 				@apply --d2l-body-compact-text;
