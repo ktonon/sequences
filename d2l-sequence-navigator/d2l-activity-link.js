@@ -17,6 +17,7 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 		<style>
 			:host {
 				--d2l-icon-padding: 15px;
+				--title-container-padding: 5px;
 				display: block;
 				@apply --d2l-body-compact-text;
 			}
@@ -90,12 +91,12 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				display: inline-flex;
 				align-items: center;
 				word-break: break-all;
-				padding-right: 5px;
+				padding-right: var(--title-container-padding);
 				width: 90%;
 			}
 			:host(:dir(rtl)) #title-container {
 				padding-right: initial;
-				padding-left: 5px;
+				padding-left: var(--title-container-padding);
 			}
 
 			d2l-icon,
