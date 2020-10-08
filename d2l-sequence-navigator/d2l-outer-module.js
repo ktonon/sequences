@@ -144,6 +144,11 @@ class D2LOuterModule extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				padding-left: 10px;
 			}
 
+			:host(:dir(rtl)) #expand-icon {
+				padding-left: initial;
+				padding-right: 10px;
+			}
+
 			@keyframes loadingShimmer {
 				0% { background-color: var(--d2l-color-sylvite); }
 				50% { background-color: var(--d2l-color-regolith); }

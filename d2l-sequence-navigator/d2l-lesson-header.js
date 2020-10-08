@@ -59,6 +59,12 @@ class D2LLessonHeader extends ASVFocusWithinMixin(CompletionStatusMixin()) {
 			padding-right: 3px;
 		}
 
+		:host(:dir(rtl)) .module-completion-count {
+			padding-right: initial;
+			padding-left: 3px;
+			text-align: left;
+		}
+
 		.d2l-header-lesson-link,
 		.d2l-header-lesson-link:hover {
 			cursor: pointer;
