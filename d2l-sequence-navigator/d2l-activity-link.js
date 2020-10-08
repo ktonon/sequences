@@ -93,6 +93,10 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				padding-right: 5px;
 				width: 90%;
 			}
+			:host(:dir(rtl)) #title-container {
+				padding-right: initial;
+				padding-left: 5px;
+			}
 
 			d2l-icon,
 			a,
@@ -135,6 +139,10 @@ class D2LActivityLink extends PolymerASVLaunchMixin(CompletionStatusMixin()) {
 				padding-right: var(--d2l-left-icon-padding);
 				color: var(--d2l-color-celestine);
 				min-width: 18px;
+			}
+			:host(:dir(rtl)) d2l-icon {
+				padding-right: 0;
+				padding-left: var(--d2l-left-icon-padding);
 			}
 
 			d2l-completion-status {

@@ -106,6 +106,9 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 					var(--d2l-icon-size)
 				);
 			}
+			:host(:dir(rtl)) .d2l-activity-link-title {
+				text-align: right;
+			}
 
 			a {
 				@apply --d2l-body-compact-text;
@@ -128,6 +131,10 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 				padding-top: 3px;
 				padding-right: var(--d2l-left-icon-padding);
 				color: var(--d2l-activity-link-text-color);
+			}
+			:host(:dir(rtl)) d2l-icon {
+				padding-right: initial;
+				padding-left: var(--d2l-left-icon-padding);
 			}
 
 			:host([inner-last]) {
