@@ -26,6 +26,12 @@ PolymerElement) {
 	static get template() {
 		return html`
 		<style>
+			:host {
+				--header-inner-border: 1px solid #00000029;
+				--d2l-sequence-viewer-button-padding: 24px;
+				--d2l-flyout-menu-right-padding: 24px;
+				--d2l-flyout-menu-left-padding: 15px;
+			}
 			#container {
 				display: flex;
 				align-items: center;
@@ -35,23 +41,27 @@ PolymerElement) {
 				display: flex;
 				flex: 1;
 			}
-			:host([is-sidebar-closed]) #header-left-inner {
-				max-width: 260px;
-				border-right: none;
-				box-shadow: none;
-			}
 			#header-left-inner {
 				display: flex;
 				flex: 1;
 				z-index: 2;
 				background: white;
 				max-width: 570px;
-				border-right: 1px solid #00000029;
+				border-right: var(--header-inner-border);
 				box-shadow: 2px 0 12px #00000029;
 				-webkit-transition: max-width 0.4s ease-in-out;
 				-moz-transition: max-width 0.4s ease-in-out;
 				-o-transition: max-width 0.4s ease-in-out;
 				transition: max-width 0.4s ease-in-out;
+			}
+			:host(:dir(rtl)) #header-left-inner {
+				border-right: none;
+				border-left: var(--header-inner-border);
+			}
+			:host([is-sidebar-closed]) #header-left-inner {
+				max-width: 260px;
+				border: none;
+				box-shadow: none;
 			}
 			#header-right {
 				display: flex;
@@ -63,12 +73,22 @@ PolymerElement) {
 				padding: 0 24px;
 			}
 			#header-right d2l-sequence-viewer-iterator.next-button {
-				padding-right: 24px;
+				padding-right: var(--d2l-sequence-viewer-button-padding);
+			}
+			:host(:dir(rtl)) #header-right d2l-sequence-viewer-iterator.next-button {
+				padding-right: initial;
+				padding-left: var(--d2l-sequence-viewer-button-padding);
 			}
 			.back-to-module {
 				@apply --d2l-body-small-text;
-				padding-left: 24px;
+				padding-left: var(--d2l-sequence-viewer-button-padding);
 				margin-left: 0;
+			}
+			:host(:dir(rtl)) .back-to-module {
+				padding-left: initial;;
+				padding-right: var(--d2l-sequence-viewer-button-padding);
+				margin-left: initial;
+				margin-right: 0;
 			}
 			.flyout-menu {
 				display: flex;
@@ -76,8 +96,15 @@ PolymerElement) {
 				align-items: center;
 				margin-left: auto;
 			}
+			:host(:dir(rtl)) .flyout-menu {
+				margin-left: initial;
+				margin-right: auto;
+			}
 			.d2l-flyout-menu {
-				padding: 0 24px 0 15px;
+				padding: 0 var(--d2l-flyout-menu-right-padding) 0 var(--d2l-flyout-menu-left-padding);
+			}
+			:host(:dir(rtl)) .d2l-flyout-menu {
+				padding: 0 var(--d2l-flyout-menu-left-padding) 0 var(--d2l-flyout-menu-right-padding);
 			}
 			.topic-name {
 				@apply --d2l-body-compact-text;

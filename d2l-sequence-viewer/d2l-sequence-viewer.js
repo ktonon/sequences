@@ -191,6 +191,14 @@ class D2LSequenceViewer extends mixinBehaviors([
 						-o-transition: left 0.4s ease-in-out;
 						transition: left 0.4s ease-in-out;
 					}
+					:host(:dir(rtl)) #sidebar-container {
+						left: auto;
+						right: 0;
+						-webkit-transition: right 0.4s ease-in-out;
+						-moz-transition: right 0.4s ease-in-out;
+						-o-transition: right 0.4s ease-in-out;
+						transition: right 0.4s ease-in-out;
+					}
 					#sidebar-container.offscreen {
 						max-width: var(--sidebar-max-width);
 						left: calc(-1 * var(--sidebar-max-width));
@@ -198,6 +206,14 @@ class D2LSequenceViewer extends mixinBehaviors([
 						-moz-transition: left 0.4s ease-in-out;
 						-o-transition: left 0.4s ease-in-out;
 						transition: left 0.4s ease-in-out;
+					}
+					:host(:dir(rtl)) #sidebar-container.offscreen {
+						left: auto;
+						right: calc(-1 * var(--sidebar-max-width));
+						-webkit-transition: right 0.4s ease-in-out;
+						-moz-transition: right 0.4s ease-in-out;
+						-o-transition: right 0.4s ease-in-out;
+						transition: right 0.4s ease-in-out;
 					}
 				}
 			</style>

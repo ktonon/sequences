@@ -19,7 +19,7 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 				--d2l-activity-link-text-color: var(--d2l-color-ferrite);
 				--d2l-activity-link-opacity: 1;
 				--d2l-activity-link-backdrop-opacity: 0;
-				--d2l-left-icon-padding: 15px;
+				--d2l-icon-padding: 15px;
 				--d2l-icon-size: 18px;
 				display: block;
 				cursor: pointer;
@@ -102,9 +102,12 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 				word-wrap: break-word;
 				width: calc(
 					100% -
-					var(--d2l-left-icon-padding) -
+					var(--d2l-icon-padding) -
 					var(--d2l-icon-size)
 				);
+			}
+			:host(:dir(rtl)) .d2l-activity-link-title {
+				text-align: right;
 			}
 
 			a {
@@ -126,8 +129,12 @@ class D2LEolActivityLink extends ASVFocusWithinMixin(PolymerASVLaunchMixin(Compl
 
 			d2l-icon {
 				padding-top: 3px;
-				padding-right: var(--d2l-left-icon-padding);
+				padding-right: var(--d2l-icon-padding);
 				color: var(--d2l-activity-link-text-color);
+			}
+			:host(:dir(rtl)) d2l-icon {
+				padding-right: initial;
+				padding-left: var(--d2l-icon-padding);
 			}
 
 			:host([inner-last]) {
